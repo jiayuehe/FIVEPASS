@@ -2,9 +2,14 @@
     <string name="app_name">StepCounter</string>
     <string name="stepCounter">Steos</string>
     <string name="steps">Steps: </string>
+    <string name="distance">Distance: </string>
     <string name="IntialStepCount">0</string>
+    <string name="IntialDistanceCount">0 m</string>
     <string name="guestUser">Log In</string>
     <string name="username">USERNAME</string>
     <string name="password">PASSWORD</string>
-
+    <string name="activityTitle">*Activity</string>
+    <string name="exerciseTitle">*Exercise</string>
+    <string name="totalCalories">Total Calories Consumption</string>
+    <string name="totalCaloriesValue">1000</string>
 </resources>

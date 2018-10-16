@@ -12,28 +12,270 @@
     android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/NavigationBar"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="204dp"
-        android:gravity="center">
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="31dp">
 
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="47dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            android:text="@string/steps"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_steps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_info"
-            android:text="@string/IntialStepCount" />
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/title_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/titleMedium"
+                    android:text="@string/activityTitle"
+                    android:textSize="@dimen/titleMedium" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/div_steps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:id="@+id/tv_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/steps"
+                        android:textSize="@dimen/titleFont" />
+
+                    <TextView
+                        android:id="@+id/tv_steps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_info"
+                        android:text="@string/IntialStepCount"
+                        android:textSize="@dimen/titleFont" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/div_steps"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:id="@+id/tv_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distance"
+                        android:textSize="@dimen/titleFont" />
+
+                    <TextView
+                        android:id="@+id/tv_distanceValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_distance"
+                        android:text="@string/IntialDistanceCount"
+                        android:textSize="@dimen/titleFont" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/title_exercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/titleMedium"
+                    android:layout_marginBottom="@dimen/titleMedium"
+                    android:text="@string/exerciseTitle"
+                    android:textSize="@dimen/titleMedium" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalCalories"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:text="@string/totalCaloriesValue"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalCalories"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:text="@string/totalCaloriesValue"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalCalories"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:text="@string/totalCaloriesValue"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalCalories"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:text="@string/totalCaloriesValue"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/exercise_box"
+                android:paddingTop="@dimen/titleSmall"
+                android:paddingBottom="@dimen/titleSmall">
+
+                <TextView
+                    android:id="@+id/totalCalorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalCalories"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+                <TextView
+                    android:id="@+id/totalCalorieValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalCalorie"
+                    android:text="@string/totalCaloriesValue"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/titleMedium"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/NavigationBar"
@@ -41,8 +283,10 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="2dp"
-        app:menu="@menu/menu"></android.support.design.widget.BottomNavigationView>
+        android:layout_marginBottom="0dp"
+        app:menu="@menu/menu">
+
+    </android.support.design.widget.BottomNavigationView>
 
 
 </RelativeLayout>

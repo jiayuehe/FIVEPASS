@@ -17,7 +17,8 @@
         android:layout_marginTop="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logosmallerversion"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/UserName"
@@ -45,7 +46,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint = "@string/password"
-            />
+            android:autofillHints="" />
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
