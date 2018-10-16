@@ -13,17 +13,17 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="353dp"
+        android:layout_height="426dp"
         android:layout_alignBottom="@+id/NavigationBar"
         android:layout_alignParentTop="true"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="31dp">
+        android:layout_marginBottom="52dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -166,17 +166,18 @@
                     android:id="@+id/totalCalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/totalCalories"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
                 <TextView
                     android:id="@+id/totalCalorieValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/totalCalorie"
-                    android:text="@string/totalCaloriesValue"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -190,17 +191,18 @@
                     android:id="@+id/totalCalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/totalCalories"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
                 <TextView
                     android:id="@+id/totalCalorieValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/totalCalorie"
-                    android:text="@string/totalCaloriesValue"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -214,17 +216,18 @@
                     android:id="@+id/totalCalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/totalCalories"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
                 <TextView
                     android:id="@+id/totalCalorieValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/totalCalorie"
-                    android:text="@string/totalCaloriesValue"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -238,17 +241,18 @@
                     android:id="@+id/totalCalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/totalCalories"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
                 <TextView
                     android:id="@+id/totalCalorieValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/totalCalorie"
-                    android:text="@string/totalCaloriesValue"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -262,17 +266,18 @@
                     android:id="@+id/totalCalorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/totalCalories"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCalories"
+                    android:textSize="@dimen/titleMedium" />
+
                 <TextView
                     android:id="@+id/totalCalorieValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/totalCalorie"
-                    android:text="@string/totalCaloriesValue"
                     android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/titleMedium"/>
+                    android:text="@string/totalCaloriesValue"
+                    android:textSize="@dimen/titleMedium" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
