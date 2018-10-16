@@ -6,5 +6,18 @@
     <string name="guestUser">Log In</string>
     <string name="username">USERNAME</string>
     <string name="password">PASSWORD</string>
+    <string name="title_activity_add_exercise">AddExerciseActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="choose_exercise">Choose an Exercise</string>
+    <string-array name="exercise_list">
+        <item>Walking</item>
+        <item>Running</item>
+        <item>Swimming</item>
+        <item>Weight-lifting</item>
+        <item>Bicycling</item>
+        <item>Others</item>
+    </string-array>
 
 </resources>
