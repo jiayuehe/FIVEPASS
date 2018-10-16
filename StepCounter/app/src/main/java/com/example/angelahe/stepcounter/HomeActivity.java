@@ -1,12 +1,17 @@
 package com.example.angelahe.stepcounter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +30,25 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         tv_steps = (TextView) findViewById(R.id.tv_steps);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.NavigationBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Today:
+                        break;
+                    case R.id.AddMorePlan:
+                        Intent intent = new Intent(HomeActivity.this, DailyPlan.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.Settings:
+                        break;
+                }
+
+                return false;
+            }
+        });
     }
 
 
