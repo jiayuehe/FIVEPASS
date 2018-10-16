@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".UserRegister"></activity>
+        <activity android:name=".UserRegister" />
+        <activity
+            android:name=".AddExerciseActivity"
+            android:label="@string/title_activity_add_exercise" />
     </application>
 
 </manifest>
