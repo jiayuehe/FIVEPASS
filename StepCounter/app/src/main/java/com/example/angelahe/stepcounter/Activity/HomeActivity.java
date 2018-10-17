@@ -6,6 +6,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +18,27 @@ import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.R;
 
+import io.netopen.hotbitmapgg.library.view.RingProgressBar;
+
 public class HomeActivity extends AppCompatActivity implements SensorEventListener {
+    // This is for ring progress bar
+    RingProgressBar ringProgressBar;
+
+    int progress = 50; // need to get calorie from database
+
+    Handler myHandlr = new Handler(){
+        @Override
+        public void handleMessage(Message message){
+            if(message.what == 0){
+                if(progress < 100){
+                    progress ++;
+                    ringProgressBar.setProgress(progress);
+                }
+            }
+        }
+    };
+
+
     // This is for the step counter
     TextView tv_steps;
 
@@ -27,7 +49,19 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // for ring progress bar
         setContentView(R.layout.activity_home);
+        ringProgressBar = findViewById(R.id.progress_bar);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                myHandlr.sendEmptyMessage(0);
+            }
+        }).start();
+
+
+        // for home and window bar
         tv_steps = (TextView) findViewById(R.id.tv_steps);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);

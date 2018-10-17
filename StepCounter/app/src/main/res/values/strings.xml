@@ -25,6 +25,7 @@
         <item>Bicycling</item>
         <item>Others</item>
     </string-array>
+
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -39,4 +40,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="_0">0</string>
+    <string name="action_time">Action Time</string>
+    <string name="ActionTimeDefault">0h0m</string>
+    <string name="calories">Calories</string>
+    <string name="capcalories">CALORIES</string>
 </resources>
+
