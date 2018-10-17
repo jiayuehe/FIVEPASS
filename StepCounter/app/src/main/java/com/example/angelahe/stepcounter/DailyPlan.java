@@ -25,6 +25,7 @@ public class DailyPlan extends AppCompatActivity {
     }
 
     public void openExerciseOptions() {
+        System.out.println("sending intent to addexactivity");
         Intent intent = new Intent(this, AddExerciseActivity.class);
         startActivity(intent);
     }
