@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -14,9 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.TimePicker;
-
 import com.example.angelahe.stepcounter.R;
-
 import java.util.Calendar;
 
 public class AddExerciseActivity extends AppCompatActivity {
@@ -69,26 +69,53 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
-        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final TextInputLayout exercise = findViewById(R.id.textInputLayout);
+        exercise.setVisibility(View.INVISIBLE);
+        final TextInputLayout calorie = findViewById(R.id.textInputLayout2);
+        calorie.setVisibility(View.INVISIBLE);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).toString().equals("Others")){
 
-                    ConstraintLayout layout = findViewById(R.id.container);
+//                    ConstraintLayout layout = findViewById(R.id.container);
+//
+//                    EditText exercise = new EditText(AddExerciseActivity.this);
+//                    EditText calorie = new EditText(AddExerciseActivity.this);
+//                    layout.addView(exercise);
+//                    layout.addView(calorie);
+//                    exercise.setHint("Running");
+//                    calorie.setHint("Calorie consumption per hour");
+//                    exercise.setId(R.id.exercise_input);
+////                    exercise.setTop(100);
+////                    exercise.setLeft(30);
+////                    calorie.setTop(100);
+////                    calorie.setLeft(60);
+//                    calorie.setId(R.id.calorie_input);
+//
+//                    ConstraintSet constraintSet = new ConstraintSet();
+//                    constraintSet.clone(layout);
+//                    constraintSet.connect(layout.getId(), ConstraintSet.BOTTOM, exercise.getId(), ConstraintSet.TOP, 20);
+//                    constraintSet.connect(layout.getId(), ConstraintSet.BOTTOM, calorie.getId(), constraintSet.TOP, 40);
+//                    constraintSet.applyTo(layout);
 
-                    EditText exercise = new EditText(AddExerciseActivity.this);
-                    EditText calorie = new EditText(AddExerciseActivity.this);
-                    layout.addView(exercise);
-                    layout.addView(calorie);
-                    exercise.setHint("Running");
-                    calorie.setHint("Calorie consumption per hour");
-
-
-
+                    exercise.setVisibility(View.VISIBLE);
+                    calorie.setVisibility(View.VISIBLE);
 
                 }
+                else{
+                    exercise.setVisibility(View.INVISIBLE);
+                    calorie.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
+
 
 
 
