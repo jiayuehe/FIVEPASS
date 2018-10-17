@@ -10,7 +10,7 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <ScrollView
         android:layout_width="353dp"
@@ -130,155 +130,156 @@
                     android:textSize="@dimen/titleMedium" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/exercise_box"
-                android:paddingTop="@dimen/titleSmall"
-                android:paddingBottom="@dimen/titleSmall">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@drawable/exercise_box"-->
+                <!--android:paddingTop="@dimen/titleSmall"-->
+                <!--android:paddingBottom="@dimen/titleSmall">-->
 
-                <TextView
-                    android:id="@+id/totalCalorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCalories"
-                    android:textSize="@dimen/titleMedium" />
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorie"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCalories"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
 
-                <TextView
-                    android:id="@+id/totalCalorieValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalCalorie"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCaloriesValue"
-                    android:textSize="@dimen/titleMedium" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorieValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/totalCalorie"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCaloriesValue"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/exercise_box"
-                android:paddingTop="@dimen/titleSmall"
-                android:paddingBottom="@dimen/titleSmall">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@drawable/exercise_box"-->
+                <!--android:paddingTop="@dimen/titleSmall"-->
+                <!--android:paddingBottom="@dimen/titleSmall">-->
 
-                <TextView
-                    android:id="@+id/totalCalorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCalories"
-                    android:textSize="@dimen/titleMedium" />
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorie"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCalories"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
 
-                <TextView
-                    android:id="@+id/totalCalorieValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalCalorie"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCaloriesValue"
-                    android:textSize="@dimen/titleMedium" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorieValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/totalCalorie"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCaloriesValue"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/exercise_box"
-                android:paddingTop="@dimen/titleSmall"
-                android:paddingBottom="@dimen/titleSmall">
+            <!---->
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@drawable/exercise_box"-->
+                <!--android:paddingTop="@dimen/titleSmall"-->
+                <!--android:paddingBottom="@dimen/titleSmall">-->
 
-                <TextView
-                    android:id="@+id/totalCalorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCalories"
-                    android:textSize="@dimen/titleMedium" />
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorie"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCalories"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
 
-                <TextView
-                    android:id="@+id/totalCalorieValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalCalorie"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCaloriesValue"
-                    android:textSize="@dimen/titleMedium" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorieValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/totalCalorie"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCaloriesValue"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/exercise_box"
-                android:paddingTop="@dimen/titleSmall"
-                android:paddingBottom="@dimen/titleSmall">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@drawable/exercise_box"-->
+                <!--android:paddingTop="@dimen/titleSmall"-->
+                <!--android:paddingBottom="@dimen/titleSmall">-->
 
-                <TextView
-                    android:id="@+id/totalCalorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCalories"
-                    android:textSize="@dimen/titleMedium" />
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorie"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCalories"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
 
-                <TextView
-                    android:id="@+id/totalCalorieValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalCalorie"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCaloriesValue"
-                    android:textSize="@dimen/titleMedium" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorieValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/totalCalorie"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCaloriesValue"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/exercise_box"
-                android:paddingTop="@dimen/titleSmall"
-                android:paddingBottom="@dimen/titleSmall">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@drawable/exercise_box"-->
+                <!--android:paddingTop="@dimen/titleSmall"-->
+                <!--android:paddingBottom="@dimen/titleSmall">-->
 
-                <TextView
-                    android:id="@+id/totalCalorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCalories"
-                    android:textSize="@dimen/titleMedium" />
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorie"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCalories"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
 
-                <TextView
-                    android:id="@+id/totalCalorieValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalCalorie"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCaloriesValue"
-                    android:textSize="@dimen/titleMedium" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorieValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/totalCalorie"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCaloriesValue"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/exercise_box"
-                android:paddingTop="@dimen/titleSmall"
-                android:paddingBottom="@dimen/titleSmall">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@drawable/exercise_box"-->
+                <!--android:paddingTop="@dimen/titleSmall"-->
+                <!--android:paddingBottom="@dimen/titleSmall">-->
 
-                <TextView
-                    android:id="@+id/totalCalorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCalories"
-                    android:textSize="@dimen/titleMedium" />
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorie"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCalories"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
 
-                <TextView
-                    android:id="@+id/totalCalorieValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalCalorie"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/totalCaloriesValue"
-                    android:textSize="@dimen/titleMedium" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/totalCalorieValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/totalCalorie"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="@string/totalCaloriesValue"-->
+                    <!--android:textSize="@dimen/titleMedium" />-->
+            <!--</RelativeLayout>-->
         </LinearLayout>
     </ScrollView>
 
