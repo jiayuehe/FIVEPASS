@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TimePicker;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
+import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
 
 import java.util.Calendar;
@@ -84,28 +85,6 @@ public class AddExerciseActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).toString().equals("Others")) {
-
-//                    ConstraintLayout layout = findViewById(R.id.container);
-//
-//                    EditText exercise = new EditText(AddExerciseActivity.this);
-//                    EditText calorie = new EditText(AddExerciseActivity.this);
-//                    layout.addView(exercise);
-//                    layout.addView(calorie);
-//                    exercise.setHint("Running");
-//                    calorie.setHint("Calorie consumption per hour");
-//                    exercise.setId(R.id.exercise_input);
-////                    exercise.setTop(100);
-////                    exercise.setLeft(30);
-////                    calorie.setTop(100);
-////                    calorie.setLeft(60);
-//                    calorie.setId(R.id.calorie_input);
-//
-//                    ConstraintSet constraintSet = new ConstraintSet();
-//                    constraintSet.clone(layout);
-//                    constraintSet.connect(layout.getId(), ConstraintSet.BOTTOM, exercise.getId(), ConstraintSet.TOP, 20);
-//                    constraintSet.connect(layout.getId(), ConstraintSet.BOTTOM, calorie.getId(), constraintSet.TOP, 40);
-//                    constraintSet.applyTo(layout);
-
                     exercise.setVisibility(View.VISIBLE);
                     calorie.setVisibility(View.VISIBLE);
 
@@ -129,6 +108,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         timePicker = findViewById(R.id.simpleTimePicker);
         starthour = timePicker.getHour();
         startmin = timePicker.getMinute();
+        int calorie = 0;
         String startTime = String.valueOf(starthour) + "," + String.valueOf(startmin);
         Log.d("UsernameinExercise", "a" + username);
         Log.d("wtf", "wtf");
@@ -138,24 +118,33 @@ public class AddExerciseActivity extends AppCompatActivity {
         switch (exercisename) {
             case "Walking":
                 imageId = R.drawable.walking;
+                calorie = 100;
                 break;
             case "Swimming":
                 imageId = R.drawable.swimming;
+                calorie = 100;
                 break;
             case "Running":
                 imageId = R.drawable.running;
+                calorie = 100;
                 break;
             case "Weight-lifting":
                 imageId = R.drawable.weighlift;
+                calorie = 100;
                 break;
             case "Bicycling":
                 imageId = R.drawable.bicycle;
+                calorie = 100;
                 break;
             default:
                 imageId = R.drawable.running;
+                calorie = 100;
                 break;
         }
 
+        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+        currentUser.addExercise(calorie);
+        MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
         Exercise exercise = new Exercise(username, exercisename, startTime, startTime, imageId);
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);
         Intent intent = new Intent(this, DailyPlan.class);

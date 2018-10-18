@@ -56,6 +56,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     Button incomplete;
 
+    User currentUser;
+
+    int calorie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         ringProgressBar = findViewById(R.id.progress_bar);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+        currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+        calorie = currentUser.getCalorie();
+        Log.e("Current Calorie" , "We have " + calorie);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -77,7 +84,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                 {
                     public void onClick(View view)
                     {
-                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        //User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentDays = currentUser.getBadge();
                         if(currentDays != 0 && currentDays % 7 == 0){
                             startActivity(new Intent(HomeActivity.this,Congratulations.class));
@@ -97,7 +104,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                 {
                     public void onClick(View view)
                     {
-                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        //User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentDays = currentUser.getBadge();
                         Log.e("currentDays", String.valueOf(currentDays));
                         currentUser.setZero();
