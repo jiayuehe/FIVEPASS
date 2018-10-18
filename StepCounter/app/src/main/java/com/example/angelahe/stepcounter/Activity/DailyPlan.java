@@ -79,6 +79,7 @@ public class DailyPlan extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.Home:
                         Intent intent = new Intent(DailyPlan.this, HomeActivity.class);
+                        intent.putExtra("username", username);
                         startActivity(intent);
                         break;
                     case R.id.AddMorePlan:
