@@ -22,12 +22,12 @@ android {
 }
 
 dependencies {
-<<<<<<< HEAD
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-=======
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
->>>>>>> 9cfbcad71fb5197639b22ece9c79225c473d5acc
+//<<<<<<< HEAD
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//=======
+//
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//>>>>>>> 9cfbcad71fb5197639b22ece9c79225c473d5acc
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-vector-drawable:27.1.1'

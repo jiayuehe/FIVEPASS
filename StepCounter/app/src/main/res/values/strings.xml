@@ -45,5 +45,6 @@
     <string name="ActionTimeDefault">0h0m</string>
     <string name="calories">Calories</string>
     <string name="capcalories">CALORIES</string>
+    <string name="textview">textview</string>
 </resources>
 

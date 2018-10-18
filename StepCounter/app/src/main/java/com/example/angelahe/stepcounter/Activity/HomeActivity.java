@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,13 +47,16 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     boolean running = false;
 
+    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // for ring progress bar
         setContentView(R.layout.activity_home);
         ringProgressBar = findViewById(R.id.progress_bar);
-
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -75,6 +79,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                         break;
                     case R.id.AddMorePlan:
                         Intent intent = new Intent(HomeActivity.this, DailyPlan.class);
+                        intent.putExtra("username", username);
                         startActivity(intent);
                         break;
                     case R.id.Settings:

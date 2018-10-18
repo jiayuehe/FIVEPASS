@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,19 +34,21 @@ public class UserRegisterActivity extends AppCompatActivity {
         mButtonTwo = (Button)findViewById(R.id.buttonlogin);
         Username   = (EditText)findViewById(R.id.username);
         Password = (EditText)findViewById(R.id.password);
-
-        final String username = Username.getText().toString();
-        final String password = Password.getText().toString();
+;
         mButton.setOnClickListener(
                 new View.OnClickListener()
                 {
                     public void onClick(View view)
                     {
+                        final String username = Username.getText().toString();
+                        final String password = Password.getText().toString();
+                        Log.d("Currentusername","CurrentUsername is " + username);
                         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         if(currentUser == null){
                             User user = new User(username,password);
                             MainActivity.myAppDatabase.UserDao().addUser(user);
                             Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
+                            myIntent.putExtra("username", username);
                             startActivity(myIntent);
                         } else{
                             Toast.makeText(UserRegisterActivity.this,"Username taken", Toast.LENGTH_SHORT).show();
@@ -58,11 +61,15 @@ public class UserRegisterActivity extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        final String username = Username.getText().toString();
+                        final String password = Password.getText().toString();
+                        Log.d("Currentusername","CurrentUsername is " + username);
                         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         if(currentUser == null || !currentUser.checkPassword(password)){
                             Toast.makeText(UserRegisterActivity.this,"Log in failed", Toast.LENGTH_SHORT).show();
                         } else{
                             Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
+                            myIntent.putExtra("username", username);
                             startActivity(myIntent);
                         }
 

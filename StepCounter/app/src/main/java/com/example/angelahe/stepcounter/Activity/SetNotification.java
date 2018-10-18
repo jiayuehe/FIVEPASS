@@ -1,4 +1,4 @@
-package com.example.angelahe.stepcounter;
+package com.example.angelahe.stepcounter.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;

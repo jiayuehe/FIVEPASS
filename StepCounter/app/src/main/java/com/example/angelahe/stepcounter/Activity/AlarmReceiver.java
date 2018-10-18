@@ -1,4 +1,4 @@
-package com.example.angelahe.stepcounter;
+package com.example.angelahe.stepcounter.Activity;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
