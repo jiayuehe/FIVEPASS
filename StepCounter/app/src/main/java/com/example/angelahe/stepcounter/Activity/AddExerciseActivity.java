@@ -161,6 +161,10 @@ public class AddExerciseActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DailyPlan.class);
         intent.putExtra("username", username);
         startActivity(intent);
+
+        //set notification
+        SetNotification setter = new SetNotification();
+        setter.setWithTime(this, starthour, startmin, 0, exercisename);
     }
 
 }

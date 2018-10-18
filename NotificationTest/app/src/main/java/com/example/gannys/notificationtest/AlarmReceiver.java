@@ -38,10 +38,11 @@ public class AlarmReceiver extends BroadcastReceiver {
             ntffMng.createNotificationChannel(mChannel);
         }
 
+        String sport = intent.getStringExtra("sport");
         Notification.Builder builder = new Notification.Builder(context, CHANNEL_ID);
         builder.setSmallIcon(android.R.drawable.ic_menu_agenda)
                 .setContentTitle("It's time for exercise!")
-                .setContentText("Swimming")
+                .setContentText(sport)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setContentIntent(contentItent);
