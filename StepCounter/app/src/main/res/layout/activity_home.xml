@@ -13,66 +13,59 @@
     tools:context=".Activity.MainActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+        <io.netopen.hotbitmapgg.library.view.RingProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
+            app:max="100"
+            app:ringColor="@color/colorPrimary"
+            app:ringProgressColor="@color/colorPrimary"
+            app:ringWidth="3dp"
+            app:style="FILL"
+            app:textColor="@color/red"
+            app:textIsShow="true"
+            app:textSize="16sp" />
 
-            <io.netopen.hotbitmapgg.library.view.RingProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="50dp"
-                app:max="100"
-                app:ringColor="@color/colorPrimary"
-                app:ringProgressColor="@color/colorPrimary"
-                app:ringWidth="3dp"
-                app:style="FILL"
-                app:textColor="@color/red"
-                app:textIsShow="true"
-                app:textSize="16sp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/totalCalorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:text="@string/totalCalories"
+            android:textSize="@dimen/titleSmall" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/exercise_box"
-            android:paddingTop="20dp"
-            android:paddingBottom="@dimen/titleSmall">
+        <TextView
+            android:id="@+id/totalCalorieValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/totalCalorie"
+            android:layout_alignParentRight="true"
+            android:paddingRight="3dp"
+            android:text="@string/totalCaloriesValue"
+            android:textSize="@dimen/titleMedium" />
 
-
-            <TextView
-                android:id="@+id/totalCalorie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/totalCalories"
-                android:textSize="@dimen/titleMedium" />
-
-            <TextView
-                android:id="@+id/totalCalorieValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/totalCalorie"
-                android:layout_centerHorizontal="true"
-                android:text="@string/totalCaloriesValue"
-                android:textSize="@dimen/titleMedium" />
-        </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <ScrollView
-        android:layout_width="353dp"
-        android:layout_height="426dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignBottom="@+id/NavigationBar"
         android:layout_alignParentTop="true"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="52dp">
+        android:layout_marginBottom="52dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
