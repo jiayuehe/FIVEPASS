@@ -80,6 +80,18 @@
             android:paddingTop="200dp"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/checked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="dailyCheck" />
+
+            <Button
+                android:id="@+id/incomplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I didn't Complete" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
