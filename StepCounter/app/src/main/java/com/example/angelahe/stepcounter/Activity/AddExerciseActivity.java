@@ -64,6 +64,8 @@ public class AddExerciseActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         timePicker = findViewById(R.id.simpleTimePicker);
         final Calendar calendar = Calendar.getInstance();
+        min = calendar.get(Calendar.MINUTE);
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
         timePicker.setHour(hour);
         timePicker.setMinute(min);
 
@@ -108,8 +110,11 @@ public class AddExerciseActivity extends AppCompatActivity {
         timePicker = findViewById(R.id.simpleTimePicker);
         starthour = timePicker.getHour();
         startmin = timePicker.getMinute();
+        endhour = timePicker2.getHour();
+        endmin = timePicker2.getMinute();
         int calorie = 0;
-        String startTime = String.valueOf(starthour) + "," + String.valueOf(startmin);
+        String startTime = String.valueOf(starthour) + ":" + String.valueOf(startmin);
+        String endTime = String.valueOf(endhour) + ":" + String.valueOf(endmin);
         Log.d("UsernameinExercise", "a" + username);
         Log.d("wtf", "wtf");
         Log.d("Starttime is ", "b" + String.valueOf(starthour) + " : " + String.valueOf(startmin));
@@ -145,7 +150,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
         currentUser.addExercise(calorie);
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
-        Exercise exercise = new Exercise(username, exercisename, startTime, startTime, imageId);
+        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId);
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);
         Intent intent = new Intent(this, DailyPlan.class);
         intent.putExtra("username", username);

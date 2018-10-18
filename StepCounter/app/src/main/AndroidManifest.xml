@@ -16,8 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.HomeActivity" />
-        <activity android:name=".Activity.UserRegisterActivity" />
+        <activity android:name=".Activity.HomeActivity"
+            android:label="@string/title_homepage"/>
+        <activity android:name=".Activity.UserRegisterActivity"
+            android:label="@string/app_title"/>
         <activity android:name=".Activity.DailyPlan" />
         <activity
             android:name=".Activity.AddExerciseActivity"
