@@ -116,25 +116,26 @@ public class AddExerciseActivity extends AppCompatActivity {
         Log.d("exercise name is ", "c" + exercisename);
         int imageId = 0;
         switch (exercisename) {
+            // in an hour
             case "Walking":
                 imageId = R.drawable.walking;
-                calorie = 100;
+                calorie = 250;
                 break;
             case "Swimming":
                 imageId = R.drawable.swimming;
-                calorie = 100;
+                calorie = 600;
                 break;
             case "Running":
                 imageId = R.drawable.running;
-                calorie = 100;
+                calorie = 600;
                 break;
             case "Weight-lifting":
                 imageId = R.drawable.weighlift;
-                calorie = 100;
+                calorie = 380;
                 break;
             case "Bicycling":
                 imageId = R.drawable.bicycle;
-                calorie = 100;
+                calorie = 650;
                 break;
             default:
                 imageId = R.drawable.running;
