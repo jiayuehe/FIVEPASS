@@ -11,8 +11,10 @@
     <string name="activityTitle">*Activity</string>
     <string name="exerciseTitle">*Exercise</string>
     <string name="totalCalories">Total Calories Consumption</string>
+
     <string name="totalCaloriesValue">1000</string>
     <string name="title_activity_add_exercise">Add Activity</string>
+
     <string name="title_home">Home</string>
     <string name="title_homepage">Today\'s Progress</string>
     <string name="title_dashboard">Dashboard</string>
