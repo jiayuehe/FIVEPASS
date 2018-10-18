@@ -15,7 +15,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         System.out.println("++++++ recieved ++++++++++");
 
-        Intent mainIntent = new Intent(context, MainActivity.class);
+        Intent mainIntent = new Intent(context, HomeActivity.class);
         PendingIntent contentItent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
 

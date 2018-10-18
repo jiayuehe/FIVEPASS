@@ -33,6 +33,6 @@ public class SetNotification {
 
         Toast.makeText(context, "This is alarm", Toast.LENGTH_SHORT).show();
 
-        System.out.println("Time: " + hour + " : " + min);
+        System.out.println("=============Notify Time: " + hour + " : " + min + "============");
     }
 }
