@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.Today:
+                    case R.id.Home:
                         break;
                     case R.id.AddMorePlan:
                         Intent intent = new Intent(HomeActivity.this, DailyPlan.class);
