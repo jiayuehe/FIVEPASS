@@ -11,7 +11,7 @@ import java.util.Calendar;
 public class SetNotification {
     public void setWithTime(Context context, int hour, int min, int sec){
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra("note", "this is the extra");
+        intent.putExtra("sport", "this is the extra");
 
         // pending intent
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);

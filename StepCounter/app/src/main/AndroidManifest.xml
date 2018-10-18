@@ -22,6 +22,6 @@
         <activity
             android:name=".Activity.AddExerciseActivity"
             android:label="@string/title_activity_add_exercise" />
+        <receiver android:name=".Activity.AlarmReceiver"/>
     </application>
-
 </manifest>

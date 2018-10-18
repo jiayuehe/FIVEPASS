@@ -8,9 +8,9 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class SetNotification {
-    public void setWithTime(Context context, int hour, int min, int sec){
+    public void setWithTime(Context context, int hour, int min, int sec, String sport){
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra("note", "this is the extra");
+        intent.putExtra("sport", sport);
 
         // pending intent
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
