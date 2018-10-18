@@ -22,6 +22,13 @@ public class User {
     @ColumnInfo(name = "badge")
     public int badge;
 
+    @ColumnInfo(name = "calorie")
+    public int calorie;
+
+    public int getCalorie() {
+        return calorie;
+    }
+
     public int getBadge() {
         return badge;
     }
@@ -30,6 +37,7 @@ public class User {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
         this.badge = 0;
+        this.calorie = 0;
     }
 
     public void addOne(){
@@ -52,6 +60,10 @@ public class User {
         } else{
             return false;
         }
+    }
+
+    public void addExercise(int calorie){
+        this.calorie += calorie;
     }
 
 }
