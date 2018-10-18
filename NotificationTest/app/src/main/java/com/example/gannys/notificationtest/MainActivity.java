@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
         int sec = calendar.get(Calendar.SECOND);
-        setter.setWithTime(MainActivity.this, hour, min, sec + 3);
+        setter.setWithTime(MainActivity.this, hour, min +1, sec );
 
         System.out.println(hour + " : " + min + " : " + sec);
 
-        System.out.println(Build.VERSION.SDK_INT + "===========" + Build.VERSION.RELEASE);
+//        System.out.println(Build.VERSION.SDK_INT + "===========" + Build.VERSION.RELEASE);
 
 
     }
