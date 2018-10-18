@@ -42,7 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Notification.Builder builder = new Notification.Builder(context, CHANNEL_ID);
         builder.setSmallIcon(android.R.drawable.ic_menu_agenda)
                 .setContentTitle("It's time for exercise!")
-                .setContentText("Swimming")
+                .setContentText(intent.getStringExtra("sport"))
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setContentIntent(contentItent);
