@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     String username;
 
+    Button checked;
+
+    Button incomplete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +69,11 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             }
         }).start();
 
+        // UserCheck
+        checked = (Button)findViewById(R.id.checked);
 
         // for home and window bar
-        tv_steps = (TextView) findViewById(R.id.tv_steps);
+        tv_steps = (Button) findViewById(R.id.incomplete);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 

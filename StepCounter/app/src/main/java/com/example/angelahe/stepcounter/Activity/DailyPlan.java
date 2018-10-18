@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
 import com.example.angelahe.stepcounter.R;
@@ -43,6 +45,19 @@ public class DailyPlan extends AppCompatActivity {
             CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
 
+
+//            listView.setClickable(true);
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//                @Override
+//                public void onListItemClick(ListView l, View v, int position, long id) {
+//                    // retrieve theListView item
+//                    ListViewItem item = mItems.get(position);
+//
+//                    // do something
+//                    Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
+//                }oast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show()
+//            });
         }
 
         addExerciseButton = findViewById(R.id.addExerciseButton);
