@@ -45,15 +45,15 @@ public class DailyPlan extends AppCompatActivity {
         } else {
             ListView listView = (ListView) findViewById(R.id.listView);
 
-            CustomerAdaptar customerAdaptar = new CustomerAdaptar();
+            final CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
 
 
-//            listView.setClickable(true);
+            listView.setClickable(true);
 //            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
 //                @Override
-//                public void onListItemClick(ListView l, View v, int position, long id) {
+//                public void onItemClick(ListView l, View v, int position, long id) {
 //                    // retrieve theListView item
 //                    ListViewItem item = mItems.get(position);
 //
@@ -61,6 +61,15 @@ public class DailyPlan extends AppCompatActivity {
 //                    Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
 //                }oast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show()
 //            });
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    allExercise.remove(position);
+
+                    customerAdaptar.notifyDataSetChanged();
+                }
+            });
         }
 
         addExerciseButton = findViewById(R.id.addExerciseButton);
