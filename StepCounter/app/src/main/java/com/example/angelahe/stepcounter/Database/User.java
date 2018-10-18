@@ -19,9 +19,25 @@ public class User {
     @ColumnInfo(name = "password")
     public String mPassword;
 
+    @ColumnInfo(name = "badge")
+    public int badge;
+
+    public int getBadge() {
+        return badge;
+    }
+
     public User(String mUserName, String mPassword) {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
+        this.badge = 0;
+    }
+
+    public void addOne(){
+        ++ this.badge;
+    }
+
+    public void setZero(){
+        this.badge = 0;
     }
 
     @NonNull

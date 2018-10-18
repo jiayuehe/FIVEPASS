@@ -14,10 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
@@ -69,8 +71,41 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             }
         }).start();
 
-        // UserCheck
         checked = (Button)findViewById(R.id.checked);
+        checked.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        int currentDays = currentUser.getBadge();
+                        if(currentDays != 0 && currentDays % 7 == 0){
+                            startActivity(new Intent(HomeActivity.this,Congratulations.class));
+                        }
+                        Log.e("currentDays", String.valueOf(currentDays));
+                        currentUser.addOne();
+                        Log.e("currentDays", String.valueOf(currentDays));
+                        MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+                        Toast.makeText(HomeActivity.this,"Congratulations!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // UserCheck
+        incomplete = (Button)findViewById(R.id.incomplete);
+        incomplete.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        int currentDays = currentUser.getBadge();
+                        Log.e("currentDays", String.valueOf(currentDays));
+                        currentUser.setZero();
+                        Log.e("currentDays", String.valueOf(currentDays));
+                        MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+                        Toast.makeText(HomeActivity.this,"Sorry! But Keep Going Tomorrow", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         // for home and window bar
         tv_steps = (Button) findViewById(R.id.incomplete);

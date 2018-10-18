@@ -63,10 +63,6 @@ public class AddExerciseActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         timePicker = findViewById(R.id.simpleTimePicker);
         final Calendar calendar = Calendar.getInstance();
-        min = calendar.get(Calendar.MINUTE);
-        hour = calendar.get(Calendar.HOUR_OF_DAY);
-        starthour = hour;
-        startmin = min;
         timePicker.setHour(hour);
         timePicker.setMinute(min);
 
@@ -130,6 +126,9 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     public void onSendMessage(View view) {
         exercisename = spinner.getSelectedItem().toString();
+        timePicker = findViewById(R.id.simpleTimePicker);
+        starthour = timePicker.getHour();
+        startmin = timePicker.getMinute();
         String startTime = String.valueOf(starthour) + "," + String.valueOf(startmin);
         Log.d("UsernameinExercise", "a" + username);
         Log.d("wtf", "wtf");
@@ -156,6 +155,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                 imageId = R.drawable.running;
                 break;
         }
+
         Exercise exercise = new Exercise(username, exercisename, startTime, startTime, imageId);
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);
         Intent intent = new Intent(this, DailyPlan.class);

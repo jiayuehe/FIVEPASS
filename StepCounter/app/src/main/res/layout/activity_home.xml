@@ -13,56 +13,10 @@
     tools:context=".Activity.MainActivity">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp">
-
-        <io.netopen.hotbitmapgg.library.view.RingProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="50dp"
-            app:max="100"
-            app:ringColor="@color/colorPrimary"
-            app:ringProgressColor="@color/colorPrimary"
-            app:ringWidth="3dp"
-            app:style="FILL"
-            app:textColor="@color/red"
-            app:textIsShow="true"
-            app:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/totalCalorie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:text="@string/totalCalories"
-            android:textSize="@dimen/titleSmall" />
-
-        <TextView
-            android:id="@+id/totalCalorieValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/totalCalorie"
-            android:layout_alignParentRight="true"
-            android:paddingRight="3dp"
-            android:text="@string/totalCaloriesValue"
-            android:textSize="@dimen/titleMedium" />
-
-    </RelativeLayout>
-
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/NavigationBar"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="52dp"
         >
@@ -70,20 +24,72 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="200dp"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/calorieChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <io.netopen.hotbitmapgg.library.view.RingProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="258dp"
+                    android:layout_height="264dp"
+                    android:paddingBottom="50dp"
+                    app:max="100"
+                    app:ringColor="@color/colorPrimary"
+                    app:ringProgressColor="@color/colorPrimary"
+                    app:ringWidth="3dp"
+                    app:style="FILL"
+                    app:textColor="@color/red"
+                    app:textIsShow="true"
+                    app:textSize="16sp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/totalCalorie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:text="@string/totalCalories"
+                android:textSize="@dimen/titleSmall" />
+
+            <TextView
+                android:id="@+id/totalCalorieValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/totalCalorie"
+                android:layout_alignParentRight="true"
+                android:paddingRight="3dp"
+                android:text="@string/totalCaloriesValue"
+                android:textSize="@dimen/titleMedium" />
 
             <Button
                 android:id="@+id/checked"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="dailyCheck" />
+                android:text="dailyCheck"
+                android:textColor="@color/white"
+                android:background="@drawable/button"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                />
 
             <Button
                 android:id="@+id/incomplete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I didn't Complete" />
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="I didn't Complete"
+                android:textColor="@color/white"
+                android:background="@drawable/button"
+                android:layout_marginTop="10dp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
