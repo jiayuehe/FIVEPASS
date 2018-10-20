@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-        calorie = currentUser.getCalorie();
+       // calorie = currentUser.getCalorie();
         Log.e("Current Calorie" , "We have " + calorie);
         new Thread(new Runnable() {
             @Override
