@@ -32,6 +32,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private Spinner spinner;
+    private int day, month, year;
     private TimePicker timePicker, timePicker2;
     private int min, hour;
     private String username;
@@ -130,8 +131,11 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            public void onDateSet(DatePicker view, int y, int m, int dayOfMonth) {
                 String date = month+1 + "/" + dayOfMonth + "/" + year;
+                day = dayOfMonth;
+                month = m;
+                year = y;
                 tvDate.setText(date);
             }
         };
@@ -147,7 +151,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         endhour = timePicker2.getHour();
         endmin = timePicker2.getMinute();
         int calorie = 0;
-        String startTime = String.valueOf(starthour) + ":" + String.valueOf(startmin);
+        String startTime = "" + month + "/" + day + "/" + year + "   " + String.valueOf(starthour) + ":" + String.valueOf(startmin);
         String endTime = String.valueOf(endhour) + ":" + String.valueOf(endmin);
         Log.d("UsernameinExercise", "a" + username);
         Log.d("wtf", "wtf");
@@ -183,7 +187,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         }
 
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-        currentUser.addExercise(calorie);
+        currentUser.addExercise(new Exercise(username, exercisename, startTime, endTime, imageId));
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
         Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId);
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);

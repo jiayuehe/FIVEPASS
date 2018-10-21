@@ -48,28 +48,9 @@ public class DailyPlan extends AppCompatActivity {
             final CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
 
-
-            listView.setClickable(true);
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                @Override
-//                public void onItemClick(ListView l, View v, int position, long id) {
-//                    // retrieve theListView item
-//                    ListViewItem item = mItems.get(position);
-//
-//                    // do something
-//                    Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
-//                }oast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show()
-//            });
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    allExercise.remove(position);
-
-                    customerAdaptar.notifyDataSetChanged();
-                }
-            });
+            // TODO:
+            // 1. when user click the 勾勾, need to remove the exercise from data base and the listview
+            // 2. also update the user's calorieConsumption so that the home page would show progress correctly
         }
 
         addExerciseButton = findViewById(R.id.addExerciseButton);

@@ -6,6 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(tableName = "user_table")
@@ -37,8 +38,12 @@ public class User {
     @ColumnInfo(name = "daily goal")
     public int dailyGoal;
 
-    @ColumnInfo(name = "calorie")
-    public int calorie;
+    @ColumnInfo(name = "calorieConsumption")
+    public int calorieConsumptioon;
+
+    Set<Exercise> exercises;
+
+
 
     public int getAge() {
         return age;
@@ -57,7 +62,7 @@ public class User {
     }
 
     public int getCalorie() {
-        return calorie;
+        return calorieConsumptioon;
     }
 
     public int getBadge() {
@@ -69,7 +74,7 @@ public class User {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
         this.badge = 0;
-        this.calorie = 0;
+        this.calorieConsumptioon = 0;
     }
 
     public void setAge(int age) {
@@ -89,14 +94,14 @@ public class User {
     }
 
     public void setCalorie(int calorie) {
-        this.calorie = calorie;
+        this.calorieConsumptioon = calorie;
     }
 
     public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal, char gender) {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
         this.badge = 0;
-        this.calorie = 0;
+        this.calorieConsumptioon = 0;
         this.age = age;
         this.weight = weight;
         this.height = height;
@@ -126,8 +131,14 @@ public class User {
         }
     }
 
-    public void addExercise(int calorie){
-        this.calorie += calorie;
+    public void addExercise(Exercise ex){
+        exercises.add(ex);
     }
-
+    public void deleteExercise(Exercise ex){
+        exercises.remove(ex);
+    }
+    public void completeExercise(Exercise ex){
+        calorieConsumptioon += ex.calorie;
+        deleteExercise(ex);
+    }
 }

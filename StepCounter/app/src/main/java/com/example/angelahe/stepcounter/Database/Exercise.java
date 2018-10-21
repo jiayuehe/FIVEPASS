@@ -6,6 +6,8 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.example.angelahe.stepcounter.R;
+
 import java.util.Date;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -33,6 +35,9 @@ public class Exercise {
     @ColumnInfo(name ="imageFile")
     int image;
 
+    @ColumnInfo(name ="calorie")
+    int calorie;
+
     public int getImage() {
         return image;
     }
@@ -43,6 +48,27 @@ public class Exercise {
         this.startTime = startTime;
         this.endTime = endTime;
         this.image = image;
+        switch (exerciseName) {
+            // in an hour
+            case "Walking":
+                this.calorie = 250;
+                break;
+            case "Swimming":
+                this.calorie = 600;
+                break;
+            case "Running":
+                this.calorie = 600;
+                break;
+            case "Weight-lifting":
+                this.calorie = 380;
+                break;
+            case "Bicycling":
+                this.calorie = 650;
+                break;
+            default:
+                this.calorie = 0;
+                break;
+        }
     }
 
     @NonNull
