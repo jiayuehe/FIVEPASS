@@ -64,6 +64,7 @@ public class User {
         return badge;
     }
 
+    @Ignore
     public User(String mUserName, String mPassword) {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
