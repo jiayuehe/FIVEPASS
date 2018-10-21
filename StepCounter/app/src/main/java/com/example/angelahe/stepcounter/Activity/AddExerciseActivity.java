@@ -1,7 +1,10 @@
 package com.example.angelahe.stepcounter.Activity;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -12,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +37,8 @@ public class AddExerciseActivity extends AppCompatActivity {
     private String username;
     private int startmin, endmin, starthour, endhour;
     private String exercisename = "";
+    private TextView tvDate;
+    private DatePickerDialog.OnDateSetListener onDateSetListener;
 
 //    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
 //            = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -101,6 +107,34 @@ public class AddExerciseActivity extends AppCompatActivity {
 
             }
         });
+
+        tvDate = (TextView) findViewById(R.id.tvDate);
+        tvDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(AddExerciseActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        onDateSetListener, year, month, day);
+                DatePicker datePicker = dialog.getDatePicker();
+                datePicker.setMinDate(calendar.getTimeInMillis());
+                calendar.add(Calendar.DATE, 7);
+                datePicker.setMaxDate(calendar.getTimeInMillis());
+                dialog.show();
+
+            }
+        });
+
+        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String date = month+1 + "/" + dayOfMonth + "/" + year;
+                tvDate.setText(date);
+            }
+        };
 
 
     }
