@@ -11,12 +11,16 @@
     <string name="activityTitle">*Activity</string>
     <string name="exerciseTitle">*Exercise</string>
     <string name="totalCalories">Total Calories Consumption</string>
+
     <string name="totalCaloriesValue">1000</string>
-    <string name="title_activity_add_exercise">AddExerciseActivity</string>
+    <string name="title_activity_add_exercise">Add Activity</string>
+
     <string name="title_home">Home</string>
+    <string name="title_homepage">Today\'s Progress</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="choose_exercise">Choose an Exercise</string>
+    <string name="app_title">USC Fit</string>
     <string-array name="exercise_list">
         <item>Walking</item>
         <item>Running</item>
@@ -46,5 +50,12 @@
     <string name="calories">Calories</string>
     <string name="capcalories">CALORIES</string>
     <string name="textview">textview</string>
+
+    <!--spinner for gender-->
+    <string name="genderPrompt">Gender</string>
+    <string-array name="genderArray">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
 

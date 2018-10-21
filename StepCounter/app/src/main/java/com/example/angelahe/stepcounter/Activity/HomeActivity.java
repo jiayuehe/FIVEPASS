@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     // This is for ring progress bar
     RingProgressBar ringProgressBar;
 
-    int progress = 50; // need to get calorie from database
+    int progress = 0; // need to get calorie from database
 
     Handler myHandlr = new Handler(){
         @Override
@@ -69,7 +69,14 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-       // calorie = currentUser.getCalorie();
+
+        // display calorie
+        calorie = currentUser.getCalorie();
+        // assume 1000 is the daily goal
+        progress = calorie/10;
+        TextView mTextView = (TextView) findViewById(R.id.totalCalorieValue);
+        mTextView.setText(String.valueOf(currentUser.getCalorie()));
+        ringProgressBar.setProgress(progress);
         Log.e("Current Calorie" , "We have " + calorie);
         new Thread(new Runnable() {
             @Override
@@ -92,6 +99,8 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                         Log.e("currentDays", String.valueOf(currentDays));
                         currentUser.addOne();
                         Log.e("currentDays", String.valueOf(currentDays));
+                        TextView mTextView = (TextView) findViewById(R.id.totalCalorieValue);
+                        mTextView.setText(String.valueOf(currentUser.getCalorie()));
                         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
                         Toast.makeText(HomeActivity.this,"Congratulations!", Toast.LENGTH_SHORT).show();
                     }
