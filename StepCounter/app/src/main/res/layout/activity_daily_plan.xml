@@ -14,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="#88ffffff"
+        android:background="#55ffffff"
         android:fontFamily="casual"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:text="@string/title_weekly_plan"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/titleMedium" />
+        android:textSize="@dimen/titleMedium"
+        android:layout_marginBottom="30dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,13 +32,12 @@
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp">
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            >
 
         </ListView>
 
@@ -70,7 +70,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
-        app:menu="@menu/menu">
+        app:menu="@menu/menu"
+        android:background="#aaffffff">
 
     </android.support.design.widget.BottomNavigationView>
 

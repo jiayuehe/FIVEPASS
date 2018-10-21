@@ -8,4 +8,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <color name="colorPrimaryLess">#dd9896</color>
+    <color name="exercise_box">#E5B1B0</color>
 </resources>

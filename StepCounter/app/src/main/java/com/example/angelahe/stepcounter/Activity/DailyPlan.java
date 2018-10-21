@@ -123,7 +123,7 @@ public class DailyPlan extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.customer_layout, null);
 
-            ImageView imageView = (ImageView) convertView.findViewById(R.id.walkking);
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.walking);
             TextView textView = (TextView) convertView.findViewById(R.id.name);
             TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
 

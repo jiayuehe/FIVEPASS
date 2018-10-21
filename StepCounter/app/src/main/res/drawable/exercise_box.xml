@@ -1,14 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="rectangle">
-            <!-- solid background -->
-            <solid android:color="#e85d38"/>
-            <!-- draw a border around rectangle shape-->
-            <stroke
-                android:color="#000000"
-                android:width="0dp"
-                />
-        </shape>
-    </item>
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" android:padding="10dp">
+    <!-- you can use any color you want I used here gray color-->
+    <solid android:color="@color/exercise_box"/>
+    <corners android:radius="20dp"/>
+</shape>
