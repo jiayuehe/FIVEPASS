@@ -10,9 +10,9 @@
     <string name="password">PASSWORD</string>
     <string name="activityTitle">*Activity</string>
     <string name="exerciseTitle">*Exercise</string>
-    <string name="totalCalories">Total Calories Consumption</string>
+    <string name="totalCalories">Progress/Daily Goal</string>
 
-    <string name="totalCaloriesValue">1000</string>
+    <string name="totalCaloriesValue">1000/300 Calories</string>
     <string name="title_activity_add_exercise">Add Activity</string>
 
     <string name="title_home">Home</string>
@@ -21,6 +21,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="choose_exercise">Choose an Exercise</string>
     <string name="app_title">USC Fit</string>
+    <string name="title_weekly_plan">Weekly Plan</string>
     <string-array name="exercise_list">
         <item>Walking</item>
         <item>Running</item>
