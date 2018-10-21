@@ -25,6 +25,9 @@ public class User {
     @ColumnInfo(name = "age")
     public int age;
 
+    @ColumnInfo(name = "gender")
+    public char gender;
+
     @ColumnInfo(name = "weight")
     public float weight;
 
@@ -88,7 +91,7 @@ public class User {
         this.calorie = calorie;
     }
 
-    public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal) {
+    public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal, char gender) {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
         this.badge = 0;
@@ -97,6 +100,7 @@ public class User {
         this.weight = weight;
         this.height = height;
         this.dailyGoal = dailyGoal;
+        this.gender = gender;
     }
 
     public void addOne(){
