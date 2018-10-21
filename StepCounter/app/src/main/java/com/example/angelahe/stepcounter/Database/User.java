@@ -63,13 +63,13 @@ public class User {
     public int getBadge() {
         return badge;
     }
-
-    public User(String mUserName, String mPassword) {
-        this.mUserName = mUserName;
-        this.mPassword = mPassword;
-        this.badge = 0;
-        this.calorie = 0;
-    }
+    //
+    //    public User(String mUserName, String mPassword) {
+    //        this.mUserName = mUserName;
+    //        this.mPassword = mPassword;
+    //        this.badge = 0;
+    //        this.calorie = 0;
+    //    }
 
     public void setAge(int age) {
         this.age = age;
