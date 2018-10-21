@@ -22,8 +22,36 @@ public class User {
     @ColumnInfo(name = "badge")
     public int badge;
 
+    @ColumnInfo(name = "age")
+    public int age;
+
+    @ColumnInfo(name = "weight")
+    public float weight;
+
+    @ColumnInfo(name = "height")
+    public float height;
+
+    @ColumnInfo(name = "daily goal")
+    public int dailyGoal;
+
     @ColumnInfo(name = "calorie")
     public int calorie;
+
+    public int getAge() {
+        return age;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public int getDailyGoal() {
+        return dailyGoal;
+    }
 
     public int getCalorie() {
         return calorie;
@@ -38,6 +66,37 @@ public class User {
         this.mPassword = mPassword;
         this.badge = 0;
         this.calorie = 0;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setDailyGoal(int dailyGoal) {
+        this.dailyGoal = dailyGoal;
+    }
+
+    public void setCalorie(int calorie) {
+        this.calorie = calorie;
+    }
+
+    public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal) {
+        this.mUserName = mUserName;
+        this.mPassword = mPassword;
+        this.badge = 0;
+        this.calorie = 0;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.dailyGoal = dailyGoal;
     }
 
     public void addOne(){
