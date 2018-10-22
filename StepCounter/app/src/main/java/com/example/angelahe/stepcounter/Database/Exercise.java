@@ -55,28 +55,32 @@ public class Exercise {
         this.endTime = endTime;
         this.image = image;
         this.date = date;
-        this.calorie = calorie;
-//        switch (exerciseName) {
-//            // in an hour
-//            case "Walking":
-//                this.calorie = 250;
-//                break;
-//            case "Swimming":
-//                this.calorie = 600;
-//                break;
-//            case "Running":
-//                this.calorie = 600;
-//                break;
-//            case "Weight-lifting":
-//                this.calorie = 380;
-//                break;
-//            case "Bicycling":
-//                this.calorie = 650;
-//                break;
-//            default:
-//                this.calorie = 0;
-//                break;
-//        }
+        switch (exerciseName) {
+            // in an hour
+            case "Walking":
+                this.calorie = 250;
+                break;
+            case "Swimming":
+                this.calorie = 600;
+                break;
+            case "Running":
+                this.calorie = 600;
+                break;
+            case "Weight-lifting":
+                this.calorie = 380;
+                break;
+            case "Bicycling":
+                this.calorie = 650;
+                break;
+            default:
+                this.calorie = 0;
+                break;
+        }
+        // get interval of exercise time
+        String[] start = startTime.split(":");
+        String[] end = endTime.split(":");
+        double hours = (double)(Integer.parseInt(start[0]) - Integer.parseInt(end[0])) + (double)(Integer.parseInt(start[1]) - Integer.parseInt(end[1]))/60.0;
+        this.calorie = (int)(hours * this.calorie);
     }
 
     @NonNull

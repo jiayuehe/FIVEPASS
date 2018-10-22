@@ -128,6 +128,7 @@ public class DailyPlan extends AppCompatActivity {
                     } else{
                         int calorieConsumption = currentExercise.calorie;
                         User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        int currentCal = currentUser.getCalorieConsumptioon();
                         currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
 
                         // update user in database
@@ -136,7 +137,7 @@ public class DailyPlan extends AppCompatActivity {
                         allExercise.remove(position);
 
                         // check if the user completes the daily goal for the first time
-                        if(calorieConsumption < currentUser.getDailyGoal() && currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
+                        if(currentCal < currentUser.getDailyGoal() && currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
                             currentUser.addOne();
                             int currentDays = currentUser.getBadge();
                             if(currentDays != 0 && currentDays % 1 == 0){
