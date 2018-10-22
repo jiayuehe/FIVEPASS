@@ -143,8 +143,6 @@ public class DailyPlan extends AppCompatActivity {
                                 startActivity(new Intent(DailyPlan.this,Congratulations.class));
                             }
                             Log.e("currentDays", String.valueOf(currentDays));
-                            currentUser.addOne();
-                            Log.e("currentDays", String.valueOf(currentDays));
                             MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
                             Toast.makeText(DailyPlan.this,"Congratulations!", Toast.LENGTH_SHORT).show();
                         }
