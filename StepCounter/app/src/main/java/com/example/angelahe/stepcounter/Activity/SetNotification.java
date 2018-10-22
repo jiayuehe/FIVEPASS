@@ -8,7 +8,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class SetNotification {
-    public void setWithTime(Context context, int hour, int min, int sec, String sport){
+    public void setWithTime(Context context, int day, int month, int year, int hour, int min, int sec, String sport){
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("sport", sport);
 
@@ -26,6 +26,9 @@ public class SetNotification {
         startTime.set(Calendar.HOUR_OF_DAY, hour);
         startTime.set(Calendar.MINUTE, min);
         startTime.set(Calendar.SECOND, sec);
+        startTime.set(Calendar.YEAR, year);
+        startTime.set(Calendar.MONTH, month);
+        startTime.set(Calendar.DAY_OF_MONTH, day);
 
         long milliStartTime = startTime.getTimeInMillis();
 

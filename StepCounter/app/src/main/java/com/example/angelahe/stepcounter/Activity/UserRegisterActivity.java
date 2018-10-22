@@ -47,9 +47,12 @@ public class UserRegisterActivity extends AppCompatActivity {
                         if(currentUser == null){
                             User user = new User(username,password);
                             MainActivity.myAppDatabase.UserDao().addUser(user);
-                            Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
-                            myIntent.putExtra("username", username);
-                            startActivity(myIntent);
+//                            Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
+//                            myIntent.putExtra("username", username);
+//                            startActivity(myIntent);
+                            Username.setText("");
+                            Password.setText("");
+
                         } else{
                             Toast.makeText(UserRegisterActivity.this,"Username taken", Toast.LENGTH_SHORT).show();
                         }

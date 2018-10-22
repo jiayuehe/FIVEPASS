@@ -24,6 +24,9 @@ public class Exercise {
     @ColumnInfo(name = "exerciseName")
     final String exerciseName;
 
+    @ColumnInfo(name = "date") // "dd/mm/yyyy"
+    String date;
+
     @ColumnInfo(name = "startTime")
     String startTime;
 
@@ -37,8 +40,9 @@ public class Exercise {
         return image;
     }
 
-    public Exercise(String username, String exerciseName, String startTime, String endTime, int image) {
+    public Exercise(String username, String exerciseName, String date, String startTime, String endTime, int image) {
         this.username = username;
+        this.date = date;
         this.exerciseName = exerciseName;
         this.startTime = startTime;
         this.endTime = endTime;
