@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
@@ -52,13 +54,9 @@ public class DailyPlan extends AppCompatActivity {
 
             final CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
-
-
+            
             // TODO:
-            // 1. when user click the 勾勾, need to remove the exercise from data base
-//            java.util.Date currentTime = Calendar.getInstance().getTime();
-//            MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(username,currentTime.toString());
-            // 2. also update the user's calorieConsumption so that the home page would show progress correctly
+            // 1. also update the user's calorieConsumption so that the home page would show progress correctly
         }
 
         addExerciseButton = findViewById(R.id.addExerciseButton);
@@ -118,6 +116,13 @@ public class DailyPlan extends AppCompatActivity {
             Button checkedButton = (Button) convertView.findViewById(R.id.check_button);
             checkedButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    java.util.Date currentTime = Calendar.getInstance().getTime();
+                    String pattern = "MM/dd/yyyy";
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                    String date = simpleDateFormat.format(currentTime);
+                    Log.d("CurrentDate" , "Current Date is " + date);
+                    Exercise currentExercise = allExercise.get(position);
+                    MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(currentExercise);
                     allExercise.remove(position);
                     notifyDataSetChanged();
                 }

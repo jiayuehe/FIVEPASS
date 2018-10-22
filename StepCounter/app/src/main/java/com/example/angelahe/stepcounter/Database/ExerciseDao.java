@@ -17,4 +17,7 @@ public interface ExerciseDao {
 
     @Query("DELETE FROM exercise_table WHERE username = :queryName AND date = :currentDate")
     void deleteExercise(String queryName, String currentDate);
+
+    @Delete
+    void deleteExercise(Exercise exercise);
 }
