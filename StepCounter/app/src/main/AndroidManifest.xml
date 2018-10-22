@@ -27,5 +27,6 @@
         <activity android:name=".Activity.Congratulations" />
         <activity android:name=".Activity.SignUp"/>
         <receiver android:name=".Activity.AlarmReceiver"/>
+        <receiver android:name=".Activity.CheckReceiver"/>
     </application>
 </manifest>

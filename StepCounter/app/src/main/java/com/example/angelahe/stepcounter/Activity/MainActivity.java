@@ -1,6 +1,8 @@
 package com.example.angelahe.stepcounter.Activity;
 
+import android.app.AlarmManager;
 import android.app.FragmentManager;
+import android.app.PendingIntent;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
@@ -13,6 +15,8 @@ import android.view.Window;
 import com.example.angelahe.stepcounter.Database.ExerciseRoomDatabase;
 import com.example.angelahe.stepcounter.Database.UserRoomDatabase;
 import com.example.angelahe.stepcounter.R;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity{
     // This is for database

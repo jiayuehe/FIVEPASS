@@ -1,5 +1,7 @@
 package com.example.angelahe.stepcounter.Activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
+
+import java.util.Calendar;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
@@ -60,6 +64,8 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     int calorie;
 
+    int dailyGoal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +78,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         // display calorie
         calorie = currentUser.getCalorie();
-        // assume 1000 is the daily goal
-        progress = calorie/10;
+        dailyGoal = currentUser.getDailyGoal();
+        progress = calorie*100/dailyGoal;
         TextView mTextView = (TextView) findViewById(R.id.totalCalorieValue);
-        mTextView.setText(String.valueOf(currentUser.getCalorie()));
+        mTextView.setText(String.valueOf(currentUser.getCalorie() + "/"+dailyGoal));
         ringProgressBar.setProgress(progress);
         Log.e("Current Calorie" , "We have " + calorie);
         new Thread(new Runnable() {
@@ -147,7 +153,34 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                 return false;
             }
         });
+
+        // reset everything when it is 12 am and check for badge
+//        boolean alarmUp = (PendingIntent.getBroadcast(this, 0,
+//                new Intent(this, HomeActivity.class),
+//                PendingIntent.FLAG_NO_CREATE) != null);
+
+//        if(!alarmUp){
+            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+            Intent intent1 = new Intent(this, CheckReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1, 0);
+            Calendar startTime = Calendar.getInstance();
+            startTime.set(Calendar.HOUR_OF_DAY, 0);
+            startTime.set(Calendar.MINUTE, 0);
+            startTime.set(Calendar.SECOND, 0);
+            long milliStartTime = startTime.getTimeInMillis();
+            alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+//                    System.currentTimeMillis(),
+                    milliStartTime,
+                    60*60*24*1000,
+                    pendingIntent
+            );
+            Log.e("checking badge event", "set");
+//        }
+
     }
+
+
 
 
     @Override
