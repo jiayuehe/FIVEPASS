@@ -53,7 +53,7 @@ public class SignUp extends AppCompatActivity {
                         if(currentUser == null){
                             User user = new User(username,password,age,weight, height, dailyGoal,gender);
                             MainActivity.myAppDatabase.UserDao().addUser(user);
-                            Intent myIntent = new Intent(SignUp.this, UserRegisterActivity.class);
+                            Intent myIntent = new Intent(SignUp.this, HomeActivity.class);
                             myIntent.putExtra("username", username);
                             startActivity(myIntent);
                         } else{
