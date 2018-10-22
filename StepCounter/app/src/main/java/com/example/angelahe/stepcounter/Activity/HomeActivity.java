@@ -81,8 +81,11 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         // display calorie
         calorie = currentUser.getCalorie();
+
         dailyGoal = currentUser.getDailyGoal();
         progress = calorie * 100 / dailyGoal;
+        Log.e("calorie: ", ""+calorie);
+        Log.e("calorie: ", ""+progress);
         TextView mTextView = (TextView) findViewById(R.id.totalCalorieValue);
         mTextView.setText(String.valueOf(currentUser.getCalorie() + "/" + dailyGoal));
         ringProgressBar.setProgress(progress);

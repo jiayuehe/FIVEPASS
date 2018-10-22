@@ -130,6 +130,7 @@ public class DailyPlan extends AppCompatActivity {
                         User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentCal = currentUser.getCalorieConsumptioon();
                         currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
+                        Log.e("Adding calorie: ",""+calorieConsumption);
 
                         // update user in database
                         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);

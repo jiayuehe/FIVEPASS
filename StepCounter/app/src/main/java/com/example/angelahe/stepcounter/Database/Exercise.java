@@ -79,7 +79,8 @@ public class Exercise {
         // get interval of exercise time
         String[] start = startTime.split(":");
         String[] end = endTime.split(":");
-        double hours = (double)(Integer.parseInt(start[0]) - Integer.parseInt(end[0])) + (double)(Integer.parseInt(start[1]) - Integer.parseInt(end[1]))/60.0;
+        double hours = (double)(Integer.parseInt(end[0]) - Integer.parseInt(start[0])) + (double)(Integer.parseInt(end[1]) - Integer.parseInt(start
+                [1]))/60.0;
         this.calorie = (int)(hours * this.calorie);
     }
 
