@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
 import com.example.angelahe.stepcounter.Database.User;
@@ -77,13 +78,28 @@ public class AddExerciseActivity extends AppCompatActivity {
         // Set default time in time picker
         timePicker.setHour(hour);
         timePicker.setMinute(min);
+        startmin = hour;
+        startmin = min;
 
         timePicker2 = findViewById(R.id.simpleTimePicker2);
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                startmin = minute;
+                starthour = hourOfDay;
                 timePicker2.setHour(hourOfDay);
                 timePicker2.setMinute(minute);
+            }
+        });
+
+        timePicker2.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                if (hourOfDay < starthour || hourOfDay == starthour && minute < startmin){
+                    timePicker2.setHour(starthour);
+                    timePicker2.setMinute(startmin);
+                    Toast.makeText(AddExerciseActivity.this,"End time must be no later than start time", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
