@@ -38,7 +38,7 @@ public class Exercise {
     int image;
 
     @ColumnInfo(name ="calorie")
-    int calorie;
+    public int calorie;
 
 
     public int getImage() {
@@ -87,6 +87,8 @@ public class Exercise {
         return exerciseName;
     }
 
+    public String getDate(){return date;}
+
     public String getStartTime() {
         return startTime;
     }
@@ -94,4 +96,5 @@ public class Exercise {
     public String getEndTime() {
         return endTime;
     }
+
 }

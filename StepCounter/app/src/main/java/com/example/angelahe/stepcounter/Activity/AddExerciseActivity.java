@@ -73,6 +73,8 @@ public class AddExerciseActivity extends AppCompatActivity {
         final Calendar calendar = Calendar.getInstance();
         min = calendar.get(Calendar.MINUTE);
         hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        // Set default time in time picker
         timePicker.setHour(hour);
         timePicker.setMinute(min);
 
@@ -85,6 +87,15 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
+        // Set default date in date picker
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+        String temp = month+1 + "/" + day + "/" + year;
+        tvDate = (TextView) findViewById(R.id.tvDate);
+        tvDate.setText(temp);
+
+        // EditText invisible unless users choose a customized activity
         final TextInputLayout exercise = findViewById(R.id.textInputLayout);
         exercise.setVisibility(View.INVISIBLE);
         final TextInputLayout calorie = findViewById(R.id.textInputLayout2);
@@ -109,7 +120,6 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
-        tvDate = (TextView) findViewById(R.id.tvDate);
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,7 +202,6 @@ public class AddExerciseActivity extends AppCompatActivity {
         }
 
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-        //currentUser.addExercise(new Exercise(username, exercisename, startTime, endTime, imageId));
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
 
 //        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, date_string);
