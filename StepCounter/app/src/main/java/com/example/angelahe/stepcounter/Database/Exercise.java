@@ -6,6 +6,8 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.example.angelahe.stepcounter.R;
+
 import java.util.Date;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -14,7 +16,6 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(tableName = "exercise_table")
 
 public class Exercise {
-
     @PrimaryKey(autoGenerate = true)
     public int exercise;
 
@@ -36,17 +37,45 @@ public class Exercise {
     @ColumnInfo(name ="imageFile")
     int image;
 
+    @ColumnInfo(name ="calorie")
+    int calorie;
+
+
     public int getImage() {
         return image;
     }
 
-    public Exercise(String username, String exerciseName, String date, String startTime, String endTime, int image) {
+
+    public Exercise(String username, String exerciseName, String startTime, String endTime, int image,
+                    String date) {
         this.username = username;
         this.date = date;
         this.exerciseName = exerciseName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.image = image;
+        this.date = date;
+        switch (exerciseName) {
+            // in an hour
+            case "Walking":
+                this.calorie = 250;
+                break;
+            case "Swimming":
+                this.calorie = 600;
+                break;
+            case "Running":
+                this.calorie = 600;
+                break;
+            case "Weight-lifting":
+                this.calorie = 380;
+                break;
+            case "Bicycling":
+                this.calorie = 650;
+                break;
+            default:
+                this.calorie = 0;
+                break;
+        }
     }
 
     @NonNull

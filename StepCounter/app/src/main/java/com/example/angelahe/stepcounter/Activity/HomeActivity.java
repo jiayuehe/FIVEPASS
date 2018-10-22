@@ -69,6 +69,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+
         // display calorie
         calorie = currentUser.getCalorie();
         // assume 1000 is the daily goal
