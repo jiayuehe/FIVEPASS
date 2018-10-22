@@ -141,6 +141,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                         startActivity(intent);
                         break;
                     case R.id.Settings:
+                        Intent intent1 = new Intent(HomeActivity.this, ViewProfile.class);
+                        intent1.putExtra("username", username);
+                        startActivity(intent1);
                         break;
                 }
 

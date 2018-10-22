@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ViewProfile"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_marginTop="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Username: "
+            android:textSize="18dp"
+            android:padding="15dp"
+            />
+        <EditText
+            android:id="@+id/currUsername"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingRight="30dp"
+            android:textAlignment="center"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Daily Goal: "
+            android:textSize="18dp"
+            android:padding="15dp"
+            />
+        <EditText
+            android:id="@+id/currGoal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingRight="30dp"
+            android:textAlignment="center"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Age: "
+            android:textSize="18dp"
+            android:padding="15dp"
+            />
+        <EditText
+            android:id="@+id/currAge"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingRight="30dp"
+            android:textAlignment="center"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Weight: "
+            android:textSize="18dp"
+            android:padding="15dp"
+            />
+        <EditText
+            android:id="@+id/currWeight"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingRight="30dp"
+            android:textAlignment="center"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Height: "
+            android:textSize="18dp"
+            android:padding="15dp"
+            />
+        <EditText
+            android:id="@+id/currHeight"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingRight="30dp"
+            android:textAlignment="center"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Gender: "
+            android:textSize="18dp"
+            android:padding="15dp"
+            />
+        <EditText
+            android:id="@+id/currGender"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:paddingRight="30dp"
+            android:textAlignment="center"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/goToProfileSetting"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Reset Profile and Password"/>
+
+</LinearLayout>

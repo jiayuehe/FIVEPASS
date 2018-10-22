@@ -123,5 +123,24 @@
         <item>108</item>
         <item>110</item>
     </string-array>
+
+    <string name="agePrompt">Choose your age</string>
+    <string-array name="ageArray">
+        <item>1-5</item>
+        <item>6-10</item>
+        <item>11-15</item>
+        <item>16-20</item>
+        <item>21-25</item>
+        <item>26-30</item>
+        <item>31-35</item>
+        <item>36-40</item>
+        <item>41-45</item>
+        <item>46-50</item>
+        <item>51-55</item>
+        <item>56-60</item>
+        <item>61-65</item>
+        <item>66-70</item>
+        <item>>70</item>
+    </string-array>
 </resources>
 

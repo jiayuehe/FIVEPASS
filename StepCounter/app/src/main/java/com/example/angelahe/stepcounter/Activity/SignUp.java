@@ -17,19 +17,19 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
         signUpBtn = findViewById(R.id.signUpButton);
-        signUpBtn.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String name =
-                    }
-                }
-        );
+//        signUpBtn.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        String name =
+//                    }
+//                }
+//        );
     }
 
-    public void addGenderItems(){
-        genderSpinner = (Spinner) findViewById(R.id.gender);
-
-    }
+//    public void addGenderItems(){
+//        genderSpinner = (Spinner) findViewById(R.id.gender);
+//
+//    }
 
 }

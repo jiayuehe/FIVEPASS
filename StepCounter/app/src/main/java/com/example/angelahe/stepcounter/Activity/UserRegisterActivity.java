@@ -46,7 +46,7 @@ public class UserRegisterActivity extends AppCompatActivity {
 //                        Log.d("Currentusername","CurrentUsername is " + username);
 //                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
 //                        if(currentUser == null){
-//                            User user = new User(username,password);
+//                            User user = new User(username,password, 32, 103, 150, 100, 'f');
 //                            MainActivity.myAppDatabase.UserDao().addUser(user);
 //                            Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
 //                            myIntent.putExtra("username", username);

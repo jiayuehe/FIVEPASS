@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".Activity.ChangeProfile">
+
+
+    <EditText
+        android:id="@+id/newUsername"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Username"
+        ></EditText>
+    <EditText
+        android:id="@+id/newPassword"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        ></EditText>
+    <Spinner
+        android:id="@+id/spinnerDailyGoal"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Daily Goal (Cal)"
+        ></Spinner>
+    <Spinner
+        android:id="@+id/spinnerAge"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        ></Spinner>
+    <Spinner
+        android:id="@+id/spinnerWeight"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        ></Spinner>
+    <Spinner
+        android:id="@+id/spinnerHeight"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Height"
+        ></Spinner>
+    <Spinner
+        android:id="@+id/spinnerGender"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Gender (f/m)"
+        ></Spinner>
+
+    <Button
+        android:id="@+id/resetProfileButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Reset Profile" />
+
+
+</LinearLayout>
