@@ -164,7 +164,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         endmin = timePicker2.getMinute();
         String currentDate = tvDate.getText().toString();
         int calorie = 0;
-        String startTime = "" + month + "/" + day + "/" + year + "   " + String.valueOf(starthour) + ":" + String.valueOf(startmin);
+        String startTime = String.valueOf(starthour) + ":" + String.valueOf(startmin);
         String endTime = String.valueOf(endhour) + ":" + String.valueOf(endmin);
         Log.d("UsernameinExercise", "a" + username);
         Log.d("wtf", "wtf");
