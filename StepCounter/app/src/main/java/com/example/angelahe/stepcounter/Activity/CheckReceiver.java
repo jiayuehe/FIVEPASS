@@ -9,43 +9,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.angelahe.stepcounter.Database.User;
 
 public class CheckReceiver extends BroadcastReceiver {
+    public static final String ALUM_SCREEN_ON = "screenOn";
+    public static final String ALUM_SCREEN_OFF = "screenOff";
+    private static final String TAG = "CheckReceiver";
+    private String username = null;
+    private User currentUser;
+
     @Override
     public void onReceive(Context context, Intent intent){
-        System.out.println("++++++ recieved ++++++++++");
-
-//        Intent mainIntent = new Intent(context, HomeActivity.class);
-//        PendingIntent contentItent = PendingIntent.getActivity(context, 0, mainIntent, 0);
-//
-//
-//        String CHANNEL_ID = "my_channel_01";
-//        CharSequence name = "my_channel";
-//        String Description = "This is my channel";
-//        NotificationManager ntffMng = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//            // build notification channel
-//            int importance = NotificationManager.IMPORTANCE_HIGH;
-//
-//            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-//
-//            mChannel.setDescription(Description);
-//            mChannel.enableLights(true);
-//            mChannel.setLightColor(Color.RED);
-//            mChannel.enableVibration(true);
-//            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-//            mChannel.setShowBadge(false);
-//            ntffMng.createNotificationChannel(mChannel);
-//        }
-//
-//        Notification.Builder builder = new Notification.Builder(context, CHANNEL_ID);
-//        builder.setSmallIcon(android.R.drawable.ic_menu_agenda)
-//                .setContentTitle("You complete your daily goal!!")
-//                .setWhen(System.currentTimeMillis())
-//                .setAutoCancel(true)
-//                .setContentIntent(contentItent);
-//
-//        ntffMng.notify(2, builder.build());
-        Log.e("receive:","checking badge");
+        // TODO Auto-generated method stub
+        Log.e(TAG, "get braodcast action:"+intent.getAction());
+        if(intent.getAction().equals(ALUM_SCREEN_OFF)){
+            Log.e(TAG, "WE ARE HERE");
+            username = intent.getStringExtra("username");
+            currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+            currentUser.setCalorie(0);
+            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+        }
     }
 }

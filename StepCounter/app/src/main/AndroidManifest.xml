@@ -31,12 +31,19 @@
         <activity android:name=".Activity.SignUp" />
 
 
-        <activity android:name=".Activity.ChangeProfile"
-            android:parentActivityName=".Activity.ViewProfile"/>
-        <activity android:name=".Activity.ViewProfile"
+        <activity
+            android:name=".Activity.ChangeProfile"
+            android:parentActivityName=".Activity.ViewProfile" />
+        <activity
+            android:name=".Activity.ViewProfile"
             android:parentActivityName=".Activity.HomeActivity"></activity>
-        <receiver android:name=".Activity.AlarmReceiver"/>
-        <receiver android:name=".Activity.CheckReceiver"/>
+
+        <receiver android:name=".Activity.AlarmReceiver" />
+        <receiver android:name=".Activity.CheckReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_TIME_TICK"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

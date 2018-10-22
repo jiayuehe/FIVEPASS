@@ -2,8 +2,10 @@ package com.example.angelahe.stepcounter.Activity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,12 +37,12 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     int progress = 0; // need to get calorie from database
 
-    Handler myHandlr = new Handler(){
+    Handler myHandlr = new Handler() {
         @Override
-        public void handleMessage(Message message){
-            if(message.what == 0){
-                if(progress < 100){
-                    progress ++;
+        public void handleMessage(Message message) {
+            if (message.what == 0) {
+                if (progress < 100) {
+                    progress++;
                     ringProgressBar.setProgress(progress);
                 }
             }
@@ -79,11 +82,11 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         // display calorie
         calorie = currentUser.getCalorie();
         dailyGoal = currentUser.getDailyGoal();
-        progress = calorie*100/dailyGoal;
+        progress = calorie * 100 / dailyGoal;
         TextView mTextView = (TextView) findViewById(R.id.totalCalorieValue);
-        mTextView.setText(String.valueOf(currentUser.getCalorie() + "/"+dailyGoal));
+        mTextView.setText(String.valueOf(currentUser.getCalorie() + "/" + dailyGoal));
         ringProgressBar.setProgress(progress);
-        Log.e("Current Calorie" , "We have " + calorie);
+        Log.e("Current Calorie", "We have " + calorie);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -91,16 +94,14 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             }
         }).start();
 
-        checked = (Button)findViewById(R.id.checked);
+        checked = (Button) findViewById(R.id.checked);
         checked.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
+                new View.OnClickListener() {
+                    public void onClick(View view) {
                         //User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentDays = currentUser.getBadge();
-                        if(currentDays != 0 && currentDays % 7 == 0){
-                            startActivity(new Intent(HomeActivity.this,Congratulations.class));
+                        if (currentDays != 0 && currentDays % 7 == 0) {
+                            startActivity(new Intent(HomeActivity.this, Congratulations.class));
                         }
                         Log.e("currentDays", String.valueOf(currentDays));
                         currentUser.addOne();
@@ -108,24 +109,41 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                         TextView mTextView = (TextView) findViewById(R.id.totalCalorieValue);
                         mTextView.setText(String.valueOf(currentUser.getCalorie()));
                         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
-                        Toast.makeText(HomeActivity.this,"Congratulations!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, "Congratulations!", Toast.LENGTH_SHORT).show();
                     }
                 });
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Calendar offCal = Calendar.getInstance();
+                offCal.set(Calendar.HOUR_OF_DAY, 23);
+                offCal.set(Calendar.MINUTE, 59);
+                offCal.set(Calendar.SECOND, 00);
+                Intent offIntent = new Intent(HomeActivity.this,CheckReceiver.class);
+                offIntent.putExtra("username", username);
+                offIntent.setAction(CheckReceiver.ALUM_SCREEN_OFF);
+                PendingIntent offPending = PendingIntent.getBroadcast(HomeActivity.this, 1,
+                        offIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                am.setRepeating(AlarmManager.RTC, offCal.getTimeInMillis(),
+                        AlarmManager.INTERVAL_DAY, offPending);
+                Log.e("checking badge event", "set");
+            }
+        }).start();
+
         // UserCheck
-        incomplete = (Button)findViewById(R.id.incomplete);
+        incomplete = (Button) findViewById(R.id.incomplete);
         incomplete.setOnClickListener(
-                new View.OnClickListener()
-                {
-                    public void onClick(View view)
-                    {
+                new View.OnClickListener() {
+                    public void onClick(View view) {
                         //User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentDays = currentUser.getBadge();
                         Log.e("currentDays", String.valueOf(currentDays));
                         currentUser.setZero();
                         Log.e("currentDays", String.valueOf(currentDays));
                         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
-                        Toast.makeText(HomeActivity.this,"Sorry! But Keep Going Tomorrow", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, "Sorry! But Keep Going Tomorrow", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -163,27 +181,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 //                PendingIntent.FLAG_NO_CREATE) != null);
 
 //        if(!alarmUp){
-//            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-//            Intent intent1 = new Intent(this, CheckReceiver.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1, 0);
-//            Calendar startTime = Calendar.getInstance();
-//            startTime.set(Calendar.HOUR_OF_DAY, 0);
-//            startTime.set(Calendar.MINUTE, 0);
-//            startTime.set(Calendar.SECOND, 0);
-//            long milliStartTime = startTime.getTimeInMillis();
-//            alarmManager.setRepeating(
-//                    AlarmManager.RTC_WAKEUP,
-////                    System.currentTimeMillis(),
-//                    milliStartTime,
-//                    60*60*24*1000,
-//                    pendingIntent
-//            );
-//            Log.e("checking badge event", "set");
+
 //        }
 
     }
-
-
 
 
     @Override
