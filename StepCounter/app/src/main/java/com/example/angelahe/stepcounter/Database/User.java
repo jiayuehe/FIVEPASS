@@ -41,7 +41,7 @@ public class User {
     @ColumnInfo(name = "calorieConsumption")
     public int calorieConsumptioon;
 
-    Set<Exercise> exercises;
+//    Set<Exercise> exercises;
 
 
 
@@ -130,15 +130,15 @@ public class User {
             return false;
         }
     }
-
-    public void addExercise(Exercise ex){
-        exercises.add(ex);
-    }
-    public void deleteExercise(Exercise ex){
-        exercises.remove(ex);
-    }
-    public void completeExercise(Exercise ex){
-        calorieConsumptioon += ex.calorie;
-        deleteExercise(ex);
-    }
+//
+//    public void addExercise(Exercise ex){
+//        exercises.add(ex);
+//    }
+//    public void deleteExercise(Exercise ex){
+//        exercises.remove(ex);
+////    }
+//    public void completeExercise(Exercise ex){
+//        calorieConsumptioon += ex.calorie;
+//        deleteExercise(ex);
+//    }
 }

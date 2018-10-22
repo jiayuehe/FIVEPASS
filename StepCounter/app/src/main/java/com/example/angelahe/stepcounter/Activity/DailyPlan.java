@@ -1,5 +1,6 @@
 package com.example.angelahe.stepcounter.Activity;
 
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,16 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
 import com.example.angelahe.stepcounter.R;
 
 import org.w3c.dom.Text;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +34,7 @@ public class DailyPlan extends AppCompatActivity {
     private FloatingActionButton addExerciseButton;
     private String username;
     private List<Exercise> allExercise;
+    Button checkbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +53,11 @@ public class DailyPlan extends AppCompatActivity {
             final CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
 
+
             // TODO:
-            // 1. when user click the 勾勾, need to remove the exercise from data base and the listview
+            // 1. when user click the 勾勾, need to remove the exercise from data base
+//            java.util.Date currentTime = Calendar.getInstance().getTime();
+//            MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(username,currentTime.toString());
             // 2. also update the user's calorieConsumption so that the home page would show progress correctly
         }
 
@@ -101,12 +109,19 @@ public class DailyPlan extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.customer_layout, null);
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.walking);
             TextView textView = (TextView) convertView.findViewById(R.id.name);
             TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
+            Button checkedButton = (Button) convertView.findViewById(R.id.check_button);
+            checkedButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    allExercise.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
 
             imageView.setImageResource(allExercise.get(position).getImage());
             textView.setText(allExercise.get(position).getExerciseName());
@@ -114,7 +129,6 @@ public class DailyPlan extends AppCompatActivity {
             return convertView;
         }
     }
-
 
     public void openExerciseOptions() {
         Intent intent = new Intent(this, AddExerciseActivity.class);

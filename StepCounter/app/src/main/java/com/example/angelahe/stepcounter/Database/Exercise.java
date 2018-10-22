@@ -16,7 +16,6 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(tableName = "exercise_table")
 
 public class Exercise {
-
     @PrimaryKey(autoGenerate = true)
     public int exercise;
 
@@ -38,16 +37,21 @@ public class Exercise {
     @ColumnInfo(name ="calorie")
     int calorie;
 
+    @ColumnInfo(name ="date")
+    String date;
+
     public int getImage() {
         return image;
     }
 
-    public Exercise(String username, String exerciseName, String startTime, String endTime, int image) {
+    public Exercise(String username, String exerciseName, String startTime, String endTime, int image,
+                    String date) {
         this.username = username;
         this.exerciseName = exerciseName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.image = image;
+        this.date = date;
         switch (exerciseName) {
             // in an hour
             case "Walking":
