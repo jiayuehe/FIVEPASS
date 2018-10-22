@@ -196,8 +196,10 @@ public class AddExerciseActivity extends AppCompatActivity {
                 break;
             default:
                 imageId = R.drawable.other_exercise;
-                exercisename = ((EditText)findViewById(R.id.textInputLayout)).getText().toString();
-                calorie = Integer.parseInt(((EditText)findViewById(R.id.textInputLayout2)).getText().toString());
+                exercisename = ((EditText)findViewById(R.id.exercise)).getText().toString();
+                Log.d("exercise name is ",exercisename);
+                calorie = Integer.parseInt(((EditText)findViewById(R.id.calorie)).getText().toString());
+                Log.d("calorie is ", String.valueOf(calorie));
                 break;
         }
 
@@ -207,7 +209,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 //        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, date_string);
 
 
-        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, currentDate);
+        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, currentDate, calorie);
 
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);
         Intent intent = new Intent(this, DailyPlan.class);

@@ -47,7 +47,7 @@ public class Exercise {
 
 
     public Exercise(String username, String exerciseName, String startTime, String endTime, int image,
-                    String date) {
+                    String date, int calorie) {
         this.username = username;
         this.date = date;
         this.exerciseName = exerciseName;
@@ -55,27 +55,28 @@ public class Exercise {
         this.endTime = endTime;
         this.image = image;
         this.date = date;
-        switch (exerciseName) {
-            // in an hour
-            case "Walking":
-                this.calorie = 250;
-                break;
-            case "Swimming":
-                this.calorie = 600;
-                break;
-            case "Running":
-                this.calorie = 600;
-                break;
-            case "Weight-lifting":
-                this.calorie = 380;
-                break;
-            case "Bicycling":
-                this.calorie = 650;
-                break;
-            default:
-                this.calorie = 0;
-                break;
-        }
+        this.calorie = calorie;
+//        switch (exerciseName) {
+//            // in an hour
+//            case "Walking":
+//                this.calorie = 250;
+//                break;
+//            case "Swimming":
+//                this.calorie = 600;
+//                break;
+//            case "Running":
+//                this.calorie = 600;
+//                break;
+//            case "Weight-lifting":
+//                this.calorie = 380;
+//                break;
+//            case "Bicycling":
+//                this.calorie = 650;
+//                break;
+//            default:
+//                this.calorie = 0;
+//                break;
+//        }
     }
 
     @NonNull
