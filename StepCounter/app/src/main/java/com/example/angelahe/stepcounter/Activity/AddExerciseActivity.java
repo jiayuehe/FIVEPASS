@@ -33,8 +33,9 @@ public class AddExerciseActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private Spinner spinner;
     private TimePicker timePicker, timePicker2;
-    private int min, hour;
+    private int min, hour, month, year, day;
     private String username;
+    private String date_string;
     private int startmin, endmin, starthour, endhour;
     private String exercisename = "";
     private TextView tvDate;
@@ -72,6 +73,8 @@ public class AddExerciseActivity extends AppCompatActivity {
         final Calendar calendar = Calendar.getInstance();
         min = calendar.get(Calendar.MINUTE);
         hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        // Set default time in time picker
         timePicker.setHour(hour);
         timePicker.setMinute(min);
 
@@ -84,6 +87,15 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
+        // Set default date in date picker
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+        String temp = month+1 + "/" + day + "/" + year;
+        tvDate = (TextView) findViewById(R.id.tvDate);
+        tvDate.setText(temp);
+
+        // EditText invisible unless users choose a customized activity
         final TextInputLayout exercise = findViewById(R.id.textInputLayout);
         exercise.setVisibility(View.INVISIBLE);
         final TextInputLayout calorie = findViewById(R.id.textInputLayout2);
@@ -108,21 +120,21 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
-        tvDate = (TextView) findViewById(R.id.tvDate);
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                Calendar tempCalendar = Calendar.getInstance();
+                year = tempCalendar.get(Calendar.YEAR);
+                month = tempCalendar.get(Calendar.MONTH);
+                day = tempCalendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(AddExerciseActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         onDateSetListener, year, month, day);
                 DatePicker datePicker = dialog.getDatePicker();
-                datePicker.setMinDate(calendar.getTimeInMillis());
-                calendar.add(Calendar.DATE, 7);
-                datePicker.setMaxDate(calendar.getTimeInMillis());
+                datePicker.setMinDate(tempCalendar.getTimeInMillis());
+                tempCalendar.add(Calendar.DATE, 7);
+                datePicker.setMaxDate(tempCalendar.getTimeInMillis());
                 dialog.show();
 
             }
@@ -130,22 +142,27 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = month+1 + "/" + dayOfMonth + "/" + year;
-                tvDate.setText(date);
+            public void onDateSet(DatePicker view, int _year, int _month, int dayOfMonth) {
+                month = _month;
+                year = _year;
+                day = dayOfMonth;
+                date_string = month+1 + "/" + dayOfMonth + "/" + year;
+                tvDate.setText(date_string);
+
             }
         };
-
 
     }
 
     public void onSendMessage(View view) {
         exercisename = spinner.getSelectedItem().toString();
+
         timePicker = findViewById(R.id.simpleTimePicker);
         starthour = timePicker.getHour();
         startmin = timePicker.getMinute();
         endhour = timePicker2.getHour();
         endmin = timePicker2.getMinute();
+        String currentDate = tvDate.getText().toString();
         int calorie = 0;
         String startTime = String.valueOf(starthour) + ":" + String.valueOf(startmin);
         String endTime = String.valueOf(endhour) + ":" + String.valueOf(endmin);
@@ -153,6 +170,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         Log.d("wtf", "wtf");
         Log.d("Starttime is ", "b" + String.valueOf(starthour) + " : " + String.valueOf(startmin));
         Log.d("exercise name is ", "c" + exercisename);
+        Log.d("setting date is ", "d" + currentDate);
         int imageId = 0;
         switch (exercisename) {
             // in an hour
@@ -177,15 +195,22 @@ public class AddExerciseActivity extends AppCompatActivity {
                 calorie = 650;
                 break;
             default:
-                imageId = R.drawable.running;
-                calorie = 100;
+                imageId = R.drawable.other_exercise;
+                exercisename = ((EditText)findViewById(R.id.exercise)).getText().toString();
+                Log.d("exercise name is ",exercisename);
+                calorie = Integer.parseInt(((EditText)findViewById(R.id.calorie)).getText().toString());
+                Log.d("calorie is ", String.valueOf(calorie));
                 break;
         }
 
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-        currentUser.addExercise(calorie);
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
-        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId);
+
+//        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, date_string);
+
+
+        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, currentDate, calorie);
+
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);
         Intent intent = new Intent(this, DailyPlan.class);
         intent.putExtra("username", username);
@@ -193,7 +218,11 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         //set notification
         SetNotification setter = new SetNotification();
+<<<<<<< HEAD
         setter.setWithTime(this, starthour, startmin, 0,  exercisename);
+=======
+        setter.setWithTime(this, day, month, year, starthour, startmin, 0, exercisename);
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
     }
 
 }

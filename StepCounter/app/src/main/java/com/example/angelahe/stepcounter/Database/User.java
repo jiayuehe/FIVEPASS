@@ -6,6 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(tableName = "user_table")
@@ -37,8 +38,12 @@ public class User {
     @ColumnInfo(name = "daily goal")
     public int dailyGoal;
 
-    @ColumnInfo(name = "calorie")
-    public int calorie;
+    @ColumnInfo(name = "calorieConsumption")
+    public int calorieConsumptioon;
+
+    public String getmUserName() {return mUserName;}
+
+    public String getmPassword() {return mPassword;}
 
     public int getAge() {
         return age;
@@ -56,13 +61,16 @@ public class User {
         return dailyGoal;
     }
 
+    public char getGender() {return gender;}
+
     public int getCalorie() {
-        return calorie;
+        return calorieConsumptioon;
     }
 
     public int getBadge() {
         return badge;
     }
+<<<<<<< HEAD
     //
     //    public User(String mUserName, String mPassword) {
     //        this.mUserName = mUserName;
@@ -71,6 +79,17 @@ public class User {
     //        this.calorie = 0;
     //    }
 
+=======
+
+    public void setPassword(String password) {this.mPassword = password;}
+    @Ignore
+    public User(String mUserName, String mPassword) {
+        this.mUserName = mUserName;
+        this.mPassword = mPassword;
+        this.badge = 0;
+        this.calorieConsumptioon = 0;
+    }
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
     public void setAge(int age) {
         this.age = age;
     }
@@ -87,20 +106,26 @@ public class User {
         this.dailyGoal = dailyGoal;
     }
 
+    public void setGender(char gender) {this.gender = gender;}
+
     public void setCalorie(int calorie) {
-        this.calorie = calorie;
+        this.calorieConsumptioon = calorie;
     }
 
     public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal, char gender) {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
         this.badge = 0;
-        this.calorie = 0;
+        this.calorieConsumptioon = 0;
         this.age = age;
         this.weight = weight;
         this.height = height;
         this.dailyGoal = dailyGoal;
         this.gender = gender;
+    }
+
+    public int getCalorieConsumptioon() {
+        return calorieConsumptioon;
     }
 
     public void addOne(){
@@ -124,9 +149,4 @@ public class User {
             return false;
         }
     }
-
-    public void addExercise(int calorie){
-        this.calorie += calorie;
-    }
-
 }

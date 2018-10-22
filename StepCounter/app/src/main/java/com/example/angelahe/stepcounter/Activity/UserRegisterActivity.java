@@ -36,6 +36,7 @@ public class UserRegisterActivity extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
         mButton.setOnClickListener(
                 new View.OnClickListener()
                 {
@@ -56,6 +57,36 @@ public class UserRegisterActivity extends AppCompatActivity {
                         } else{
                             Toast.makeText(UserRegisterActivity.this,"Username taken", Toast.LENGTH_SHORT).show();
                         }
+=======
+        // clicking sign up will direct the user to another page
+        mButton.setOnClickListener(
+//                new View.OnClickListener()
+//                {
+//                    public void onClick(View view)
+//                    {
+//                        final String username = Username.getText().toString();
+//                        final String password = Password.getText().toString();
+//                        Log.d("Currentusername","CurrentUsername is " + username);
+//                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+//                        if(currentUser == null){
+//                            User user = new User(username,password);
+//                            MainActivity.myAppDatabase.UserDao().addUser(user);
+////                            Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
+////                            myIntent.putExtra("username", username);
+////                            startActivity(myIntent);
+//                            Username.setText("");
+//                            Password.setText("");
+//
+//                        } else{
+//                            Toast.makeText(UserRegisterActivity.this,"Username taken", Toast.LENGTH_SHORT).show();
+//                        }
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
+                        startActivity(intent);
+
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
                     }
                 });
 

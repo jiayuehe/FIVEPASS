@@ -1,5 +1,6 @@
 package com.example.angelahe.stepcounter.Activity;
 
+
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,16 +13,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import com.example.angelahe.stepcounter.Database.Exercise;
+import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
 
 import org.w3c.dom.Text;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +37,7 @@ public class DailyPlan extends AppCompatActivity {
     private FloatingActionButton addExerciseButton;
     private String username;
     private List<Exercise> allExercise;
+    Button checkbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,29 +55,6 @@ public class DailyPlan extends AppCompatActivity {
 
             final CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
-
-
-            listView.setClickable(true);
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                @Override
-//                public void onItemClick(ListView l, View v, int position, long id) {
-//                    // retrieve theListView item
-//                    ListViewItem item = mItems.get(position);
-//
-//                    // do something
-//                    Toast.makeText(getActivity(), item.title, Toast.LENGTH_SHORT).show();
-//                }oast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show()
-//            });
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    allExercise.remove(position);
-
-                    customerAdaptar.notifyDataSetChanged();
-                }
-            });
         }
 
         addExerciseButton = findViewById(R.id.addExerciseButton);
@@ -94,6 +79,9 @@ public class DailyPlan extends AppCompatActivity {
                     case R.id.AddMorePlan:
                         break;
                     case R.id.Settings:
+                        Intent intent1 = new Intent(DailyPlan.this, ViewProfile.class);
+                        intent1.putExtra("username", username);
+                        startActivity(intent1);
                         break;
                 }
 
@@ -120,20 +108,58 @@ public class DailyPlan extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.customer_layout, null);
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.walking);
             TextView textView = (TextView) convertView.findViewById(R.id.name);
             TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
+            Button checkedButton = (Button) convertView.findViewById(R.id.check_button);
+            checkedButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Exercise currentExercise = allExercise.get(position);
+                    java.util.Date currentTime = Calendar.getInstance().getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                    String currentDate = sdf.format(currentTime);
+                    Log.d("currentDate is ", currentDate);
+                    Log.d("exercise date is ", currentExercise.getDate());
+                    if(!currentExercise.getDate().equals(currentDate)){
+                        Toast.makeText(DailyPlan.this,"You cannot check this", Toast.LENGTH_SHORT).show();
+                    } else{
+                        int calorieConsumption = currentExercise.calorie;
+                        User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        int currentCal = currentUser.getCalorieConsumptioon();
+                        currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
+                        Log.e("Adding calorie: ",""+calorieConsumption);
+
+                        // update user in database
+                        MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+                        MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(currentExercise);
+                        allExercise.remove(position);
+
+                        // check if the user completes the daily goal for the first time
+                        if(currentCal < currentUser.getDailyGoal() && currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
+                            currentUser.addOne();
+                            int currentDays = currentUser.getBadge();
+                            if(currentDays != 0 && currentDays % 1 == 0){
+                                startActivity(new Intent(DailyPlan.this,Congratulations.class));
+                            }
+                            Log.e("currentDays", String.valueOf(currentDays));
+                            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+                            Toast.makeText(DailyPlan.this,"Congratulations!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        notifyDataSetChanged();
+                    }
+                }
+            });
 
             imageView.setImageResource(allExercise.get(position).getImage());
             textView.setText(allExercise.get(position).getExerciseName());
-            textViewDes.setText(allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
+            textViewDes.setText(allExercise.get(position).getDate() + "\n" + allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
             return convertView;
         }
     }
-
 
     public void openExerciseOptions() {
         Intent intent = new Intent(this, AddExerciseActivity.class);
