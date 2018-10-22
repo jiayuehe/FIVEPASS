@@ -27,14 +27,16 @@
             android:name=".Activity.AddExerciseActivity"
             android:label="@string/title_activity_add_exercise" />
         <activity android:name=".Activity.Congratulations" />
+
         <activity android:name=".Activity.SignUp" />
 
-        <receiver android:name=".Activity.AlarmReceiver" />
 
         <activity android:name=".Activity.ChangeProfile"
             android:parentActivityName=".Activity.ViewProfile"/>
         <activity android:name=".Activity.ViewProfile"
             android:parentActivityName=".Activity.HomeActivity"></activity>
+        <receiver android:name=".Activity.AlarmReceiver"/>
+        <receiver android:name=".Activity.CheckReceiver"/>
     </application>
 
 </manifest>

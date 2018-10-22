@@ -62,7 +62,6 @@
         android:id="@+id/resetProfileButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
         android:text="Reset Profile" />
 
 

@@ -43,6 +43,7 @@
                     android:layout_marginEnd="54dp"
                     android:ems="10"
                     android:hint="Name"
+                    android:paddingLeft="10dp"
                     android:inputType="textPersonName" />
 
             </RelativeLayout>
@@ -73,6 +74,7 @@
                     android:layout_marginEnd="54dp"
                     android:ems="10"
                     android:hint="Password"
+                    android:paddingLeft="10dp"
                     android:inputType="textPassword" />
             </RelativeLayout>
 
@@ -103,6 +105,36 @@
                     android:ems="10"
                     android:entries="@array/genderArray"
                     android:prompt="@string/genderPrompt"
+                    android:spinnerMode="dialog" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textAlignment="center">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Age"
+                    android:textSize="19dp" />
+
+                <Spinner
+                    android:id="@+id/age"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="91dp"
+                    android:ems="10"
+                    android:entries="@array/age"
+                    android:prompt="@string/AgePrompt"
                     android:spinnerMode="dialog" />
             </RelativeLayout>
 
@@ -203,7 +235,7 @@
                 android:textAlignment="center">
 
                 <Button
-                    android:id="@+id/signUpButton"
+                    android:id="@+id/realSignUpButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign Up"/>

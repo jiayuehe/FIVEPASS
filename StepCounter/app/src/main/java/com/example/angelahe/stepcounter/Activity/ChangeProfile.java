@@ -195,7 +195,6 @@ public class ChangeProfile extends AppCompatActivity {
 
                         MainActivity.myAppDatabase.UserDao().updateUser(currUser);
 
-                        System.out.println("=============================");
                         System.out.println(currUser);
                         Intent intent = new Intent(ChangeProfile.this, ViewProfile.class);
                         intent.putExtra("username", currUser.getmUserName());
