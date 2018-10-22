@@ -136,7 +136,7 @@ public class DailyPlan extends AppCompatActivity {
 
             imageView.setImageResource(allExercise.get(position).getImage());
             textView.setText(allExercise.get(position).getExerciseName());
-            textViewDes.setText(allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
+            textViewDes.setText(allExercise.get(position).getDate() + "\n" + allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
             return convertView;
         }
     }
