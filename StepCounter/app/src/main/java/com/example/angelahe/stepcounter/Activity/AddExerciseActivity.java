@@ -189,7 +189,6 @@ public class AddExerciseActivity extends AppCompatActivity {
         }
 
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-        //currentUser.addExercise(new Exercise(username, exercisename, startTime, endTime, imageId));
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
 
         Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId,currentDate);

@@ -84,6 +84,8 @@ public class Exercise {
         return exerciseName;
     }
 
+    public String getDate(){return date;}
+
     public String getStartTime() {
         return startTime;
     }

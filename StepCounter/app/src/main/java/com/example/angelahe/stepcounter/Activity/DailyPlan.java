@@ -115,13 +115,22 @@ public class DailyPlan extends AppCompatActivity {
             checkedButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Exercise currentExercise = allExercise.get(position);
-                    int calorieConsumption = currentExercise.calorie;
-                    User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-                    currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
-                    MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
-                    MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(currentExercise);
-                    allExercise.remove(position);
-                    notifyDataSetChanged();
+                    java.util.Date currentTime = Calendar.getInstance().getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                    String currentDate = sdf.format(currentTime);
+                    Log.d("currentDate is ", currentDate);
+                    Log.d("exercise date is ", currentExercise.getDate());
+                    if(!currentExercise.getDate().equals(currentDate)){
+                        Toast.makeText(DailyPlan.this,"You cannot check this", Toast.LENGTH_SHORT).show();
+                    } else{
+                        int calorieConsumption = currentExercise.calorie;
+                        User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
+                        MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+                        MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(currentExercise);
+                        allExercise.remove(position);
+                        notifyDataSetChanged();
+                    }
                 }
             });
 
