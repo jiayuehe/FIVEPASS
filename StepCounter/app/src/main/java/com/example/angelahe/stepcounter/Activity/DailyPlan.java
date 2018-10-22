@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
+import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
 
 import org.w3c.dom.Text;
@@ -54,9 +55,6 @@ public class DailyPlan extends AppCompatActivity {
 
             final CustomerAdaptar customerAdaptar = new CustomerAdaptar();
             listView.setAdapter(customerAdaptar);
-            
-            // TODO:
-            // 1. also update the user's calorieConsumption so that the home page would show progress correctly
         }
 
         addExerciseButton = findViewById(R.id.addExerciseButton);
@@ -116,12 +114,11 @@ public class DailyPlan extends AppCompatActivity {
             Button checkedButton = (Button) convertView.findViewById(R.id.check_button);
             checkedButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    java.util.Date currentTime = Calendar.getInstance().getTime();
-                    String pattern = "MM/dd/yyyy";
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-                    String date = simpleDateFormat.format(currentTime);
-                    Log.d("CurrentDate" , "Current Date is " + date);
                     Exercise currentExercise = allExercise.get(position);
+                    int calorieConsumption = currentExercise.calorie;
+                    User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                    currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
+                    MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
                     MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(currentExercise);
                     allExercise.remove(position);
                     notifyDataSetChanged();
