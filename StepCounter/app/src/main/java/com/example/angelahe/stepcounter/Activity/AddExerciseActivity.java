@@ -193,7 +193,7 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         //set notification
         SetNotification setter = new SetNotification();
-        setter.setWithTime(this, starthour, startmin, 0, exercisename);
+        setter.setWithTime(this, starthour, startmin, 0,  exercisename);
     }
 
 }
