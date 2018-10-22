@@ -1,9 +1,12 @@
 package com.example.angelahe.stepcounter.Activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,6 +64,31 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         Button goToProfileSetting = (Button) findViewById(R.id.goToProfileSetting);
         goToProfileSetting.setOnClickListener(this);
 
+        // nav
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.NavigationBar3);
+        bottomNavigationView.setSelectedItemId(R.id.Settings);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Home:
+                        Intent intent1 = new Intent(ViewProfile.this, HomeActivity.class);
+                        intent1.putExtra("username", currUser.getmUserName());
+                        startActivity(intent1);
+                        break;
+                    case R.id.AddMorePlan:
+                        Intent intent = new Intent(ViewProfile.this, DailyPlan.class);
+                        intent.putExtra("username", currUser.getmUserName());
+                        startActivity(intent);
+                        break;
+                    case R.id.Settings:
+                        break;
+                }
+
+                return false;
+            }
+        });
 
     }
 
@@ -70,7 +98,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         intent.putExtra("username", currUser.getmUserName());
         startActivity(intent);
     }
-
+//
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ViewProfile.this, HomeActivity.class);

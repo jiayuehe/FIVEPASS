@@ -150,6 +150,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                         Intent intent1 = new Intent(HomeActivity.this, ViewProfile.class);
                         intent1.putExtra("username", username);
                         startActivity(intent1);
+                        Log.e("action: ","going to settings");
                         break;
                 }
 
@@ -163,22 +164,22 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 //                PendingIntent.FLAG_NO_CREATE) != null);
 
 //        if(!alarmUp){
-            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-            Intent intent1 = new Intent(this, CheckReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1, 0);
-            Calendar startTime = Calendar.getInstance();
-            startTime.set(Calendar.HOUR_OF_DAY, 0);
-            startTime.set(Calendar.MINUTE, 0);
-            startTime.set(Calendar.SECOND, 0);
-            long milliStartTime = startTime.getTimeInMillis();
-            alarmManager.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-//                    System.currentTimeMillis(),
-                    milliStartTime,
-                    60*60*24*1000,
-                    pendingIntent
-            );
-            Log.e("checking badge event", "set");
+//            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+//            Intent intent1 = new Intent(this, CheckReceiver.class);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1, 0);
+//            Calendar startTime = Calendar.getInstance();
+//            startTime.set(Calendar.HOUR_OF_DAY, 0);
+//            startTime.set(Calendar.MINUTE, 0);
+//            startTime.set(Calendar.SECOND, 0);
+//            long milliStartTime = startTime.getTimeInMillis();
+//            alarmManager.setRepeating(
+//                    AlarmManager.RTC_WAKEUP,
+////                    System.currentTimeMillis(),
+//                    milliStartTime,
+//                    60*60*24*1000,
+//                    pendingIntent
+//            );
+//            Log.e("checking badge event", "set");
 //        }
 
     }

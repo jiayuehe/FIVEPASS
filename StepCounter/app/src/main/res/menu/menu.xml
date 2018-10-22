@@ -9,9 +9,9 @@
     <item
         android:id="@+id/AddMorePlan"
         android:icon="@drawable/addmore"
-        android:title="Add Plan" />
+        android:title="Plans" />
     <item
         android:id="@+id/Settings"
         android:icon="@drawable/youtube"
-        android:title="what's new" />
+        android:title="Settings" />
 </menu>

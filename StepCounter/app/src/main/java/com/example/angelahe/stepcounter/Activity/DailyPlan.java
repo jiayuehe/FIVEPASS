@@ -79,6 +79,9 @@ public class DailyPlan extends AppCompatActivity {
                     case R.id.AddMorePlan:
                         break;
                     case R.id.Settings:
+                        Intent intent1 = new Intent(DailyPlan.this, ViewProfile.class);
+                        intent1.putExtra("username", username);
+                        startActivity(intent1);
                         break;
                 }
 
