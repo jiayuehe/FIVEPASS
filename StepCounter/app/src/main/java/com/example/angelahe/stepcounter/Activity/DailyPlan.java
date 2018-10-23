@@ -128,6 +128,7 @@ public class DailyPlan extends AppCompatActivity {
                     } else{
                         int calorieConsumption = currentExercise.calorie;
                         User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+//                        int currentCal = currentUser.getCalorieConsumptioon();
                         currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
                         Log.e("Adding calorie: ",""+calorieConsumption);
                         // update user in database
@@ -138,17 +139,17 @@ public class DailyPlan extends AppCompatActivity {
 
                         // check if the user completes the daily goal for the first time
 //                        User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username)
-                        int currentCal = currentUser.getCalorieConsumptioon();
-                        if(currentCal < currentUser.getDailyGoal() && currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
-                            currentUser.addOne();
-                            int currentDays = currentUser.getBadge();
-                            if(currentDays != 0 && currentDays % 7 == 0){
-                                startActivity(new Intent(DailyPlan.this,Congratulations.class));
-                            }
-                            Log.e("currentDays", String.valueOf(currentDays));
-                            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
-                            Toast.makeText(DailyPlan.this,"Congratulations!", Toast.LENGTH_SHORT).show();
-                        }
+
+//                        if(currentCal < currentUser.getDailyGoal() && currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
+//                            currentUser.addOne();
+//                            int currentDays = currentUser.getBadge();
+//                            if(currentDays != 0 && currentDays % 7 == 0){
+//                                startActivity(new Intent(DailyPlan.this,Congratulations.class));
+//                            }
+//                            Log.e("currentDays", String.valueOf(currentDays));
+//                            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+//                            Toast.makeText(DailyPlan.this,"Congratulations!", Toast.LENGTH_SHORT).show();
+//                        }
 
 
 

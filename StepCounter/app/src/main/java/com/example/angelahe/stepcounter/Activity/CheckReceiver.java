@@ -30,6 +30,11 @@ public class CheckReceiver extends BroadcastReceiver {
             currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
             currentUser.setCalorie(0);
             MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+            if(currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
+                currentUser.addOne();
+            } else {
+                currentUser.setZero();
+            }
         }
     }
 }
