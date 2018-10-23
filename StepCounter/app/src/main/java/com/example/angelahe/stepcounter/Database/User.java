@@ -70,6 +70,16 @@ public class User {
     public int getBadge() {
         return badge;
     }
+<<<<<<< HEAD
+    //
+    //    public User(String mUserName, String mPassword) {
+    //        this.mUserName = mUserName;
+    //        this.mPassword = mPassword;
+    //        this.badge = 0;
+    //        this.calorie = 0;
+    //    }
+
+=======
 
     public void setPassword(String password) {this.mPassword = password;}
     @Ignore
@@ -79,6 +89,7 @@ public class User {
         this.badge = 0;
         this.calorieConsumptioon = 0;
     }
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
     public void setAge(int age) {
         this.age = age;
     }

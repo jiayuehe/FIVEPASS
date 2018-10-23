@@ -36,6 +36,28 @@ public class UserRegisterActivity extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
+        mButton.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        final String username = Username.getText().toString();
+                        final String password = Password.getText().toString();
+                        Log.d("Currentusername","CurrentUsername is " + username);
+                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        if(currentUser == null){
+                            User user = new User(username,password, 17, 12,12,12,'m');
+//                                public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal, char gender) {
+
+                                MainActivity.myAppDatabase.UserDao().addUser(user);
+                            Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
+                            myIntent.putExtra("username", username);
+                            startActivity(myIntent);
+                        } else{
+                            Toast.makeText(UserRegisterActivity.this,"Username taken", Toast.LENGTH_SHORT).show();
+                        }
+=======
         // clicking sign up will direct the user to another page
         mButton.setOnClickListener(
 //                new View.OnClickListener()
@@ -64,9 +86,20 @@ public class UserRegisterActivity extends AppCompatActivity {
                         Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
                         startActivity(intent);
 
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
                     }
-                }
-        );
+                });
+
+        // clicking sign up will direct the user to another page
+//        mButton.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
+//                        startActivity(intent);
+//                    }
+//                }
+//        );
 
         mButtonTwo.setOnClickListener(
                 new View.OnClickListener()
