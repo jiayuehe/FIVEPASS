@@ -16,6 +16,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         System.out.println("++++++ recieved ++++++++++");
 
         Intent mainIntent = new Intent(context, HomeActivity.class);
+        mainIntent.putExtra("username", intent.getStringExtra("username"));
         PendingIntent contentItent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
 

@@ -32,6 +32,7 @@ public class CheckReceiver extends BroadcastReceiver {
             if(currentUser.getCalorieConsumptioon() < currentUser.getDailyGoal()){
                 Log.e("msg: "," set badge to zero");
                 currentUser.setZero();
+                MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
             }
             // set zero
             currentUser.setCalorie(0);
