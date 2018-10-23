@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="titleFont">100px</dimen>
-    <dimen name="titleMedium">60px</dimen>
-    <dimen name="titleSmall">40px</dimen>
-</resources>
