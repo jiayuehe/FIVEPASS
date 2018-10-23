@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     // This is for the step counter
     TextView tv_steps;
+    TextView distance;
 
     SensorManager sensorManager;
 
@@ -154,7 +155,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         // for home and window bar
         tv_steps = (TextView) findViewById(R.id.tv_steps);
-        //tv_steps = (Button) findViewById(R.id.incomplete);
+        distance = (TextView) findViewById(R.id.distancLength);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -220,6 +221,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             Log.e("It should work here", "It should work here");
             Log.e("Current Step is ", "current step" + event.values[0]);
             tv_steps.setText(String.valueOf(event.values[0]));
+            distance.setText(String.valueOf(event.values[0]*0.5));
+            currentUser.setDailySteps(event.values[0]);
+            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
         }
     }
 

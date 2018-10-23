@@ -38,6 +38,9 @@ public class User {
     @ColumnInfo(name = "daily goal")
     public int dailyGoal;
 
+    @ColumnInfo(name = "step")
+    public float dailySteps;
+
     @ColumnInfo(name = "calorieConsumption")
     public int calorieConsumptioon;
 
@@ -78,9 +81,14 @@ public class User {
         this.mPassword = mPassword;
         this.badge = 0;
         this.calorieConsumptioon = 0;
+        this.dailySteps = 0;
     }
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public void setDailySteps(float steps) {
+        this.dailySteps = steps;
     }
 
     public void setWeight(float weight) {
