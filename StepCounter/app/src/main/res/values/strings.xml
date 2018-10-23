@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StepCounter</string>
+    <string name="app_name">USC FIT</string>
     <string name="stepCounter">Steos</string>
     <string name="steps">Steps: </string>
     <string name="distance">Distance: </string>
