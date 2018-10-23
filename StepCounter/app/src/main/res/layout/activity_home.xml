@@ -154,8 +154,8 @@
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/tv_info"
                         android:text="@string/IntialStepCount"
-                        android:textSize="30dp"
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="30dp" />
 
                 </LinearLayout>
 
