@@ -79,6 +79,9 @@ public class DailyPlan extends AppCompatActivity {
                     case R.id.AddMorePlan:
                         break;
                     case R.id.Settings:
+                        Intent intent1 = new Intent(DailyPlan.this, ViewProfile.class);
+                        intent1.putExtra("username", username);
+                        startActivity(intent1);
                         break;
                 }
 
@@ -125,10 +128,27 @@ public class DailyPlan extends AppCompatActivity {
                     } else{
                         int calorieConsumption = currentExercise.calorie;
                         User currentUser =  MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        int currentCal = currentUser.getCalorieConsumptioon();
                         currentUser.setCalorie(currentUser.getCalorie() + calorieConsumption);
+                        Log.e("Adding calorie: ",""+calorieConsumption);
+
+                        // update user in database
                         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
                         MainActivity.exerciseRoomDatabase.ExerciseDao().deleteExercise(currentExercise);
                         allExercise.remove(position);
+
+                        // check if the user completes the daily goal for the first time
+                        if(currentCal < currentUser.getDailyGoal() && currentUser.getCalorieConsumptioon() > currentUser.getDailyGoal()){
+                            currentUser.addOne();
+                            int currentDays = currentUser.getBadge();
+                            if(currentDays != 0 && currentDays % 1 == 0){
+                                startActivity(new Intent(DailyPlan.this,Congratulations.class));
+                            }
+                            Log.e("currentDays", String.valueOf(currentDays));
+                            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+                            Toast.makeText(DailyPlan.this,"Congratulations!", Toast.LENGTH_SHORT).show();
+                        }
+
                         notifyDataSetChanged();
                     }
                 }

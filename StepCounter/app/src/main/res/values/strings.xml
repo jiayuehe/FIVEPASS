@@ -52,14 +52,14 @@
     <string name="capcalories">CALORIES</string>
     <string name="textview">textview</string>
 
-    <!--spinner for gender-->
+    spinner for gender
     <string name="genderPrompt">Gender</string>
     <string-array name="genderArray">
         <item>Male</item>
         <item>Female</item>
     </string-array>
 
-    <string name="agePrompt">Age</string>
+    <string name="AgePrompt">Age</string>
     <string-array name="age">
         <item>4</item>
         <item>5</item>
@@ -213,5 +213,28 @@
         <item>108</item>
         <item>110</item>
     </string-array>
+
+<<<<<<< HEAD
+    <string name="Age">Height</string>
+    <string-array name="ages">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+    </string-array>
+=======
+
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
 </resources>
 

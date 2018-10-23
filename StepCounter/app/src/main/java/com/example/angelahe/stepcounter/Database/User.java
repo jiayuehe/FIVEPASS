@@ -41,6 +41,10 @@ public class User {
     @ColumnInfo(name = "calorieConsumption")
     public int calorieConsumptioon;
 
+    public String getmUserName() {return mUserName;}
+
+    public String getmPassword() {return mPassword;}
+
     public int getAge() {
         return age;
     }
@@ -57,6 +61,8 @@ public class User {
         return dailyGoal;
     }
 
+    public char getGender() {return gender;}
+
     public int getCalorie() {
         return calorieConsumptioon;
     }
@@ -64,7 +70,18 @@ public class User {
     public int getBadge() {
         return badge;
     }
+<<<<<<< HEAD
+    //
+    //    public User(String mUserName, String mPassword) {
+    //        this.mUserName = mUserName;
+    //        this.mPassword = mPassword;
+    //        this.badge = 0;
+    //        this.calorie = 0;
+    //    }
 
+=======
+
+    public void setPassword(String password) {this.mPassword = password;}
     @Ignore
     public User(String mUserName, String mPassword) {
         this.mUserName = mUserName;
@@ -72,7 +89,7 @@ public class User {
         this.badge = 0;
         this.calorieConsumptioon = 0;
     }
-
+>>>>>>> 55cc14d621fd1010827a5b0518d12df641ad7de8
     public void setAge(int age) {
         this.age = age;
     }
@@ -88,6 +105,8 @@ public class User {
     public void setDailyGoal(int dailyGoal) {
         this.dailyGoal = dailyGoal;
     }
+
+    public void setGender(char gender) {this.gender = gender;}
 
     public void setCalorie(int calorie) {
         this.calorieConsumptioon = calorie;
