@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".Activity.MainActivity"
+    android:background="@color/white">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/NavigationBar"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="52dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalCalorie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:text="@string/totalCalories"
+                android:textSize="@dimen/titleSmall"
+                android:textColor="@color/colorPrimaryLess"/>
+
+            <TextView
+                android:id="@+id/totalCalorieValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/totalCaloriesValue"
+                android:textSize="@dimen/titleSmall"
+                android:textColor="@color/colorPrimary"/>
+
+            <RelativeLayout
+                android:id="@+id/calorieChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <io.netopen.hotbitmapgg.library.view.RingProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="258dp"
+                    android:layout_height="264dp"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="50dp"
+                    app:max="100"
+                    app:ringColor="@color/colorPrimaryLess"
+                    app:ringProgressColor="@color/colorPrimary"
+                    app:ringWidth="3dp"
+                    app:style="FILL"
+                    app:textColor="@color/colorPrimary"
+                    app:textIsShow="true"
+                    app:textSize="16sp" />
+            </RelativeLayout>
+
+            <Button
+            android:id="@+id/checked"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button"
+            android:text="dailyCheck"
+            android:textColor="@color/white" />
+
+            <Button
+            android:id="@+id/incomplete"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button"
+            android:text="I didn't Complete"
+            android:textColor="@color/white" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/title_exercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/titleMedium"
+                    android:layout_marginBottom="@dimen/titleMedium"
+                    android:text="Today's Progress"
+                    android:textSize="@dimen/titleMedium"
+                    android:textColor="@color/colorPrimaryLess"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/div_steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="-1dp">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="79dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/common_google_signin_btn_text_dark_default"
+                        app:srcCompat="@drawable/steps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="351dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="79dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/steps"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
+                        android:id="@+id/tv_steps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_info"
+                        android:text="@string/IntialStepCount"
+                        android:textSize="30dp"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/div_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="-1dp">
+
+                    <ImageView
+                        android:id="@+id/distanceImage"
+                        android:layout_width="79dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/common_google_signin_btn_text_dark_default"
+                        app:srcCompat="@drawable/distance" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="351dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="79dp">
+
+
+                    <TextView
+                        android:id="@+id/distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distance"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
+                        android:id="@+id/distancLength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_info"
+                        android:text="@string/_0"
+                        android:textSize="30dp"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/workingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="-1dp">
+
+                    <ImageView
+                        android:id="@+id/actionTime"
+                        android:layout_width="79dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/common_google_signin_btn_text_dark_default"
+                        app:srcCompat="@drawable/time" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="351dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="79dp">
+
+
+                    <TextView
+                        android:id="@+id/actiontime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/action_time"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
+                        android:id="@+id/actiontimedata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_info"
+                        android:text="@string/ActionTimeDefault"
+                        android:textSize="30dp"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/caloriessection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="-1dp">
+
+                    <ImageView
+                        android:id="@+id/calorieimage"
+                        android:layout_width="79dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/common_google_signin_btn_text_dark_default"
+                        app:srcCompat="@drawable/fire" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="351dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="79dp">
+
+
+                    <TextView
+                        android:id="@+id/calories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/calories"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
+                        android:id="@+id/caloriesData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_info"
+                        android:text="@string/_0"
+                        android:textSize="30dp"
+                        android:textColor="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/NavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        app:menu="@menu/menu">
+
+    </android.support.design.widget.BottomNavigationView>
+
+
+</RelativeLayout>

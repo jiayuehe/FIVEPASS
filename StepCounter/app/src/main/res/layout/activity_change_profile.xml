@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".Activity.ChangeProfile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/newUsername"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:hint="Username"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></EditText>
+            <EditText
+                android:id="@+id/newPassword"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_below="@id/newUsername"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></EditText>
+            <Spinner
+                android:id="@+id/spinnerDailyGoal"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:hint="Daily Goal (Cal)"
+                android:layout_below="@id/newPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></Spinner>
+            <Spinner
+                android:id="@+id/spinnerAge"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinnerDailyGoal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></Spinner>
+            <Spinner
+                android:id="@+id/spinnerWeight"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinnerAge"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></Spinner>
+            <Spinner
+                android:id="@+id/spinnerHeight"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:hint="Height"
+                android:layout_below="@id/spinnerWeight"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></Spinner>
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:hint="Gender (f/m)"
+                android:layout_below="@id/spinnerHeight"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                ></Spinner>
+
+            <Button
+                android:id="@+id/resetProfileButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Reset Profile"
+                android:layout_below="@id/spinnerGender"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"/>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
