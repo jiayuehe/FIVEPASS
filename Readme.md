@@ -4,6 +4,8 @@ b) Open Android Studio and open existing project;
 c) Select StepCounter directory as the existing project;
 d) Build
 e) Or run on a device that is of API 27 or higher; 
+f) If the current version doesn't work, please visit https://github.com/jiayuehe/FIVEPASS.git
+We gurantee that the newest version on github would work
 
 Complete functionality: 
 1) Sign up/log in
