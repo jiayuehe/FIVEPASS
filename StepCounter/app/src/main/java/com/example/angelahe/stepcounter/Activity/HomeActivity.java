@@ -182,14 +182,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        // reset everything when it is 12 am and check for badge
-//        boolean alarmUp = (PendingIntent.getBroadcast(this, 0,
-//                new Intent(this, HomeActivity.class),
-//                PendingIntent.FLAG_NO_CREATE) != null);
-
-//        if(!alarmUp){
-
-//        }
 
     }
 

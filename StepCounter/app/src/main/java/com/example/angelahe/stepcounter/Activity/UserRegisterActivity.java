@@ -35,29 +35,8 @@ public class UserRegisterActivity extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.password);
 
 
-
         // clicking sign up will direct the user to another page
         mButton.setOnClickListener(
-//                new View.OnClickListener()
-//                {
-//                    public void onClick(View view)
-//                    {
-//                        final String username = Username.getText().toString();
-//                        final String password = Password.getText().toString();
-//                        Log.d("Currentusername","CurrentUsername is " + username);
-//                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-//                        if(currentUser == null){
-//                            User user = new User(username,password);
-//                            MainActivity.myAppDatabase.UserDao().addUser(user);
-////                            Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
-////                            myIntent.putExtra("username", username);
-////                            startActivity(myIntent);
-//                            Username.setText("");
-//                            Password.setText("");
-//
-//                        } else{
-//                            Toast.makeText(UserRegisterActivity.this,"Username taken", Toast.LENGTH_SHORT).show();
-//                        }
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

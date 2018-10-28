@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
         exerciseRoomDatabase = Room.databaseBuilder(getApplicationContext(), ExerciseRoomDatabase.class, "exercisedb").allowMainThreadQueries().build();
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
