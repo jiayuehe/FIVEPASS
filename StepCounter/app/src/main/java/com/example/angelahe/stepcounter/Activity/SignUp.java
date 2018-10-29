@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.password);
         genderSpinner = (Spinner) findViewById(R.id.gender);
         ageSpinner = (Spinner) findViewById((R.id.age));
-        weightSpinner = (Spinner) findViewById(R.id.body_height);
+        weightSpinner = (Spinner) findViewById(R.id.weight);
         heightSpinner = (Spinner) findViewById(R.id.body_height);
         DailyGoal = (EditText) findViewById(R.id.dailyGoal);
 
@@ -48,16 +48,20 @@ public class SignUp extends AppCompatActivity {
                         final int age = Integer.parseInt(ageSpinner.getSelectedItem().toString());
                         final float weight = Float.parseFloat(weightSpinner.getSelectedItem().toString());
                         final float height = Float.parseFloat(heightSpinner.getSelectedItem().toString());
-                        final int dailyGoal = Integer.parseInt(DailyGoal.getText().toString());
-                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
-                        if(currentUser == null){
-                            User user = new User(username,password,age,weight, height, dailyGoal,gender);
-                            MainActivity.myAppDatabase.UserDao().addUser(user);
-                            Intent myIntent = new Intent(SignUp.this, HomeActivity.class);
-                            myIntent.putExtra("username", username);
-                            startActivity(myIntent);
-                        } else{
-                            Toast.makeText(SignUp.this,"Username taken", Toast.LENGTH_SHORT).show();
+                        if(DailyGoal.getText().toString().trim().equals("")){
+                            Toast.makeText(SignUp.this,"Need daily goal", Toast.LENGTH_SHORT).show();
+                        } else {
+                            final int dailyGoal = Integer.parseInt(DailyGoal.getText().toString());
+                            User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                            if(currentUser == null){
+                                User user = new User(username,password,age,weight, height, dailyGoal,gender);
+                                MainActivity.myAppDatabase.UserDao().addUser(user);
+                                Intent myIntent = new Intent(SignUp.this, HomeActivity.class);
+                                myIntent.putExtra("username", username);
+                                startActivity(myIntent);
+                            } else{
+                                Toast.makeText(SignUp.this,"Username taken", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
