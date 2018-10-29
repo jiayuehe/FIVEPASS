@@ -64,8 +64,7 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
         Button goToProfileSetting = (Button) findViewById(R.id.goToProfileSetting);
         goToProfileSetting.setOnClickListener(this);
 
-        // nav
-
+        // navigation bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.NavigationBar3);
         bottomNavigationView.setSelectedItemId(R.id.Settings);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
