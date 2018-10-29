@@ -94,16 +94,20 @@ public class ChangeProfileTest extends ActivityTestRule<MainActivity> {
         onView(allOf(withId(R.id.newPassword))).perform(clearText(), typeText("changed"),ViewActions.closeSoftKeyboard());
 
         onView(withId(R.id.spinnerGender)).perform(click());
-        onData(allOf(is(instanceOf(String.class)),is("Male"))).perform(click());
+        onData(allOf(is(instanceOf(String.class)),is("male"))).perform(click());
+        onView(withId(R.id.gender)).check(matches(withSpinnerText("male")));
 
         onView(withId(R.id.spinnerAge)).perform(click());
         onData(allOf(is(instanceOf(String.class)),is("18"))).perform(click());
+        onView(withId(R.id.spinnerAge)).check(matches(withSpinnerText("18")));
 
         onView(withId(R.id.spinnerHeight)).perform(scrollTo()).perform(click());
         onData(allOf(is(instanceOf(String.class)),is("185"))).perform(click());
+        onView(withId(R.id.spinnerAge)).check(matches(withSpinnerText("185")));
 
         onView(withId(R.id.spinnerWeight)).perform(scrollTo()).perform(click());
         onData(allOf(is(instanceOf(String.class)),is("74"))).perform(click());
+        onView(withId(R.id.spinnerWeight)).check(matches(withSpinnerText("74")));
     }
 
     @Test
