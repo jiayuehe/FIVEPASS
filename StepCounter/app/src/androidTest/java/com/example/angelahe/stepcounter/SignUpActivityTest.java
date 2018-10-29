@@ -99,10 +99,11 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
         // sign up successfully
         onView(allOf(withId(R.id.username))).perform(clearText(), typeText("joe"));
         onView(allOf(withId(R.id.password))).perform(clearText(), typeText("joe"));
+
         // test spinner
-        onView(withId(R.id.gender)).perform(click());
-        onData(allOf(is(instanceOf(String.class)),is("Male"))).perform(click());
-        onView(withId(R.id.gender)).check(matches(withSpinnerText("Male")));
+//        onView(withId(R.id.gender)).perform(click());
+//        onData(allOf(is(instanceOf(String.class)),is("Male"))).perform(click());
+//        onView(withId(R.id.gender)).check(matches(withSpinnerText("Male")));
 
         onView(withId(R.id.age)).perform(click());
         onData(allOf(is(instanceOf(String.class)),is("18"))).perform(click());
