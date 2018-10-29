@@ -57,8 +57,10 @@ public class UserRegisterActivity extends AppCompatActivity {
                         Log.d("Currentusername","CurrentUsername is " + username);
                         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         if(currentUser == null || !currentUser.checkPassword(password)){
+                            Log.e("Failed", "Log In Failed");
                             Toast.makeText(UserRegisterActivity.this,"Log in failed", Toast.LENGTH_SHORT).show();
                         } else{
+                            Log.e("Successful", "Log In Successful");
                             Intent myIntent = new Intent(UserRegisterActivity.this, HomeActivity.class);
                             myIntent.putExtra("username", username);
                             startActivity(myIntent);
