@@ -31,12 +31,9 @@ import java.io.IOException;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
@@ -44,17 +41,14 @@ import static org.hamcrest.core.AllOf.allOf;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class UserRegisterTest extends ActivityTestRule<MainActivity> {
-    private UserDao mUserDao;
-    public  UserRoomDatabase userDatabase;
-    private MainActivity mActivity;
 
     public UserRegisterTest(){
         super(MainActivity.class);
-        mActivity = getActivity(); // launch MainActicity
     }
 
     @Rule
     public ActivityTestRule<UserRegisterActivity> userRegisterRule = new ActivityTestRule<>(UserRegisterActivity.class,true, false);
+
 
     @Before
     public void setUp() throws Exception{
@@ -62,7 +56,7 @@ public class UserRegisterTest extends ActivityTestRule<MainActivity> {
         InstrumentationRegistry.getTargetContext().deleteDatabase("userRoomDatabase");
         userRegisterRule.launchActivity(new Intent());
         MainActivity.myAppDatabase = Room.databaseBuilder(userRegisterRule.getActivity().getApplicationContext(), UserRoomDatabase.class, "userRoomDatabase").allowMainThreadQueries().build();
-        mUserDao = MainActivity.myAppDatabase.UserDao();
+        UserDao mUserDao = MainActivity.myAppDatabase.UserDao();
         User user = new User("here", "there", 20 ,30, 168, 3000, 'F');
         mUserDao.addUser(user);
     }

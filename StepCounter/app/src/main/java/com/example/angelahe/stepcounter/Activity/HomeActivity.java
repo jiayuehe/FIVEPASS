@@ -80,6 +80,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         ringProgressBar = findViewById(R.id.progress_bar);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+        Log.e("Current User name", "get name " + username);
         currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
 
         // display calorie
