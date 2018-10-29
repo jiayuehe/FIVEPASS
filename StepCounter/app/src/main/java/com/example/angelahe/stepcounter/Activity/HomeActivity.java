@@ -105,7 +105,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         checked.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        //User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        //User c urrentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentDays = currentUser.getBadge();
                         if (currentDays != 0 && currentDays % 7 == 0) {
                             startActivity(new Intent(HomeActivity.this, Congratulations.class));
