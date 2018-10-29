@@ -69,7 +69,7 @@ public class UserRegisterTest extends ActivityTestRule<MainActivity> {
 
     @Test
     public void linkToSignUp() throws InterruptedException {
-        //userRegisterRule.launchActivity(new Intent());
+        // sign up successful
         onView(allOf(withId(R.id.buttonsignup), withText("Sign Up")));
         onView(allOf(withId(R.id.buttonlogin), withText("Log In")));
         onView(allOf(withId(R.id.username))).perform(clearText(), typeText("jiayuehe"));
@@ -78,6 +78,15 @@ public class UserRegisterTest extends ActivityTestRule<MainActivity> {
         intended(hasComponent(SignUp.class.getName()));
     }
 
+
+    @Test
+    public void linkToSignUpUsernameTaken() throws InterruptedException {
+        // sign up Username Taken
+        onView(allOf(withId(R.id.username))).perform(clearText(), typeText("here"));
+        onView(allOf(withId(R.id.password))).perform(clearText(), typeText("there"),ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.buttonsignup)).perform(click());
+        intended(hasComponent(UserRegisterActivity.class.getName()));
+    }
 
     @Test
     public void linktoLogInSuccessful() throws InterruptedException {

@@ -40,8 +40,15 @@ public class UserRegisterActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
-                        startActivity(intent);
+                        final String username = Username.getText().toString();
+                        User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
+                        if(currentUser != null) {
+                            Toast.makeText(UserRegisterActivity.this,"Username Taken", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
+                            //TODO PUT EXTRA HERE TO SIGN UP
+                            startActivity(intent);
+                        }
 
                     }
                 }
