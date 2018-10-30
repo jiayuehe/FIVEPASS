@@ -99,6 +99,8 @@ public class DailyPlanTest extends ActivityTestRule<MainActivity>{
         onView(withId(R.id.addExerciseButton)).perform(click());
         intended(hasComponent(AddExerciseActivity.class.getName()));
     }
+
+
     @Test
     public void testCompleteExercise() throws InterruptedException {
         Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -110,6 +112,8 @@ public class DailyPlanTest extends ActivityTestRule<MainActivity>{
         onView(withId(R.id.check_button)).perform(click());
         intended(hasComponent(DailyPlan.class.getName()));
     }
+
+
     @Test
     public void testSettings() throws InterruptedException {
         // Test what happened if settings is clicked
@@ -140,6 +144,8 @@ public class DailyPlanTest extends ActivityTestRule<MainActivity>{
         );
         intended(hasComponent(ViewProfile.class.getName()));
     }
+
+
     @Test
     public void testHome() throws InterruptedException {
         // Testing what happened if home is clicked

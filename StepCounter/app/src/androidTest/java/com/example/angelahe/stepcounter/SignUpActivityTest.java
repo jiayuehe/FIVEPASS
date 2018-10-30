@@ -22,6 +22,7 @@ import com.example.angelahe.stepcounter.Database.UserDao;
 import com.example.angelahe.stepcounter.Database.UserRoomDatabase;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,6 +40,8 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
+import static junit.framework.TestCase.assertNotNull;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.Is.is;
@@ -127,6 +130,7 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
 
     }
 
+    // Black Box Testing
     @Test
     public void testSignUpWithTakenUsername() throws InterruptedException {
         // sign up failed due to taken username
@@ -157,6 +161,7 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
         intended(hasComponent(SignUp.class.getName()));
     }
 
+    // Black Box Testing
     @Test
     public void testSignUpSuccess() throws InterruptedException {
         // sign up successfully
@@ -189,6 +194,7 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
         intended(hasComponent(HomeActivity.class.getName()));
     }
 
+    // Black Box Testing
     @Test
     public void testSignUpWithoutDailyGoal() throws InterruptedException {
         // fail to sign up due to not entering daily goal
@@ -211,13 +217,40 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
         onData(allOf(is(instanceOf(String.class)),is("74"))).perform(click());
         onView(withId(R.id.weight)).check(matches(withSpinnerText("74")));
 
-//        onView(allOf(withId(R.id.dailyGoal))).perform(scrollTo()).perform(clearText(), typeText("500"));
-        //onView(ViewMatchers.withId(R.id.buttonsignup)).perform(click());
         onView(withId(R.id.realSignUpButton)).perform(scrollTo()).check(matches(isDisplayed()));
-//        Espresso.registerIdlingResources(new WaitActivityIsResumedIdlingResource(SignUp.class.getName()));
         onView(withId(R.id.realSignUpButton)).perform(click());
         intended(hasComponent(SignUp.class.getName()));
     }
+
+    // WhiteBox Testing
+    @Test
+    public void databaseTest() throws InterruptedException {
+        // sign up successfully
+        onView(allOf(withId(R.id.username))).perform(clearText(), typeText("joe"));
+        onView(allOf(withId(R.id.password))).perform(clearText(), typeText("joe"));
+
+        onView(withId(R.id.age)).perform(click());
+        onData(allOf(is(instanceOf(String.class)),is("18"))).perform(click());
+        onView(withId(R.id.age)).check(matches(withSpinnerText("18")));
+
+        onView(withId(R.id.body_height)).perform(scrollTo()).perform(click());
+        onData(allOf(is(instanceOf(String.class)),is("185"))).perform(click());
+        onView(withId(R.id.body_height)).check(matches(withSpinnerText("185")));
+
+        onView(withId(R.id.weight)).perform(scrollTo()).perform(click());
+        onData(allOf(is(instanceOf(String.class)),is("74"))).perform(click());
+        onView(withId(R.id.weight)).check(matches(withSpinnerText("74")));
+
+        onView(allOf(withId(R.id.dailyGoal))).perform(scrollTo()).perform(clearText(), typeText("500"));
+        onView(withId(R.id.realSignUpButton)).perform(scrollTo()).check(matches(isDisplayed()));
+        onView(withId(R.id.realSignUpButton)).perform(click());
+        Thread.sleep(1000);
+
+        User currentUser = mUserDao.returnCurrentUser("joe");
+        assertNotNull(currentUser);
+        Assert.assertEquals("joe",currentUser.getmPassword());
+    }
+
 
     @After
     public void tearDown() {

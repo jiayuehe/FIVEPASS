@@ -98,8 +98,9 @@ public class HomeActivityTest extends ActivityTestRule<MainActivity> {
                 }
         );
         intended(hasComponent(DailyPlan.class.getName()));
-
     }
+
+
 
     @Test
     public void testSettings() throws InterruptedException {
