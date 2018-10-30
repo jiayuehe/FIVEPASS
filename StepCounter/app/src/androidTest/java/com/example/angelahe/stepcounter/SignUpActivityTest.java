@@ -56,7 +56,7 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
 
     public SignUpActivityTest(){
         super(MainActivity.class);
-//        mActivity = getActivity(); // launch MainActicity
+        mActivity = getActivity(); // launch MainActicity
     }
     @Rule
     public ActivityTestRule<SignUp> signUpRule = new ActivityTestRule<>(SignUp.class,true, false);
