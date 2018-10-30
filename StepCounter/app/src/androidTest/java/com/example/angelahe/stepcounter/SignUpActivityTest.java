@@ -8,7 +8,11 @@ import android.support.test.espresso.intent.Intents;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.text.InputType;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.angelahe.stepcounter.Activity.HomeActivity;
 import com.example.angelahe.stepcounter.Activity.MainActivity;
@@ -38,6 +42,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -45,10 +51,11 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
     private UserDao mUserDao;
     public  UserRoomDatabase userDatabase;
     private MainActivity mActivity;
+    private SignUp mSignUpActivity;
 
     public SignUpActivityTest(){
         super(MainActivity.class);
-        mActivity = getActivity(); // launch MainActicity
+//        mActivity = getActivity(); // launch MainActicity
     }
     @Rule
     public ActivityTestRule<SignUp> signUpRule = new ActivityTestRule<>(SignUp.class,true, false);
@@ -62,6 +69,62 @@ public class SignUpActivityTest extends ActivityTestRule<MainActivity>{
         mUserDao = MainActivity.myAppDatabase.UserDao();
         User user = new User("test", "test", 20 ,30, 168, 3000, 'F');
         mUserDao.addUser(user);
+        mSignUpActivity = signUpRule.getActivity();
+    }
+
+    @Test
+    public void testUIUsernameEdit(){
+        EditText username = mSignUpActivity.findViewById(R.id.username);
+        assertNotNull(username);
+        assertEquals(username.getHint(), "Name");
+        TextView usernameText = mSignUpActivity.findViewById(R.id.usernameText);
+        assertEquals(usernameText.getText(), "Username");
+    }
+
+    @Test
+    public void testUIPassword(){
+        EditText password = mSignUpActivity.findViewById(R.id.password);
+        assertNotNull(password);
+        assertEquals(password.getHint(), "Password");
+        TextView passwordText = mSignUpActivity.findViewById(R.id.passwordText);
+        assertEquals(passwordText.getText(), "Password");
+    }
+
+    @Test
+    public void testUIGender(){
+        Spinner genderSpinner = mSignUpActivity.findViewById(R.id.gender);
+        assertEquals(2,genderSpinner.getCount());
+        assertEquals("gender", genderSpinner.getPrompt().toString().toLowerCase());
+    }
+
+    @Test
+    public void testUIAge(){
+        Spinner ageSpinner = mSignUpActivity.findViewById(R.id.age);
+        assertEquals(86, ageSpinner.getCount());
+        assertEquals("age", ageSpinner.getPrompt().toString().toLowerCase());
+    }
+
+    @Test
+    public void testUIHeight(){
+        Spinner heightSpinner = mSignUpActivity.findViewById(R.id.body_height);
+        assertEquals(15, heightSpinner.getCount());
+        assertEquals("height", heightSpinner.getPrompt().toString().toLowerCase());
+    }
+
+    @Test
+    public void testUIWeight(){
+        TextView weightText = mSignUpActivity.findViewById(R.id.withText);
+
+        Spinner weightSpinner = mSignUpActivity.findViewById(R.id.weight);
+        assertEquals(42, weightSpinner.getCount());
+    }
+
+    @Test void testUIDialyGoal(){
+        TextView daliyGoalText = mSignUpActivity.findViewById(R.id.dailyGoalText);
+        assertEquals("Daily Goal", daliyGoalText.getText());
+        EditText dailyGoal = mSignUpActivity.findViewById(R.id.dailyGoal);
+        assertEquals(InputType.TYPE_CLASS_NUMBER, dailyGoal.getInputType());
+
     }
 
     @Test

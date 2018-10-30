@@ -81,7 +81,7 @@
                 android:id="@+id/resetProfileButton"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Reset Profile"
+                android:text="Edit Profile"
                 android:layout_below="@id/spinnerGender"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="25dp"/>

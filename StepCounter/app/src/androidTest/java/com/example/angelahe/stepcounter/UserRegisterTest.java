@@ -11,6 +11,8 @@ import android.support.test.espresso.intent.Intents;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.angelahe.stepcounter.Activity.HomeActivity;
 import com.example.angelahe.stepcounter.Activity.MainActivity;
@@ -37,6 +39,8 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -48,7 +52,7 @@ public class UserRegisterTest extends ActivityTestRule<MainActivity> {
 
     @Rule
     public ActivityTestRule<UserRegisterActivity> userRegisterRule = new ActivityTestRule<>(UserRegisterActivity.class,true, false);
-
+    UserRegisterActivity mActivity;
 
     @Before
     public void setUp() throws Exception{
@@ -59,11 +63,37 @@ public class UserRegisterTest extends ActivityTestRule<MainActivity> {
         UserDao mUserDao = MainActivity.myAppDatabase.UserDao();
         User user = new User("here", "there", 20 ,30, 168, 3000, 'F');
         mUserDao.addUser(user);
+
+        mActivity = userRegisterRule.getActivity();
+    }
+    @Test
+    public void testUsernameEdit(){
+        EditText username = mActivity.findViewById(R.id.username);
+        assertNotNull(username);
+        assertEquals(username.getHint(), "USERNAME");
+    }
+    @Test
+    public void testPasswordEdit(){
+        EditText password = mActivity.findViewById(R.id.password);
+        assertNotNull(password);
+        assertEquals(password.getHint(), "PASSWORD");
+    }
+    @Test
+    public void testSignUpBtn(){
+        Button btn = mActivity.findViewById(R.id.buttonsignup);
+        assertNotNull(btn);
+        assertEquals(btn.getText().toString(), "Sign Up");
+    }
+    @Test
+    public void testLogInBtn(){
+        Button btn = mActivity.findViewById(R.id.buttonlogin);
+        assertNotNull(btn);
+        assertEquals(btn.getText().toString(), "Log In");
     }
 
     @Test
     public void linkToSignUp() throws InterruptedException {
-        // sign up successful
+        // sign up successful∂
         onView(allOf(withId(R.id.buttonsignup), withText("Sign Up")));
         onView(allOf(withId(R.id.buttonlogin), withText("Log In")));
         onView(allOf(withId(R.id.username))).perform(clearText(), typeText("jiayuehe"));

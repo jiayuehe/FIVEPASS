@@ -25,6 +25,7 @@
                 android:textAlignment="center">
 
                 <TextView
+                    android:id="@+id/usernameText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -56,6 +57,7 @@
                 android:textAlignment="center">
 
                 <TextView
+                    android:id="@+id/passwordText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -146,6 +148,7 @@
                 android:textAlignment="center">
 
                 <TextView
+                    android:id="@+id/heightText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -176,6 +179,7 @@
                 android:textAlignment="center">
 
                 <TextView
+                    android:id="@+id/weightText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -206,6 +210,7 @@
                 android:textAlignment="center">
 
                 <TextView
+                    android:id="@+id/dailyGoalText"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
