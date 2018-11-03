@@ -193,7 +193,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         if (countSensor != null) {
-            Log.e("Please work", "please work =here");
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
@@ -211,8 +210,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-            Log.e("It should work here", "It should work here");
-            Log.e("Current Step is ", "current step" + event.values[0]);
             tv_steps.setText(String.valueOf(event.values[0]));
             distance.setText(String.valueOf(event.values[0]*0.5));
             currentUser.setDailySteps(event.values[0]);
