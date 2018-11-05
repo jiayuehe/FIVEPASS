@@ -41,12 +41,15 @@ public class UserRegisterActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         final String username = Username.getText().toString();
+                        final String password = Password.getText().toString();
                         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         if(currentUser != null) {
                             Toast.makeText(UserRegisterActivity.this,"Username Taken", Toast.LENGTH_SHORT).show();
                         } else{
                             Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
                             //TODO PUT EXTRA HERE TO SIGN UP
+                            intent.putExtra("username", username);
+                            intent.putExtra("password", password);
                             startActivity(intent);
                         }
 

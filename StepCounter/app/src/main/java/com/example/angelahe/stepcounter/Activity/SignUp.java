@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.Database.User;
@@ -25,12 +26,19 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
 
-        signUpBtn = findViewById(R.id.realSignUpButton);
+        // get the username and password from the last page
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        String password = intent.getStringExtra("password");
 
+        signUpBtn = findViewById(R.id.realSignUpButton);
 
         signUpBtn = findViewById(R.id.realSignUpButton);
         Username = (EditText) findViewById(R.id.username);
+        Username.setText(username, TextView.BufferType.EDITABLE);
         Password = (EditText) findViewById(R.id.password);
+        Password.setText(password, TextView.BufferType.EDITABLE);
+
         genderSpinner = (Spinner) findViewById(R.id.gender);
         ageSpinner = (Spinner) findViewById((R.id.age));
         weightSpinner = (Spinner) findViewById(R.id.weight);
