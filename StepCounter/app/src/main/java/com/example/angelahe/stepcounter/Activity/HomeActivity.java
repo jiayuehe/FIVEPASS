@@ -1,11 +1,15 @@
 package com.example.angelahe.stepcounter.Activity;
 
+import android.Manifest;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -14,6 +18,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +42,8 @@ import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 public class HomeActivity extends AppCompatActivity implements SensorEventListener {
     // This is for ring progress bar
     RingProgressBar ringProgressBar;
+    SensorManager sensorManager;
+
 
     int progress = 0; // need to get calorie from database
 
@@ -56,8 +64,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     TextView tv_steps;
     TextView distance;
 
-    SensorManager sensorManager;
-
     boolean running = false;
 
     String username;
@@ -72,9 +78,18 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     int dailyGoal;
 
+    // This is for request
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+              != PackageManager.PERMISSION_GRANTED) {
+            requestPermission();
+        }
+
         // for ring progress bar
         setContentView(R.layout.activity_home);
         ringProgressBar = findViewById(R.id.progress_bar);
@@ -85,7 +100,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         // display calorie
         calorie = currentUser.getCalorie();
-
         dailyGoal = currentUser.getDailyGoal();
         progress = calorie * 100 / dailyGoal;
         Log.e("calorie: ", ""+calorie);
@@ -105,7 +119,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         checked.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        //User c urrentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                         int currentDays = currentUser.getBadge();
                         if (currentDays != 0 && currentDays % 7 == 0) {
                             startActivity(new Intent(HomeActivity.this, Congratulations.class));
@@ -158,7 +171,14 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         tv_steps = (TextView) findViewById(R.id.tv_steps);
         distance = (TextView) findViewById(R.id.distancLength);
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if(ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(HomeActivity.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+            sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        } else {
+            Toast.makeText(HomeActivity.this, "Permission Denied, not able to set the exercise", Toast.LENGTH_SHORT).show();
+        }
+
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.NavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -192,10 +212,13 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         super.onResume();
         running = true;
         Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null) {
-            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-        } else {
-            Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
+        if(ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED){
+            if (countSensor != null) {
+                sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+            } else {
+                Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -203,22 +226,58 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause() {
         super.onPause();
         running = false;
-        // if you unregister the hardware will stop detecting steps
-        // sensorManager.unregisterListener(this);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (running) {
-            tv_steps.setText(String.valueOf(event.values[0]));
-            distance.setText(String.valueOf(event.values[0]*0.5));
-            currentUser.setDailySteps(event.values[0]);
-            MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+        if(ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED) {
+            if (running) {
+                tv_steps.setText(String.valueOf(event.values[0]));
+                distance.setText(String.valueOf(event.values[0] * 0.5));
+                currentUser.setDailySteps(event.values[0]);
+                MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
+            }
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    // Request Permission for location
+    public void requestPermission() {
+        new AlertDialog.Builder(this).setTitle("Permission needed")
+                .setMessage("This permission is needed to get the data from the sensor")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(HomeActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_EXTERNAL_STORAGE);
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode,
+            String permissions[],
+            int[] grantResults) {
+        if(requestCode == REQUEST_EXTERNAL_STORAGE){
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+            } else if (grantResults[0] == PackageManager.PERMISSION_DENIED){
+                Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
