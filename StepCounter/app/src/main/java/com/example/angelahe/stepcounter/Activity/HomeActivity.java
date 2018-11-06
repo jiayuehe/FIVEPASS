@@ -193,6 +193,11 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                         intent1.putExtra("username", username);
                         startActivity(intent1);
                         break;
+                    case R.id.Map:
+                        Intent intent2 = new Intent(HomeActivity.this, MapActivity.class);
+                        intent2.putExtra("username", username);
+                        startActivity(intent2);
+                        break;
                 }
 
                 return false;
