@@ -171,13 +171,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         tv_steps = (TextView) findViewById(R.id.tv_steps);
         distance = (TextView) findViewById(R.id.distancLength);
 
-        //if(ContextCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
-          //      == PackageManager.PERMISSION_GRANTED){
-           // Toast.makeText(HomeActivity.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
-            sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        //} else {
-          //  Toast.makeText(HomeActivity.this, "Permission Denied, not able to set the exercise", Toast.LENGTH_SHORT).show();
-        //}
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.NavigationBar);
