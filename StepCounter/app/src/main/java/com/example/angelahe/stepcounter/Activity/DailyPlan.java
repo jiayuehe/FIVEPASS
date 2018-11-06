@@ -38,6 +38,7 @@ public class DailyPlan extends AppCompatActivity {
     private String username;
     private List<Exercise> allExercise;
     Button checkbutton;
+    Button weeklyPlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,20 @@ public class DailyPlan extends AppCompatActivity {
                 return false;
             }
         });
+
+        weeklyPlan = findViewById(R.id.title_weekly_plan);
+        weeklyPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWeeklyPlan();
+            }
+        });
+    }
+
+    private void openWeeklyPlan() {
+        Intent intent = new Intent(this, WeekPlanActivity.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
     }
 
     class CustomerAdaptar extends BaseAdapter {

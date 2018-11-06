@@ -1,16 +1,26 @@
 package com.example.angelahe.stepcounter.Activity;
 
+import android.Manifest;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +32,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
 import com.example.angelahe.stepcounter.Database.ExerciseType;
@@ -33,6 +44,7 @@ import java.util.List;
 
 public class AddExerciseActivity extends AppCompatActivity {
 
+    private static final int REQUEST_ALARM = 1;
     private TextView mTextMessage;
     private Spinner spinner;
     private TimePicker timePicker, timePicker2;
@@ -49,6 +61,12 @@ public class AddExerciseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //if (ContextCompat.checkSelfPermission(AddExerciseActivity.this, Manifest.permission.RECEIVE_BOOT_COMPLETED)
+        //      != PackageManager.PERMISSION_GRANTED) {
+            requestPermission();
+        //}
+
         setContentView(R.layout.activity_add_exercise);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
@@ -82,7 +100,7 @@ public class AddExerciseActivity extends AppCompatActivity {
         day = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
-        String temp = month+1 + "/" + day + "/" + year;
+        String temp = month + 1 + "/" + day + "/" + year;
         tvDate = (TextView) findViewById(R.id.tvDate);
         tvDate.setText(temp);
 
@@ -137,7 +155,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                 month = _month;
                 year = _year;
                 day = dayOfMonth;
-                date_string = month+1 + "/" + dayOfMonth + "/" + year;
+                date_string = month + 1 + "/" + dayOfMonth + "/" + year;
                 tvDate.setText(date_string);
 
             }
@@ -187,9 +205,9 @@ public class AddExerciseActivity extends AppCompatActivity {
                 break;
             default:
                 imageId = R.drawable.other_exercise;
-                exercisename = ((EditText)findViewById(R.id.exercise)).getText().toString();
-                Log.d("exercise name is ",exercisename);
-                calorie = Integer.parseInt(((EditText)findViewById(R.id.calorie)).getText().toString());
+                exercisename = ((EditText) findViewById(R.id.exercise)).getText().toString();
+                Log.d("exercise name is ", exercisename);
+                calorie = Integer.parseInt(((EditText) findViewById(R.id.calorie)).getText().toString());
                 Log.d("calorie is ", String.valueOf(calorie));
                 break;
         }
@@ -207,19 +225,56 @@ public class AddExerciseActivity extends AppCompatActivity {
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
 
-//        Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, date_string);
-
-
         Exercise exercise = new Exercise(username, exercisename, startTime, endTime, imageId, currentDate, calorie);
-
         MainActivity.exerciseRoomDatabase.ExerciseDao().addExercise(exercise);
-        Intent intent = new Intent(this, DailyPlan.class);
+
+        if(ContextCompat.checkSelfPermission(AddExerciseActivity.this, Manifest.permission.RECEIVE_BOOT_COMPLETED)
+                == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(AddExerciseActivity.this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+            SetNotification setter = new SetNotification();
+            setter.setWithTime(AddExerciseActivity.this, day, month, year, starthour, startmin, 0, exercisename, username);
+        } else {
+            Toast.makeText(AddExerciseActivity.this, "Permission Denied, not able to set the alarm", Toast.LENGTH_SHORT).show();
+        }
+        Intent intent = new Intent(AddExerciseActivity.this, DailyPlan.class);
         intent.putExtra("username", username);
         startActivity(intent);
-
-        //set notification
-        SetNotification setter = new SetNotification();
-        setter.setWithTime(this, day, month, year, starthour, startmin, 0, exercisename, username);
     }
+
+
+    public void requestPermission() {
+        new AlertDialog.Builder(this).setTitle("Permission needed")
+                .setMessage("This permission is needed to set alarm")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(AddExerciseActivity.this,
+                                new String[]{Manifest.permission.RECEIVE_BOOT_COMPLETED}, REQUEST_ALARM);
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode,
+            String permissions[],
+            int[] grantResults) {
+        if(requestCode == REQUEST_ALARM){
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+            } else if (grantResults[0] == PackageManager.PERMISSION_DENIED){
+                Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
 }

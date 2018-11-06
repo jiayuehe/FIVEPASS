@@ -14,4 +14,8 @@
         android:id="@+id/Settings"
         android:icon="@drawable/youtube"
         android:title="Settings" />
+    <item
+        android:id="@+id/Map"
+        android:icon="@drawable/check_exercise"
+        android:title="Map"/>
 </menu>
