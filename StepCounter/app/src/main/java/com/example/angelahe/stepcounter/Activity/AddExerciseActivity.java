@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,10 +24,12 @@ import android.view.View;
 import android.widget.TimePicker;
 
 import com.example.angelahe.stepcounter.Database.Exercise;
+import com.example.angelahe.stepcounter.Database.ExerciseType;
 import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class AddExerciseActivity extends AppCompatActivity {
 
@@ -40,7 +43,8 @@ public class AddExerciseActivity extends AppCompatActivity {
     private String exercisename = "";
     private TextView tvDate;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
-
+    private List<String> types;
+    private ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,12 @@ public class AddExerciseActivity extends AppCompatActivity {
                 timePicker2.setMinute(minute);
             }
         });
+
+        // read exercise from database
+        types = MainActivity.exerciseTypeDatabase.ExerciseTypeDao().getAllExercise();
+        arrayAdapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item_textview, types);
+        spinner.setAdapter(arrayAdapter);
 
         // Set default date in date picker
         day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -183,6 +193,16 @@ public class AddExerciseActivity extends AppCompatActivity {
                 Log.d("calorie is ", String.valueOf(calorie));
                 break;
         }
+
+        // update exercise list
+        if (imageId == R.drawable.other_exercise){
+            Log.d("exercise name ", exercisename);
+            ExerciseType newType = new ExerciseType(exercisename, calorie);
+            MainActivity.exerciseTypeDatabase.ExerciseTypeDao().addExercise(newType);
+            types.add(exercisename);
+            arrayAdapter.notifyDataSetChanged();
+        }
+
 
         User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
         MainActivity.myAppDatabase.UserDao().updateUser(currentUser);

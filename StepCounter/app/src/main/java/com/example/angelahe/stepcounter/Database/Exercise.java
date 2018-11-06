@@ -73,7 +73,7 @@ public class Exercise {
                 this.calorie = 650;
                 break;
             default:
-                this.calorie = 0;
+                this.calorie = calorie;
                 break;
         }
         // get interval of exercise time
