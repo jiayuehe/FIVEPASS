@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -47,15 +48,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
+    // for permissions
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private Boolean mLocationPermissionsGranted = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        // get permission
+        getLocationPermission();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mLocationPermissionsGranted){
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+        }
+
     }
     /**
      * Manipulates the map once available.
@@ -69,23 +81,76 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        if (true) {
+        if (mLocationPermissionsGranted) {
             Log.d(TAG, "onMapReady: ready to add everything\n\n");
 
             getDeviceLocation();
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+                Log.e(TAG, "onMapReady: not permitted");
                 return;
             }
             // display my position
             mMap.setMyLocationEnabled(true);
+        }
+    }
 
+    private void manualInitMap(){
+        Log.d(TAG, "manualInitMap: manualInitMap map");
+//        getDeviceLocation();
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            Log.e(TAG, "onMapReady: not permitted");
+//            return;
+//        }
+//        // display my position
+//        Log.e(TAG, "manualInitMap: displaying self location");
+//        mMap.setMyLocationEnabled(true);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
 
+    private void getLocationPermission(){
+        Log.d(TAG, "getLocationPermission: getting location permissions");
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION};
+
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                mLocationPermissionsGranted = true;
+            }else{
+                ActivityCompat.requestPermissions(this,
+                        permissions,
+                        LOCATION_PERMISSION_REQUEST_CODE);
+            }
+        }else{
+            ActivityCompat.requestPermissions(this,
+                    permissions,
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d(TAG, "onRequestPermissionsResult: called.");
+        mLocationPermissionsGranted = false;
+
+        switch(requestCode){
+            case LOCATION_PERMISSION_REQUEST_CODE:{
+                if(grantResults.length > 0){
+                    for(int i = 0; i < grantResults.length; i++){
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionsGranted = false;
+                            Log.d(TAG, "onRequestPermissionsResult: permission failed");
+                            return;
+                        }
+                    }
+                    Log.d(TAG, "onRequestPermissionsResult: permission granted");
+                    mLocationPermissionsGranted = true;
+                    manualInitMap();
+                }
+            }
         }
     }
 
@@ -169,24 +234,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
-//        Geocoder geocoder = new Geocoder(this);
-//        List<Address> list = new ArrayList<>();
-//        try{
-//            list = geocoder.getFromLocationName(searchString, 3);
-//            Log.e(TAG, "geoLocate: "+list );
-//        } catch (IOException e){
-//            Log.e(TAG, "geoLocate: IOException: "+ e.getMessage());
-//        }
-//        if(list!=null&&list.size()>0){
-//            for(Address address: list){
-//                Log.d(TAG, "geoLocate: found a new gym at: "+address.getLatitude()+", "+address.getLongitude());
-//                // mark the place we found
-//                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-//                MarkerOptions options = new MarkerOptions().position(latLng).title(address.getAddressLine(0));
-//                mMap.addMarker(options);
-//            }
-//        }
     }
 
 
