@@ -84,6 +84,11 @@ public class DailyPlan extends AppCompatActivity {
                         intent1.putExtra("username", username);
                         startActivity(intent1);
                         break;
+                    case R.id.Map:
+                        Intent intent2 = new Intent(DailyPlan.this, MapsActivity.class);
+                        intent2.putExtra("username", username);
+                        startActivity(intent2);
+                        break;
                 }
 
                 return false;

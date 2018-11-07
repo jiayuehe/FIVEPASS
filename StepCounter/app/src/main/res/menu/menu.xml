@@ -16,6 +16,6 @@
         android:title="Settings" />
     <item
         android:id="@+id/Map"
-        android:icon="@drawable/check_exercise"
+        android:icon="@drawable/map"
         android:title="Map"/>
 </menu>
