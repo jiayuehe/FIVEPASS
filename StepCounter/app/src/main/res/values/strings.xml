@@ -10,7 +10,7 @@
     <string name="password">PASSWORD</string>
     <string name="activityTitle">*Activity</string>
     <string name="exerciseTitle">*Exercise</string>
-    <string name="totalCalories">Progress/Daily Goal</string>
+    <string name="totalCalories">Progress / Daily Goal</string>
 
     <string name="totalCaloriesValue">1000/300 Calories</string>
     <string name="title_activity_add_exercise">Add Activity</string>
