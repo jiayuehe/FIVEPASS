@@ -30,6 +30,7 @@ import org.w3c.dom.Text;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DailyPlan extends AppCompatActivity {
@@ -143,6 +144,7 @@ public class DailyPlan extends AppCompatActivity {
                     String currentDate = sdf.format(currentTime);
                     Log.d("currentDate is ", currentDate);
                     Log.d("exercise date is ", currentExercise.getDate());
+
                     if(!currentExercise.getDate().equals(currentDate)){
                         Toast.makeText(DailyPlan.this,"You cannot check this", Toast.LENGTH_SHORT).show();
                     } else{

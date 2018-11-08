@@ -22,6 +22,7 @@ import com.example.angelahe.stepcounter.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class WeekPlanActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class WeekPlanActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_daily_plan);
+            setContentView(R.layout.activity_week_plan);
             Intent intent = getIntent();
             username = intent.getStringExtra("username");
             allExercise = MainActivity.exerciseRoomDatabase.ExerciseDao().returnAllExercise(username);
@@ -42,10 +43,17 @@ public class WeekPlanActivity extends AppCompatActivity {
             ListView dayOne = (ListView) findViewById(R.id.dayOne);
             ListView dayTwo = (ListView) findViewById(R.id.dayTwo);
             ListView dayThree = (ListView) findViewById(R.id.dayThree);
-//            final WeekPlanActivity.CustomerAdaptar customerAdaptar = new CustomerAdaptar();
-//            dayOne.setAdapter(customerAdaptar);
-//            dayTwo.setAdapter(customerAdaptar);
-//            dayThree.setAdapter(customerAdaptar);
+            final WeekPlanActivity.CustomerAdaptar customerAdaptar = new CustomerAdaptar();
+            final WeekPlanActivity.DayTwoAdapter dayTwoAdap = new DayTwoAdapter();
+            final WeekPlanActivity.DayThreeAdapter dayThreeAdapter = new DayThreeAdapter();
+
+            if(dayOne == null){
+                Log.e("cannot find", "not found");
+            } else {
+                dayOne.setAdapter(customerAdaptar);
+            }
+            dayTwo.setAdapter(dayTwoAdap);
+            dayThree.setAdapter(dayThreeAdapter);
         }
 
         class CustomerAdaptar extends BaseAdapter {
@@ -72,13 +80,101 @@ public class WeekPlanActivity extends AppCompatActivity {
                 ImageView imageView = (ImageView) convertView.findViewById(R.id.walking);
                 TextView textView = (TextView) convertView.findViewById(R.id.name);
                 TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
+//
+//                GregorianCalendar gc = new GregorianCalendar();
+//                gc.add(Calendar.DATE, 1);
+//                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//                String currentDate = sdf.format(gc);
 
-                imageView.setImageResource(allExercise.get(position).getImage());
-                textView.setText(allExercise.get(position).getExerciseName());
-                textViewDes.setText(allExercise.get(position).getDate() + "\n" + allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
+               // if (allExercise.get(position).getDate().equals(currentDate)) {
+                    imageView.setImageResource(allExercise.get(position).getImage());
+                    textView.setText(allExercise.get(position).getExerciseName());
+                    textViewDes.setText(allExercise.get(position).getDate() + "\n" + allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
+
+                //}
                 return convertView;
             }
         }
+
+    class DayTwoAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return allExercise.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.customer_layout, null);
+
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.walking);
+            TextView textView = (TextView) convertView.findViewById(R.id.name);
+            TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
+//
+//            GregorianCalendar gc = new GregorianCalendar();
+//            gc.add(Calendar.DATE, 2);
+//            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//            String currentDate = sdf.format(gc);
+
+           // if (allExercise.get(position).getDate().equals(currentDate)) {
+                imageView.setImageResource(allExercise.get(position).getImage());
+                textView.setText(allExercise.get(position).getExerciseName());
+                textViewDes.setText(allExercise.get(position).getDate() + "\n" + allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
+
+          // }
+            return convertView;
+        }
+    }
+
+    class DayThreeAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return allExercise.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.customer_layout, null);
+
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.walking);
+            TextView textView = (TextView) convertView.findViewById(R.id.name);
+            TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
+
+//            GregorianCalendar gc = new GregorianCalendar();
+//            gc.add(Calendar.DATE, 3);
+//            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//            String currentDate = sdf.format(gc);
+
+            //if (allExercise.get(position).getDate().equals(currentDate)) {
+                imageView.setImageResource(allExercise.get(position).getImage());
+                textView.setText(allExercise.get(position).getExerciseName());
+                textViewDes.setText(allExercise.get(position).getDate() + "\n" + allExercise.get(position).getStartTime() + " - " + allExercise.get(position).getEndTime());
+
+           // }
+            return convertView;
+        }
+    }
 
 }
 
