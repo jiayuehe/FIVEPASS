@@ -30,6 +30,7 @@ import org.w3c.dom.Text;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DailyPlan extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class DailyPlan extends AppCompatActivity {
     private String username;
     private List<Exercise> allExercise;
     Button checkbutton;
+    Button weeklyPlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +85,30 @@ public class DailyPlan extends AppCompatActivity {
                         intent1.putExtra("username", username);
                         startActivity(intent1);
                         break;
+                    case R.id.Map:
+                        Intent intent2 = new Intent(DailyPlan.this, MapsActivity.class);
+                        intent2.putExtra("username", username);
+                        startActivity(intent2);
+                        break;
                 }
 
                 return false;
             }
         });
+
+        weeklyPlan = findViewById(R.id.title_weekly_plan);
+        weeklyPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWeeklyPlan();
+            }
+        });
+    }
+
+    private void openWeeklyPlan() {
+        Intent intent = new Intent(this, WeekPlanActivity.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
     }
 
     class CustomerAdaptar extends BaseAdapter {
@@ -134,6 +155,7 @@ public class DailyPlan extends AppCompatActivity {
                     String currentDate = sdf.format(currentTime);
                     Log.d("currentDate is ", currentDate);
                     Log.d("exercise date is ", currentExercise.getDate());
+
                     if(!currentExercise.getDate().equals(currentDate)){
                         Toast.makeText(DailyPlan.this,"You cannot check this", Toast.LENGTH_SHORT).show();
                     } else{

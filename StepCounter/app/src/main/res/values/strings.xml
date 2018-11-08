@@ -10,7 +10,7 @@
     <string name="password">PASSWORD</string>
     <string name="activityTitle">*Activity</string>
     <string name="exerciseTitle">*Exercise</string>
-    <string name="totalCalories">Progress/Daily Goal</string>
+    <string name="totalCalories">Progress / Daily Goal</string>
 
     <string name="totalCaloriesValue">1000/300 Calories</string>
     <string name="title_activity_add_exercise">Add Activity</string>
@@ -213,7 +213,8 @@
         <item>108</item>
         <item>110</item>
     </string-array>
-
+    <string name="google_maps_API_key">AIzaSyAcIICLHNIOJn0vEl8eBzKW9_ZWlCetd4Y</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
 

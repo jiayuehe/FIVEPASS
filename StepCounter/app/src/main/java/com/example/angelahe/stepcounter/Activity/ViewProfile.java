@@ -83,6 +83,11 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
                         break;
                     case R.id.Settings:
                         break;
+                    case R.id.Map:
+                        Intent intent2 = new Intent(ViewProfile.this, MapsActivity.class);
+                        intent2.putExtra("username", currUser.getmUserName());
+                        startActivity(intent2);
+                        break;
                 }
 
                 return false;
