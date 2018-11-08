@@ -115,6 +115,17 @@ public class DailyPlan extends AppCompatActivity {
             TextView textView = (TextView) convertView.findViewById(R.id.name);
             TextView textViewDes = (TextView) convertView.findViewById(R.id.startingDate);
             Button checkedButton = (Button) convertView.findViewById(R.id.check_button);
+            Button videoButton = (Button) convertView.findViewById(R.id.video_button);
+            videoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DailyPlan.this, YouTubeVideo.class);
+                    Exercise currExercise = allExercise.get(position);
+                    String exerciseName = currExercise.getExerciseName();
+                    intent.putExtra("exerciseName", exerciseName);
+                    startActivity(intent);
+                }
+            });
             checkedButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Exercise currentExercise = allExercise.get(position);

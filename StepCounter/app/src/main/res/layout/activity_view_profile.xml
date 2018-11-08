@@ -23,6 +23,7 @@
                 android:layout_height="70dp"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/usernameText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"

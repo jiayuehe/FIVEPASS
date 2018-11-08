@@ -15,6 +15,8 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.angelahe.stepcounter.Activity.ChangeProfile;
 import com.example.angelahe.stepcounter.Activity.DailyPlan;
@@ -33,6 +35,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
@@ -47,14 +51,22 @@ import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class SettingsTest extends ActivityTestRule<MainActivity> {
 
+    private ViewProfile viewProfile;
+
     public SettingsTest(){
         super(MainActivity.class);
     }
+
+//    @Rule
+//    public TestRule chain = RuleChain
+//            .outerRule(new ActivityTestRule<UserRegisterActivity>())
 
     @Rule
     public ActivityTestRule<UserRegisterActivity> userRegisterRule = new ActivityTestRule<>(UserRegisterActivity.class,true, false);
@@ -74,6 +86,10 @@ public class SettingsTest extends ActivityTestRule<MainActivity> {
         UserDao mUserDao = MainActivity.myAppDatabase.UserDao();
         User user = new User("here", "there", 20 ,130, 168, 3000, 'F');
         mUserDao.addUser(user);
+
+        viewProfileActivityTestRule.launchActivity(new Intent());
+
+        viewProfile = viewProfileActivityTestRule.getActivity();
 
     }
 
@@ -117,6 +133,14 @@ public class SettingsTest extends ActivityTestRule<MainActivity> {
                 }
         );
         intended(hasComponent(ChangeProfile.class.getName()));
+    }
+
+    @Test
+    public void testUIUsernameDisplay() {
+        TextView text = viewProfile.findViewById(R.id.usernameText);
+        EditText username = viewProfile.findViewById(R.id.currUsername);
+        assertEquals(text.getText(), "Username: ");
+        assertNotNull(username);
     }
 
     @After

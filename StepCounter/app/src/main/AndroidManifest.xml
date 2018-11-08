@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.angelahe.stepcounter">
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,23 +34,22 @@
             android:name=".Activity.AddExerciseActivity"
             android:label="@string/title_activity_add_exercise" />
         <activity android:name=".Activity.Congratulations" />
-
         <activity android:name=".Activity.SignUp" />
-
-
         <activity
             android:name=".Activity.ChangeProfile"
             android:parentActivityName=".Activity.ViewProfile" />
         <activity
             android:name=".Activity.ViewProfile"
-            android:parentActivityName=".Activity.HomeActivity"></activity>
+            android:parentActivityName=".Activity.HomeActivity" />
 
         <receiver android:name=".Activity.AlarmReceiver" />
         <receiver android:name=".Activity.CheckReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.ACTION_TIME_TICK"></action>
+                <action android:name="android.intent.action.ACTION_TIME_TICK" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".Activity.YouTubeVideo"></activity>
     </application>
 
 </manifest>
