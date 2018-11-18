@@ -72,6 +72,8 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     Button incomplete;
 
+    Button trialRun;
+
     User currentUser;
 
     int calorie;
@@ -167,6 +169,17 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                     }
                 });
 
+        // UserCheck
+        trialRun = (Button) findViewById(R.id.button_Trial);
+        trialRun.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View view) {
+                        Intent intent = new Intent(HomeActivity.this, TrialActivity.class);
+                        //intent.putExtra("username", username);
+                        startActivity(intent);
+                    }
+                });
+
         // for home and window bar
         tv_steps = (TextView) findViewById(R.id.tv_steps);
         distance = (TextView) findViewById(R.id.distancLength);
@@ -174,6 +187,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
+        // firebase authentification
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.NavigationBar);

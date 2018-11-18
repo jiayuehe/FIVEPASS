@@ -3,6 +3,7 @@ package com.example.angelahe.stepcounter.Activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class UserRegisterActivity extends AppCompatActivity {
     // Configure sign-in to request the user's ID, email address, and basic
@@ -23,6 +26,9 @@ public class UserRegisterActivity extends AppCompatActivity {
     EditText Username;
     Button   mButton;
     Button   mButtonTwo;
+
+
+    // Firebase authenticate
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,6 @@ public class UserRegisterActivity extends AppCompatActivity {
         mButtonTwo = (Button) findViewById(R.id.buttonlogin);
         Username = (EditText) findViewById(R.id.username);
         Password = (EditText) findViewById(R.id.password);
-
 
         // clicking sign up will direct the user to another page
         mButton.setOnClickListener(
@@ -47,7 +52,7 @@ public class UserRegisterActivity extends AppCompatActivity {
                             Toast.makeText(UserRegisterActivity.this,"Username Taken", Toast.LENGTH_SHORT).show();
                         } else{
                             Intent intent  = new Intent(UserRegisterActivity.this, SignUp.class);
-                            //TODO PUT EXTRA HERE TO SIGN UP
+
                             intent.putExtra("username", username);
                             intent.putExtra("password", password);
                             startActivity(intent);
