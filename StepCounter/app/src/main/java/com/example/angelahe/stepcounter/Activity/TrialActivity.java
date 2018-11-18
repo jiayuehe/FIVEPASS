@@ -2,6 +2,7 @@ package com.example.angelahe.stepcounter.Activity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Location;
 import android.os.Bundle;
@@ -18,12 +19,14 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.angelahe.stepcounter.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -35,6 +38,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class TrialActivity extends FragmentActivity implements LocationListener,
         OnMapReadyCallback, GoogleApiClient
@@ -46,6 +52,8 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     private Marker m;
 //    private GoogleApiClient googleApiClient;
 
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+
     public final static int SENDING = 1;
     public final static int CONNECTING = 2;
     public final static int ERROR = 3;
@@ -55,6 +63,7 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     private static final String TAG = "LocationActivity";
     private static final long INTERVAL = 1000 * 10;
     private static final long FASTEST_INTERVAL = 1000 * 5;
+    private static final float DEFAULT_ZOOM = 15f;
     Button btnFusedLocation;
     TextView tvLocation;
     LocationRequest mLocationRequest;
@@ -62,6 +71,9 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     Location mCurrentLocation;
     String mLastUpdateTime;
     private Location previousLocation;
+
+    // currentLocation
+    private LatLng rightNow;
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -102,6 +114,32 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         };
     }
 
+    private void getDeviceLocation() {
+        Log.d(TAG, "getDeviceLocation: try to get location\n\n");
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        try {
+            if (true) {
+                final Task location = mFusedLocationProviderClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "onComplete: found location");
+                            Location currentLocation = (Location) task.getResult();
+                            rightNow = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                            //moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                        } else {
+                            Log.d(TAG, "onComplete: current location is null");
+                        }
+                    }
+                });
+            }
+        } catch (SecurityException e) {
+            Log.e(TAG, "getDeviceLocation: Security Exception: " + e.getMessage());
+        }
+    }
+
 
     /**
      * Manipulates the map once available.
@@ -117,12 +155,15 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng sydney = new LatLng(40.522, -122.084);
+        rightNow = sydney;
 
-        m = mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in " +
-                "Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //getDeviceLocation();
 
+
+        m = mMap.addMarker(new MarkerOptions().position(rightNow).title("Marker in " +
+                "Current Location"));
+        moveCamera(rightNow, DEFAULT_ZOOM);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -196,6 +237,12 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
                 }
             }
         });
+    }
+
+    // move camera self defined
+    private void moveCamera(LatLng latLng, float zoom) {
+        Log.d(TAG, "moveCamera: moving camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
     private double bearingBetweenLocations(LatLng latLng1, LatLng latLng2) {
@@ -306,6 +353,17 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         Log.d(TAG, "Firing onLocationChanged..........................");
         Log.d(TAG, "lat :" + location.getLatitude() + "long :" + location.getLongitude());
         Log.d(TAG, "bearing :" + location.getBearing());
+        Log.d(TAG, "previously? ");
+        Log.d(TAG, "lat :" + previouslatLng.latitude + "long :" + previouslatLng.longitude);
+        Log.d(TAG, "bearing :" + location.getBearing());
+
+        mMap.addPolyline(new PolylineOptions()
+                .add(rightNow, previouslatLng)
+                .width(5)
+                .color(Color.RED));
+
+        moveCamera(new LatLng(location.getLatitude(), location.getLongitude()), DEFAULT_ZOOM);
+        rightNow = previouslatLng;
 
         animateMarker(new LatLng(location.getLatitude(), location.getLongitude()), false);
 //        new ServerConnAsync(handler, MapsActivity.this,location).execute();
