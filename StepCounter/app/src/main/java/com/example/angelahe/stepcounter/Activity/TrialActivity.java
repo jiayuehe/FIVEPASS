@@ -38,9 +38,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
 
 public class TrialActivity extends FragmentActivity implements LocationListener,
         OnMapReadyCallback, GoogleApiClient
@@ -63,7 +66,7 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     private static final String TAG = "LocationActivity";
     private static final long INTERVAL = 1000 * 10;
     private static final long FASTEST_INTERVAL = 1000 * 5;
-    private static final float DEFAULT_ZOOM = 15f;
+    private static final float DEFAULT_ZOOM = 50f;
     Button btnFusedLocation;
     TextView tvLocation;
     LocationRequest mLocationRequest;
@@ -74,6 +77,9 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
 
     // currentLocation
     private LatLng rightNow;
+
+    // all polyline
+    ArrayList<Polyline> polylineArray = new ArrayList<>();
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -155,7 +161,7 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(40.522, -122.084);
+        LatLng sydney = new LatLng(34.0224, -118.2851);
         rightNow = sydney;
 
         //getDeviceLocation();
@@ -357,10 +363,12 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         Log.d(TAG, "lat :" + previouslatLng.latitude + "long :" + previouslatLng.longitude);
         Log.d(TAG, "bearing :" + location.getBearing());
 
-        mMap.addPolyline(new PolylineOptions()
+        Polyline polyline = mMap.addPolyline(new PolylineOptions()
                 .add(rightNow, previouslatLng)
                 .width(5)
                 .color(Color.RED));
+
+        polylineArray.add(polyline);
 
         moveCamera(new LatLng(location.getLatitude(), location.getLongitude()), DEFAULT_ZOOM);
         rightNow = previouslatLng;
@@ -373,6 +381,11 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     @Override
     protected void onPause() {
         super.onPause();
+        // remove all of the polyline
+        for(Polyline currentPolyline: polylineArray){
+            currentPolyline.remove();
+        }
+        rightNow = new LatLng(40.522, -122.084);
         stopLocationUpdates();
     }
 

@@ -17,5 +17,5 @@
     <item
         android:id="@+id/Map"
         android:icon="@drawable/map"
-        android:title="Map"/>
+        android:title="Map" />
 </menu>
