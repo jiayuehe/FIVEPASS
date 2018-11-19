@@ -110,7 +110,7 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         // play music
         musicPlayer = new MusicPlayer("");
         try{
-            musicPlayer.playMusic("http://www.noiseaddicts.com/samples_1w72b820/3720.mp3");
+            musicPlayer.playMusic("https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/v4/b3/b1/01/b3b101c5-0afd-a536-394d-962b7012e8e1/mzaf_2288480411868289485.plus.aac.p.m4a");
         } catch (Exception e){
             Log.e(TAG, "onCreate: exception: "+e.getMessage());
         }
