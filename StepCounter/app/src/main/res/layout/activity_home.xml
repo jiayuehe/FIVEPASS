@@ -239,46 +239,12 @@
                     android:layout_height="62dp"
                     android:layout_marginStart="-1dp">
 
-                    <ImageView
-                        android:id="@+id/actionTime"
-                        android:layout_width="79dp"
-                        android:layout_height="60dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
-                        android:background="@color/common_google_signin_btn_text_dark_default"
-                        app:srcCompat="@drawable/time" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="351dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="0dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="79dp">
-
-
-                    <TextView
-                        android:id="@+id/actiontime"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/button_Trial"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/action_time"
-                        android:textSize="16dp"
-                        android:fontFamily="casual"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:text="Start Running" />
 
-                    <TextView
-                        android:id="@+id/actiontimedata"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/tv_info"
-                        android:text="@string/ActionTimeDefault"
-                        android:textSize="30dp"
-                        android:fontFamily="casual"
-                        android:textColor="@color/colorPrimary"/>
 
                 </LinearLayout>
 
@@ -297,47 +263,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="62dp"
                     android:layout_marginStart="-1dp">
-
-                    <ImageView
-                        android:id="@+id/calorieimage"
-                        android:layout_width="79dp"
-                        android:layout_height="60dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="0dp"
-                        android:background="@color/common_google_signin_btn_text_dark_default"
-                        app:srcCompat="@drawable/fire" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="351dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="0dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="79dp">
-
-
-                    <TextView
-                        android:id="@+id/calories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/calories"
-                        android:textSize="16dp"
-                        android:fontFamily="casual"
-                        android:textColor="@color/colorPrimaryDark"/>
-
-                    <TextView
-                        android:id="@+id/caloriesData"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/tv_info"
-                        android:text="@string/_0"
-                        android:textSize="30dp"
-                        android:fontFamily="casual"
-                        android:textColor="@color/colorPrimary"/>
 
                 </LinearLayout>
 

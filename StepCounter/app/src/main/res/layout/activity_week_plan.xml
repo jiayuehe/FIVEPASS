@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:background="#4A9C67" >
+            android:background="#B20082" >
         </ListView>
 
     </LinearLayout>

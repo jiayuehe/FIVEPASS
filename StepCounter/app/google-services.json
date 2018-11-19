@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "955361394102",
+    "firebase_url": "https://fivepass-1539641503020.firebaseio.com",
+    "project_id": "fivepass-1539641503020",
+    "storage_bucket": "fivepass-1539641503020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955361394102:android:72c4278667b096a4",
+        "android_client_info": {
+          "package_name": "com.example.angelahe.stepcounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955361394102-jjkiega8a8kgf0qog34pt9f8fppg3kdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.angelahe.stepcounter",
+            "certificate_hash": "af816c7b990304bde1a5bfacdaaf22cc8a1319b8"
+          }
+        },
+        {
+          "client_id": "955361394102-unufqb12ldfk1uk9uue5nvpnrnh1ff75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPaNMrRBfz_FIrHTPQxr9MYfcIEGI9hVg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955361394102-unufqb12ldfk1uk9uue5nvpnrnh1ff75.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
