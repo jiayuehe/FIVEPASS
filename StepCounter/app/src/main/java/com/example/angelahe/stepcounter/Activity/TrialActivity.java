@@ -54,6 +54,8 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     private Handler handler;
     private Marker m;
 //    private GoogleApiClient googleApiClient;
+    // music player
+    private MusicPlayer musicPlayer;
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
@@ -104,6 +106,15 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.running_map);
         mapFragment.getMapAsync(this);
+
+        // play music
+        musicPlayer = new MusicPlayer("");
+        try{
+            musicPlayer.playMusic();
+        } catch (Exception e){
+            Log.e(TAG, "onCreate: exception: "+e.getMessage());
+        }
+
 
         handler = new Handler() {
             @Override
