@@ -110,7 +110,7 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         // play music
         musicPlayer = new MusicPlayer("");
         try{
-            musicPlayer.playMusic();
+            musicPlayer.playMusic("http://www.noiseaddicts.com/samples_1w72b820/3720.mp3");
         } catch (Exception e){
             Log.e(TAG, "onCreate: exception: "+e.getMessage());
         }
@@ -129,6 +129,13 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
 
             }
         };
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        musicPlayer.stopPlay();
     }
 
     private void getDeviceLocation() {
