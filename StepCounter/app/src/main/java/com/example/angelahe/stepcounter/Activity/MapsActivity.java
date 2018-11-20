@@ -195,6 +195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
                 +currentLocation.getLatitude()+","+currentLocation.getLongitude()
                 +"&radius=1000&type=gym&key=AIzaSyAcIICLHNIOJn0vEl8eBzKW9_ZWlCetd4Y";
+        Log.e(TAG, "url: "+url);
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);

@@ -54,6 +54,8 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
     private Handler handler;
     private Marker m;
 //    private GoogleApiClient googleApiClient;
+    // music player
+    private MusicPlayer musicPlayer;
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
@@ -77,6 +79,8 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
 
     // currentLocation
     private LatLng rightNow;
+    private double latRN;
+    private double lngRN;
 
     // all polyline
     ArrayList<Polyline> polylineArray = new ArrayList<>();
@@ -93,6 +97,7 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trial);
 
+
         createLocationRequest();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
@@ -104,6 +109,19 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.running_map);
         mapFragment.getMapAsync(this);
+
+        // play music
+        musicPlayer = new MusicPlayer("");
+        try{
+            musicPlayer.playMusic("https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/Music/v4/b3/b1/01/b3b101c5-0afd-a536-394d-962b7012e8e1/mzaf_2288480411868289485.plus.aac.p.m4a");
+        } catch (Exception e){
+            Log.e(TAG, "onCreate: exception: "+e.getMessage());
+        }
+
+        //get current location
+                getDeviceLocation();
+
+
 
         handler = new Handler() {
             @Override
@@ -120,6 +138,13 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         };
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        musicPlayer.stopPlay();
+    }
+
     private void getDeviceLocation() {
         Log.d(TAG, "getDeviceLocation: try to get location\n\n");
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -131,9 +156,15 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "onComplete: found location");
+                            Log.d(TAG, "onComplete: found location-------------------task successful");
                             Location currentLocation = (Location) task.getResult();
                             rightNow = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+
+
+                            m = mMap.addMarker(new MarkerOptions().position(rightNow).title("Marker in " +
+                                    "Current Location"));
+                            moveCamera(rightNow, DEFAULT_ZOOM);
+
                             //moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {
                             Log.d(TAG, "onComplete: current location is null");
@@ -161,15 +192,11 @@ public class TrialActivity extends FragmentActivity implements LocationListener,
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(34.0224, -118.2851);
-        rightNow = sydney;
+//        LatLng sydney = new LatLng(34.0224, -118.2851);
+//        rightNow = sydney;
 
-        //getDeviceLocation();
+        getDeviceLocation();
 
-
-        m = mMap.addMarker(new MarkerOptions().position(rightNow).title("Marker in " +
-                "Current Location"));
-        moveCamera(rightNow, DEFAULT_ZOOM);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
