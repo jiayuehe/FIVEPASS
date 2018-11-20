@@ -16,3 +16,6 @@ Complete functionality:
 6) Clear badge to 0 if the user doesn't complete his/her calorie goal for one day.
 7) Change the daily exercise goal/users' detailed information in settings.
 8) Step Counter(Note: This only works on real android device. *It does not work on emulators)
+9) Google Map API helps the users to locate the gyms nearby.
+10) Youtube API lets the user to search Youtube Video API.
+11) Start the music and track the user's route when user starts running. 
