@@ -35,9 +35,12 @@ public class CheckReceiver extends BroadcastReceiver {
                 MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
             }
             // set zero
+            currentUser.updateHistory(currentUser.getCalorie());
             currentUser.setCalorie(0);
+
             MainActivity.myAppDatabase.UserDao().updateUser(currentUser);
 
         }
     }
 }
+

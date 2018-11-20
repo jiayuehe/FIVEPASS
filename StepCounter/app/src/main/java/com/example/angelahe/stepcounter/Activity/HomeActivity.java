@@ -35,9 +35,15 @@ import com.example.angelahe.stepcounter.R;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
+
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.series.*;
+import com.jjoe64.graphview.GraphView;
 
 public class HomeActivity extends AppCompatActivity implements SensorEventListener {
     // This is for ring progress bar
@@ -135,6 +141,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                     }
                 });
 
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -217,6 +224,36 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                 return false;
             }
         });
+
+        ArrayList<Integer> history = (ArrayList)currentUser.getHistory();
+        Calendar calendar = Calendar.getInstance();
+        Date d4 = calendar.getTime();
+        calendar.add(Calendar.DATE, -1);
+        Date d3 = calendar.getTime();
+        calendar.add(Calendar.DATE, -1);
+        Date d2 = calendar.getTime();
+        calendar.add(Calendar.DATE, -1);
+        Date d1 = calendar.getTime();
+
+
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(d1, history.get(0)),
+                new DataPoint(d2, history.get(1)),
+                new DataPoint(d3, history.get(2)),
+                new DataPoint(d4, currentUser.getCalorie())
+
+        });
+        graph.addSeries(series);
+        series.setDrawDataPoints(true);
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getApplicationContext()));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(4);
+        graph.getViewport().setMinX(d1.getTime());
+        graph.getViewport().setMaxX(d4.getTime());
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getGridLabelRenderer().setHumanRounding(false);
+
+
 
 
     }
