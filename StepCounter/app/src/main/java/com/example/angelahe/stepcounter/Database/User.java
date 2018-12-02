@@ -55,6 +55,9 @@ public class User {
     @ColumnInfo(name = "calorie_day3")
     public int day3;
 
+    @ColumnInfo(name = "workout_goal")
+    public String workoutGoal;
+
     public String getmUserName() {return mUserName;}
 
     public String getmPassword() {return mPassword;}
@@ -84,6 +87,8 @@ public class User {
     public int getBadge() {
         return badge;
     }
+
+    public String getWorkoutGoal() { return workoutGoal; }
 
     public void setPassword(String password) {this.mPassword = password;}
     @Ignore
@@ -134,6 +139,8 @@ public class User {
         this.day2 = 0;
         this.day3 = 0;
     }
+
+
 
     public int getCalorieConsumptioon() {
         return calorieConsumptioon;

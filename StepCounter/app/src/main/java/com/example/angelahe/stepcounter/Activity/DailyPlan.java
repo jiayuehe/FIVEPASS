@@ -92,6 +92,7 @@ public class DailyPlan extends AppCompatActivity {
                         intent.putExtra("username", username);
                         startActivity(intent);
                         break;
+
                     case R.id.AddMorePlan:
                         break;
                     case R.id.Settings:
@@ -226,7 +227,7 @@ public class DailyPlan extends AppCompatActivity {
 
     protected void sendSMSMessage(String exerciseName) {
         // TODO is the telephone number--Access the address book
-        String phoneNo = "8586994787";
+        String phoneNo = "2132040778";
         String message = "Let us " + exerciseName + " together";
 
         try {
