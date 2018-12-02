@@ -111,22 +111,33 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         float weight = currentUser.getWeight();
 
         String workoutGoal = currentUser.getWorkoutGoal();
-        int suggestedProtin;
+        int suggestedProtein;
         int suggestedFat;
-        int suggestedCarb;
+        int suggestedCarb = 55555;
+
 
         if(workoutGoal.equals("Losing fat")){
-            suggestedProtin = (int) (0.3 * weight);
+            suggestedProtein = (int) (0.3 * weight * 2);
             suggestedCarb = 152;
             suggestedFat = (int) (suggestedCarb * 0.3);
         }
         else{
-            suggestedProtin = (int) (0.35 * weight);
+            suggestedProtein = (int) (0.35 * weight * 2);
             suggestedCarb = 310;
             suggestedFat = (int) (suggestedCarb * 0.3);
         }
 
-        Log.e("suggestion: ", ""+suggestedCarb);
+        Log.e("diet suggestion: ", ""+workoutGoal);
+
+        TextView proteinText = findViewById(R.id.protein);
+        TextView fatText = findViewById(R.id.fat);
+        TextView carbText = findViewById(R.id.carb);
+        TextView goalTitleText = findViewById(R.id.type_goal);
+
+        goalTitleText.setText(workoutGoal);
+        proteinText.setText("Protein: " + suggestedProtein + "g");
+        fatText.setText("Fat: " + suggestedFat + "g");
+        carbText.setText("Carb: " + suggestedCarb + "g");
 
 
         // display calorie

@@ -125,6 +125,26 @@ public class User {
         this.calorieConsumptioon = calorie;
     }
 
+    public void setWorkoutGoal(String workoutGoal) { this.workoutGoal = workoutGoal; };
+
+//    public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal, char gender, String workoutGoal) {
+//        this.mUserName = mUserName;
+//        this.mPassword = mPassword;
+//        this.badge = 0;
+//        this.calorieConsumptioon = 0;
+//        this.age = age;
+//        this.weight = weight;
+//        this.height = height;
+//        this.dailyGoal = dailyGoal;
+//        this.gender = gender;
+//        this.day1 = 0;
+//        this.day2 = 0;
+//        this.day3 = 0;
+//
+//        this.workoutGoal = workoutGoal;
+//    }
+
+
     public User(String mUserName, String mPassword, int age, float weight, float height, int dailyGoal, char gender) {
         this.mUserName = mUserName;
         this.mPassword = mPassword;
