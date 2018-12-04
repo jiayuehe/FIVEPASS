@@ -14,7 +14,7 @@ import com.example.angelahe.stepcounter.Database.User;
 import com.example.angelahe.stepcounter.R;
 
 public class SignUp extends AppCompatActivity {
-    private Spinner genderSpinner, ageSpinner, weightSpinner, heightSpinner;
+    private Spinner genderSpinner, ageSpinner, weightSpinner, heightSpinner, workoutGoalSpinner;
     private Button signUpBtn;
     EditText Password;
     EditText Username;
@@ -44,6 +44,8 @@ public class SignUp extends AppCompatActivity {
         weightSpinner = (Spinner) findViewById(R.id.weight);
         heightSpinner = (Spinner) findViewById(R.id.body_height);
         DailyGoal = (EditText) findViewById(R.id.dailyGoal);
+        workoutGoalSpinner = findViewById(R.id.goal_spinner);
+
 
         signUpBtn.setOnClickListener(
                 new View.OnClickListener()
@@ -63,6 +65,7 @@ public class SignUp extends AppCompatActivity {
                             User currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
                             if(currentUser == null){
                                 User user = new User(username,password,age,weight, height, dailyGoal,gender);
+                                user.setWorkoutGoal(workoutGoalSpinner.getSelectedItem().toString());
                                 MainActivity.myAppDatabase.UserDao().addUser(user);
                                 Intent myIntent = new Intent(SignUp.this, HomeActivity.class);
                                 myIntent.putExtra("username", username);

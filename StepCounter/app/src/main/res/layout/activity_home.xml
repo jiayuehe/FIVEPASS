@@ -95,6 +95,91 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/title_workout_goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/titleMedium"
+                    android:layout_marginBottom="@dimen/titleMedium"
+                    android:text="Overall Goal"
+                    android:textSize="@dimen/titleMedium"
+                    android:fontFamily="casual"
+                    android:textColor="@color/colorPrimaryLess"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/div_workout_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:orientation="horizontal"
+                android:layout_marginBottom="30dp">
+
+                <LinearLayout
+                    android:layout_width="351dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="1dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="0dp">
+
+                    <TextView
+                        android:id="@+id/type_goal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Losing Fat"
+                        android:textSize="25dp"
+                        android:fontFamily="casual"
+                        android:textColor="@color/colorPrimaryDark"
+
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp">
+                        <TextView
+                            android:id="@+id/protein"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Protein: "
+                            android:textSize="20dp"
+                            android:fontFamily="casual"
+                            android:textColor="@color/colorPrimaryDark"
+                            />
+                        <TextView
+                            android:id="@+id/fat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fat: "
+                            android:textSize="20dp"
+                            android:fontFamily="casual"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_below="@+id/protein"
+                            />
+                        <TextView
+                            android:id="@+id/carb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Carbs: "
+                            android:textSize="20dp"
+                            android:fontFamily="casual"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_below="@+id/fat"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
                     android:id="@+id/title_exercise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

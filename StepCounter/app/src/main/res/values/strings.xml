@@ -168,6 +168,12 @@
         <item>220</item>
     </string-array>
 
+    <string name="workoutGoalPrompt">Height</string>
+    <string-array name="workoutGoals">
+        <item>Losing fat</item>
+        <item>Building muscle</item>
+    </string-array>
+
     <string name="weightPrompt">Weight</string>
     <string-array name="weight">
         <item>30</item>

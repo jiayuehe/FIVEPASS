@@ -106,6 +106,40 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         Log.e("Current User name", "get name " + username);
         currentUser = MainActivity.myAppDatabase.UserDao().returnCurrentUser(username);
 
+
+        // display nutrition suggestions
+        float weight = currentUser.getWeight();
+
+        String workoutGoal = currentUser.getWorkoutGoal();
+        int suggestedProtein;
+        int suggestedFat;
+        int suggestedCarb = 55555;
+
+
+        if(workoutGoal.equals("Losing fat")){
+            suggestedProtein = (int) (0.3 * weight * 2);
+            suggestedCarb = 152;
+            suggestedFat = (int) (suggestedCarb * 0.3);
+        }
+        else{
+            suggestedProtein = (int) (0.35 * weight * 2);
+            suggestedCarb = 310;
+            suggestedFat = (int) (suggestedCarb * 0.3);
+        }
+
+        Log.e("diet suggestion: ", ""+workoutGoal);
+
+        TextView proteinText = findViewById(R.id.protein);
+        TextView fatText = findViewById(R.id.fat);
+        TextView carbText = findViewById(R.id.carb);
+        TextView goalTitleText = findViewById(R.id.type_goal);
+
+        goalTitleText.setText(workoutGoal);
+        proteinText.setText("Protein: " + suggestedProtein + "g");
+        fatText.setText("Fat: " + suggestedFat + "g");
+        carbText.setText("Carb: " + suggestedCarb + "g");
+
+
         // display calorie
         calorie = currentUser.getCalorie();
         dailyGoal = currentUser.getDailyGoal();
@@ -255,8 +289,8 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
 
 
-
     }
+
 
 
     @Override

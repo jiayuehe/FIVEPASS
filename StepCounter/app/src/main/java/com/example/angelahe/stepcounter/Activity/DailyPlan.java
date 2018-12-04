@@ -15,14 +15,19 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.telephony.SmsManager;
@@ -49,6 +54,8 @@ public class DailyPlan extends AppCompatActivity {
     private List<Exercise> allExercise;
     Button checkbutton;
     Button weeklyPlan;
+    private String phoneNumber;
+    private String exerciseName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,6 @@ public class DailyPlan extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermission();
         }
-        Log.d("What about here", "Is it here?");
         if (allExercise == null) {
             Log.d("CurrentExerciseisnull?", "No Exercise List");
         } else {
@@ -92,6 +98,7 @@ public class DailyPlan extends AppCompatActivity {
                         intent.putExtra("username", username);
                         startActivity(intent);
                         break;
+
                     case R.id.AddMorePlan:
                         break;
                     case R.id.Settings:
@@ -155,8 +162,15 @@ public class DailyPlan extends AppCompatActivity {
             sendSMSBtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Exercise currExercise = allExercise.get(position);
-                    String exerciseName = currExercise.getExerciseName();
-                    sendSMSMessage(exerciseName);
+                    exerciseName = currExercise.getExerciseName();
+                    showAddItemDialog(DailyPlan.this);
+//                    if(phoneNumber != null){
+//                        Exercise currExercise = allExercise.get(position);
+//                        String exerciseName = currExercise.getExerciseName();
+//                        sendSMSMessage(exerciseName);
+//                    } else{
+//                        Toast.makeText(DailyPlan.this,"Invitation Failed", Toast.LENGTH_SHORT).show();
+//                    }
                 }
             });
 
@@ -218,6 +232,24 @@ public class DailyPlan extends AppCompatActivity {
         }
     }
 
+    public void showAddItemDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Type in the phone number")
+                .setMessage("Who do you want to invite? ")
+                .setView(taskEditText)
+                .setPositiveButton("Send Message", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        phoneNumber = String.valueOf(taskEditText.getText());
+                        sendSMSMessage(exerciseName);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
     public void openExerciseOptions() {
         Intent intent = new Intent(this, AddExerciseActivity.class);
         intent.putExtra("username", username);
@@ -225,8 +257,7 @@ public class DailyPlan extends AppCompatActivity {
     }
 
     protected void sendSMSMessage(String exerciseName) {
-        // TODO is the telephone number--Access the address book
-        String phoneNo = "8586994787";
+        String phoneNo = phoneNumber;
         String message = "Let us " + exerciseName + " together";
 
         try {
