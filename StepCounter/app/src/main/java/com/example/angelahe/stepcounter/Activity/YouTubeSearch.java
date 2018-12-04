@@ -30,10 +30,6 @@ public class YouTubeSearch extends AsyncTask<String, Void, List<SearchResult>> {
         this.context = context;
     }
 
-    public List<SearchResult> getSearchResults() {
-        return searchResultList;
-    }
-
     @Override
     protected List<SearchResult> doInBackground(String... params){
 
