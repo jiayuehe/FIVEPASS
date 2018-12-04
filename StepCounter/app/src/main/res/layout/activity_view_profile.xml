@@ -12,151 +12,176 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/NavigationBar3">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/usernameText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Username: "
-                    android:textSize="18dp"
                     android:padding="15dp"
-                    />
+                    android:text="Username: "
+                    android:textSize="18dp" />
+
                 <EditText
                     android:id="@+id/currUsername"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
+                    android:inputType="text"
                     android:paddingRight="30dp"
-                    android:textAlignment="center"
-                    android:inputType="text"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Daily Goal: "
-                    android:textSize="18dp"
                     android:padding="15dp"
-                    />
+                    android:text="Daily Goal: "
+                    android:textSize="18dp" />
+
                 <EditText
                     android:id="@+id/currGoal"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
+                    android:inputType="text"
                     android:paddingRight="30dp"
-                    android:textAlignment="center"
-                    android:inputType="text"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Age: "
-                    android:textSize="18dp"
                     android:padding="15dp"
-                    />
+                    android:text="Age: "
+                    android:textSize="18dp" />
+
                 <EditText
                     android:id="@+id/currAge"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
+                    android:inputType="text"
                     android:paddingRight="30dp"
-                    android:textAlignment="center"
-                    android:inputType="text"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Weight: "
-                    android:textSize="18dp"
                     android:padding="15dp"
-                    />
+                    android:text="Weight: "
+                    android:textSize="18dp" />
+
                 <EditText
                     android:id="@+id/currWeight"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
+                    android:inputType="text"
                     android:paddingRight="30dp"
-                    android:textAlignment="center"
-                    android:inputType="text"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Height: "
-                    android:textSize="18dp"
                     android:padding="15dp"
-                    />
+                    android:text="Height: "
+                    android:textSize="18dp" />
+
                 <EditText
                     android:id="@+id/currHeight"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
+                    android:inputType="text"
                     android:paddingRight="30dp"
-                    android:textAlignment="center"
-                    android:inputType="text"/>
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.6"
-                    android:text="Gender: "
-                    android:textSize="18dp"
                     android:padding="15dp"
-                    />
+                    android:text="Gender: "
+                    android:textSize="18dp" />
+
                 <EditText
                     android:id="@+id/currGender"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
+                    android:inputType="text"
                     android:paddingRight="30dp"
-                    android:textAlignment="center"
-                    android:inputType="text"/>
+                    android:textAlignment="center" />
             </LinearLayout>
-            <Button
-                android:id="@+id/goToProfileSetting"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Reset Profile and Password"
-                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/goToProfileSetting"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:text="Reset Profile"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="40dp"/>
+
+                <Button
+                    android:id="@+id/signOut"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:text="Sign OUT"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="25dp"/>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

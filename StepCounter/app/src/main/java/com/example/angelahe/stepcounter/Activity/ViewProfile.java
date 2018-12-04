@@ -94,6 +94,16 @@ public class ViewProfile extends AppCompatActivity implements View.OnClickListen
             }
         });
 
+        Button signout = (Button) findViewById(R.id.signOut);
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewProfile.this, UserRegisterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
